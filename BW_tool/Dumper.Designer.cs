@@ -19,6 +19,7 @@ namespace BW_tool
 		private System.Windows.Forms.Button dump_dec_but;
 		private System.Windows.Forms.Button inject_crypt_but;
 		private System.Windows.Forms.ComboBox selectedblock;
+		private System.Windows.Forms.CheckBox crypt_check;
 		
 		/// <summary>
 		/// Disposes resources used by the form.
@@ -46,6 +47,7 @@ namespace BW_tool
 			this.dump_dec_but = new System.Windows.Forms.Button();
 			this.inject_crypt_but = new System.Windows.Forms.Button();
 			this.selectedblock = new System.Windows.Forms.ComboBox();
+			this.crypt_check = new System.Windows.Forms.CheckBox();
 			this.SuspendLayout();
 			// 
 			// dump_but
@@ -70,6 +72,7 @@ namespace BW_tool
 			// 
 			// dump_dec_but
 			// 
+			this.dump_dec_but.Enabled = false;
 			this.dump_dec_but.Location = new System.Drawing.Point(204, 68);
 			this.dump_dec_but.Name = "dump_dec_but";
 			this.dump_dec_but.Size = new System.Drawing.Size(125, 23);
@@ -80,6 +83,7 @@ namespace BW_tool
 			// 
 			// inject_crypt_but
 			// 
+			this.inject_crypt_but.Enabled = false;
 			this.inject_crypt_but.Location = new System.Drawing.Point(353, 68);
 			this.inject_crypt_but.Name = "inject_crypt_but";
 			this.inject_crypt_but.Size = new System.Drawing.Size(125, 23);
@@ -173,12 +177,25 @@ namespace BW_tool
 			this.selectedblock.Name = "selectedblock";
 			this.selectedblock.Size = new System.Drawing.Size(692, 21);
 			this.selectedblock.TabIndex = 5;
+			this.selectedblock.SelectedIndexChanged += new System.EventHandler(this.SelectedblockSelectedIndexChanged);
+			// 
+			// crypt_check
+			// 
+			this.crypt_check.AutoCheck = false;
+			this.crypt_check.Location = new System.Drawing.Point(12, 38);
+			this.crypt_check.Name = "crypt_check";
+			this.crypt_check.Size = new System.Drawing.Size(104, 24);
+			this.crypt_check.TabIndex = 6;
+			this.crypt_check.Text = "Encripted";
+			this.crypt_check.UseVisualStyleBackColor = true;
+			this.crypt_check.CheckedChanged += new System.EventHandler(this.Crypt_checkCheckedChanged);
 			// 
 			// Dumper
 			// 
 			this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
 			this.ClientSize = new System.Drawing.Size(716, 103);
+			this.Controls.Add(this.crypt_check);
 			this.Controls.Add(this.selectedblock);
 			this.Controls.Add(this.inject_crypt_but);
 			this.Controls.Add(this.dump_dec_but);

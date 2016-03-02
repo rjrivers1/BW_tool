@@ -64,11 +64,32 @@ namespace BW_tool
 		void Dumper_butClick(object sender, EventArgs e)
 		{
 			Form dumper = new Dumper();
-			dumper.Show();
+			dumper.ShowDialog();
 		}
 		void Chk_butClick(object sender, EventArgs e)
 		{
-			save.chkCheck();
+			save.chkCheck(false); //Only verify
+		}
+		void Chk_updt_butClick(object sender, EventArgs e)
+		{
+			save.chkCheck(true); //Recalculate checksums and set them to savefile
+		}
+		void SavegamenameTextChanged(object sender, EventArgs e)
+		{
+			if (savegamename.Text != "")
+			{
+				dumper_but.Enabled = true;
+				chk_but.Enabled = true;
+				chk_updt_but.Enabled = true;
+				save_but.Enabled = true;
+			}
+			else
+			{
+				dumper_but.Enabled = false;
+				chk_but.Enabled = false;
+				chk_updt_but.Enabled = false;
+				save_but.Enabled = false;
+			}
 		}
 	}
 }

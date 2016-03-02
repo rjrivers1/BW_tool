@@ -62,7 +62,7 @@ namespace BW_tool
 			UInt32 seed = pv;
 			UInt16 tmp;
 
-			for (Int32 i = start_offset; i < length-4; i += 0x2)
+			for (Int32 i = start_offset; i < length; i += 0x2)
 			{
 				tmp = BitConverter.ToUInt16(buffer_dec, i);
 		

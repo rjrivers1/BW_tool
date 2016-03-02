@@ -82,5 +82,25 @@ namespace BW_tool
 			MainForm.save.setBlockCrypt( injectfile, (int)selectedblock.SelectedIndex);
 			//MessageBox.Show(injectfile.Length.ToString());
 		}
+		void Crypt_checkCheckedChanged(object sender, EventArgs e)
+		{
+			if (MainForm.save.blocks[selectedblock.SelectedIndex].encrypted)
+			{
+				dump_dec_but.Enabled = true;
+				inject_crypt_but.Enabled = true;
+			}
+			else
+			{
+				dump_dec_but.Enabled = false;
+				inject_crypt_but.Enabled = false;
+			}
+		}
+		void SelectedblockSelectedIndexChanged(object sender, EventArgs e)
+		{
+			if (MainForm.save.blocks[selectedblock.SelectedIndex].encrypted)
+				crypt_check.Checked = true;
+			else
+				crypt_check.Checked = false;
+		}
 	}
 }

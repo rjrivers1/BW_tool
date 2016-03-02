@@ -20,6 +20,7 @@ namespace BW_tool
 		private System.Windows.Forms.Label versiontext;
 		private System.Windows.Forms.Button dumper_but;
 		private System.Windows.Forms.Button chk_but;
+		private System.Windows.Forms.Button chk_updt_but;
 		
 		/// <summary>
 		/// Disposes resources used by the form.
@@ -48,6 +49,7 @@ namespace BW_tool
 			this.versiontext = new System.Windows.Forms.Label();
 			this.dumper_but = new System.Windows.Forms.Button();
 			this.chk_but = new System.Windows.Forms.Button();
+			this.chk_updt_but = new System.Windows.Forms.Button();
 			this.SuspendLayout();
 			// 
 			// loadsave_but
@@ -66,10 +68,12 @@ namespace BW_tool
 			this.savegamename.Name = "savegamename";
 			this.savegamename.Size = new System.Drawing.Size(484, 20);
 			this.savegamename.TabIndex = 1;
+			this.savegamename.TextChanged += new System.EventHandler(this.SavegamenameTextChanged);
 			// 
 			// save_but
 			// 
-			this.save_but.Location = new System.Drawing.Point(421, 12);
+			this.save_but.Enabled = false;
+			this.save_but.Location = new System.Drawing.Point(421, 67);
 			this.save_but.Name = "save_but";
 			this.save_but.Size = new System.Drawing.Size(75, 23);
 			this.save_but.TabIndex = 2;
@@ -86,6 +90,7 @@ namespace BW_tool
 			// 
 			// dumper_but
 			// 
+			this.dumper_but.Enabled = false;
 			this.dumper_but.Location = new System.Drawing.Point(12, 80);
 			this.dumper_but.Name = "dumper_but";
 			this.dumper_but.Size = new System.Drawing.Size(92, 23);
@@ -96,7 +101,8 @@ namespace BW_tool
 			// 
 			// chk_but
 			// 
-			this.chk_but.Location = new System.Drawing.Point(316, 12);
+			this.chk_but.Enabled = false;
+			this.chk_but.Location = new System.Drawing.Point(274, 12);
 			this.chk_but.Name = "chk_but";
 			this.chk_but.Size = new System.Drawing.Size(99, 23);
 			this.chk_but.TabIndex = 5;
@@ -104,11 +110,23 @@ namespace BW_tool
 			this.chk_but.UseVisualStyleBackColor = true;
 			this.chk_but.Click += new System.EventHandler(this.Chk_butClick);
 			// 
+			// chk_updt_but
+			// 
+			this.chk_updt_but.Enabled = false;
+			this.chk_updt_but.Location = new System.Drawing.Point(379, 12);
+			this.chk_updt_but.Name = "chk_updt_but";
+			this.chk_updt_but.Size = new System.Drawing.Size(117, 23);
+			this.chk_updt_but.TabIndex = 6;
+			this.chk_updt_but.Text = "Update Checksums";
+			this.chk_updt_but.UseVisualStyleBackColor = true;
+			this.chk_updt_but.Click += new System.EventHandler(this.Chk_updt_butClick);
+			// 
 			// MainForm
 			// 
 			this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
 			this.ClientSize = new System.Drawing.Size(503, 119);
+			this.Controls.Add(this.chk_updt_but);
 			this.Controls.Add(this.chk_but);
 			this.Controls.Add(this.dumper_but);
 			this.Controls.Add(this.versiontext);

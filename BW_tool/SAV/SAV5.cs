@@ -16,6 +16,12 @@ using System.IO;
 
 namespace BW_tool
 {
+	public class Crypto
+    {
+        public int start;
+        public int length;
+        public int seed;      
+    }
 	public class BlockInfo
     {
         public int Offset;
@@ -24,7 +30,7 @@ namespace BW_tool
         public int updtcnt;
         public int Checksum;
         public bool encrypted;
-        public int seed;       
+        public Crypto crypto;       
     }
 	public class SAV5 : PKX5
     {
@@ -93,6 +99,7 @@ namespace BW_tool
 	           for (i=0;i<74;i++)
 	           {
 	           		blocks[i] = new BlockInfo();
+	           		blocks[i].crypto = new Crypto();
 		           	blocks[i].Offset=BlockTableBW2[i];
 	           		blocks[i].Length=BlockTableLengthBW2[i];
 	           		blocks[i].ID= i;
@@ -105,10 +112,18 @@ namespace BW_tool
 	           		{
 	           			blocks[i].Checksum=0x25FA2;
 	           		}
-
-	           		blocks[i].encrypted=false;
-	           		blocks[i].seed=blocks[i].Offset+blocks[i].Length-4; 
-	           	
+	           		switch (i)
+	           		{
+	           			case 60: //Entralink forest
+	           				blocks[i].encrypted=true;
+	           				blocks[i].crypto.start = 0x00;
+	           				blocks[i].crypto.length = 0x84C;
+	           				blocks[i].crypto.seed = 0x84C;
+	           				break;
+	           			default:
+	           				blocks[i].encrypted=false;
+	           				break;
+	           		}	           	
 	           }
 	           
 	            // Different Offsets for different games.
@@ -153,7 +168,7 @@ namespace BW_tool
         		{
         			//MessageBox.Show(decrypt.Length.ToString());
         			//MessageBox.Show((blocks[index].Length-4).ToString());
-        			decrypt = PKX5.cryptoArray(Data.Skip(blocks[index].Offset).Take(blocks[index+1].Offset-blocks[index].Offset).ToArray(), 0, blocks[index].Length, blocks[index].Length-4);
+        			decrypt = PKX5.cryptoArray(Data.Skip(blocks[index].Offset).Take(blocks[index+1].Offset-blocks[index].Offset).ToArray(), blocks[index].crypto.start, blocks[index].crypto.length, blocks[index].crypto.seed);
 					//MessageBox.Show((blocks[index].Length-4).ToString());
         			return decrypt;
         		}
@@ -221,21 +236,23 @@ namespace BW_tool
         	{
         		if (index <74)
         		{
+        			//Encrypt
+        			byte[] encrypt = new byte[getBlockLength(index)];
+        			encrypt = PKX5.cryptoArray(input, blocks[index].crypto.start, blocks[index].crypto.length, blocks[index].crypto.seed);
+        			
         			//Recalculate checksum before applying to savedata
-        			ushort crc = ccitt16(input.Take(blocks[index].Length).ToArray());
-        			if (crc != BitConverter.ToUInt16(input, blocks[index].Checksum-blocks[index].Offset) )
+        			ushort crc = ccitt16(encrypt.Take(blocks[index].Length).ToArray());
+        			if (crc != BitConverter.ToUInt16(encrypt, blocks[index].Checksum-blocks[index].Offset) )
         			{
-        				Array.Copy(BitConverter.GetBytes(crc), 0, input, blocks[index].Checksum-blocks[index].Offset, 2);
+        				Array.Copy(BitConverter.GetBytes(crc), 0, encrypt, blocks[index].Checksum-blocks[index].Offset, 2);
         				MessageBox.Show("Block's checksum updated");
         			}else
         			{
         				MessageBox.Show("Checksum doesn't need update");
         			}
-
-
         			
-					input.CopyTo(Data, blocks[index].Offset);
-					input.CopyTo(Data, blocks[index].Offset+SIZE2);
+					encrypt.CopyTo(Data, blocks[index].Offset);
+					encrypt.CopyTo(Data, blocks[index].Offset+SIZE2);
 					Edited = true;
         		}
         		else return;
@@ -247,12 +264,15 @@ namespace BW_tool
             input.CopyTo(Data, Offset);
             Edited = true;
         }
-        public void chkCheck()
+        public void chkCheck(bool correct)
         {
         	int i = 0;
         	string badblocks;
         	badblocks = "Found bad checksums in MAIN save at blocks: ";
+        	string correctedblocks;
+        	correctedblocks = "Corrected checksums in MAIN save at blocks: ";
         	bool badcheck = false;
+        	bool firstcorrect = false;
         	if (B2W2)
         	{
         		//Main save checksums
@@ -261,8 +281,20 @@ namespace BW_tool
         			ushort crc = ccitt16(Data.Skip(blocks[i].Offset).Take(blocks[i].Length).ToArray());
         			if ( crc != BitConverter.ToUInt16(Data, blocks[i].Checksum) )
         			{
-        				//Array.Copy(BitConverter.GetBytes(crc), 0, input, blocks[index].Checksum-blocks[index].Offset, 2);
-        				//MessageBox.Show("Block's checksum is wrong " + i.ToString());
+        				if (correct)
+        				{
+        					Array.Copy(BitConverter.GetBytes(crc), 0, Data, blocks[i].Checksum, 2);
+	        				if (!firstcorrect)
+	        				{
+	        					firstcorrect = true;
+	        					correctedblocks = correctedblocks + i.ToString();
+	        				}else
+	        				{
+	        					correctedblocks = correctedblocks + ", " + i.ToString();
+	        				}
+        					Edited = true;
+        				}
+        				//Build bad checksum message
         				if (!badcheck)
         				{
         					badcheck = true;
@@ -279,20 +311,39 @@ namespace BW_tool
         		}
         		
         		if(badcheck)
-        			MessageBox.Show(badblocks);
+        		{
+        			if (correct)
+        				MessageBox.Show(correctedblocks);
+        			else
+        				MessageBox.Show(badblocks);
+        		}
         		else
         			MessageBox.Show("All 74 checksums OK in MAIN save");
 
         		//Backup save checksums
         		badcheck = false;
         		badblocks = "Found bad checksums in BACKUP save at blocks: ";
+        		firstcorrect = false;
+        		correctedblocks = "Corrected checksums in BACKUP save at blocks: ";
         		for(i=0; i<74; i++)
         		{
         			ushort crc = ccitt16(Data.Skip(blocks[i].Offset+SIZE2).Take(blocks[i].Length).ToArray());
         			if ( crc != BitConverter.ToUInt16(Data, blocks[i].Checksum+SIZE2) )
         			{
-        				//Array.Copy(BitConverter.GetBytes(crc), 0, input, blocks[index].Checksum-blocks[index].Offset, 2);
-        				//MessageBox.Show("Block's checksum is wrong " + i.ToString());
+        				if (correct)
+        				{
+        					Array.Copy(BitConverter.GetBytes(crc), 0, Data, blocks[i].Checksum+SIZE2, 2);
+	        				if (!firstcorrect)
+	        				{
+	        					firstcorrect = true;
+	        					correctedblocks = correctedblocks + i.ToString();
+	        				}else
+	        				{
+	        					correctedblocks = correctedblocks + ", " + i.ToString();
+	        				}
+        					Edited = true;
+        				}
+        				//Build bad checksum message
         				if (!badcheck)
         				{
         					badcheck = true;
@@ -309,7 +360,12 @@ namespace BW_tool
         		}
         		
         		if(badcheck)
-        			MessageBox.Show(badblocks);
+        		{
+        			if (correct)
+        				MessageBox.Show(correctedblocks);
+        			else
+        				MessageBox.Show(badblocks);
+        		}
         		else
         			MessageBox.Show("All 74 checksums OK in BACKUP save");
         		
