@@ -50,9 +50,13 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Dumper.cs" />
-    <Compile Include="Dumper.Designer.cs">
+    <Compile Include="Editors\Dumper.cs" />
+    <Compile Include="Editors\Dumper.Designer.cs">
       <DependentUpon>Dumper.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Editors\Grotto.cs" />
+    <Compile Include="Editors\Grotto.Designer.cs">
+      <DependentUpon>Grotto.cs</DependentUpon>
     </Compile>
     <Compile Include="MainForm.cs" />
     <Compile Include="MainForm.Designer.cs">
@@ -68,11 +72,15 @@
     <None Include="app.config" />
   </ItemGroup>
   <ItemGroup>
+    <Folder Include="Editors" />
     <Folder Include="SAV" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Dumper.resx">
+    <EmbeddedResource Include="Editors\Dumper.resx">
       <DependentUpon>Dumper.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Editors\Grotto.resx">
+      <DependentUpon>Grotto.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="MainForm.resx">
       <DependentUpon>MainForm.cs</DependentUpon>

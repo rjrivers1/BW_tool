@@ -61,11 +61,6 @@ namespace BW_tool
 				FileIO.save_data(save.Data);
 			else MessageBox.Show("Save has not been edited");
 		}
-		void Dumper_butClick(object sender, EventArgs e)
-		{
-			Form dumper = new Dumper();
-			dumper.ShowDialog();
-		}
 		void Chk_butClick(object sender, EventArgs e)
 		{
 			save.chkCheck(false); //Only verify
@@ -82,6 +77,7 @@ namespace BW_tool
 				chk_but.Enabled = true;
 				chk_updt_but.Enabled = true;
 				save_but.Enabled = true;
+				grotto_but.Enabled = true;
 			}
 			else
 			{
@@ -89,7 +85,18 @@ namespace BW_tool
 				chk_but.Enabled = false;
 				chk_updt_but.Enabled = false;
 				save_but.Enabled = false;
+				grotto_but.Enabled = false;
 			}
+		}
+		void Dumper_butClick(object sender, EventArgs e)
+		{
+			Form dumper = new Dumper();
+			dumper.ShowDialog();
+		}
+		void Grotto_butClick(object sender, EventArgs e)
+		{
+			Form grotto = new Grotto();
+			grotto.ShowDialog();
 		}
 	}
 }

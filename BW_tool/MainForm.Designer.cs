@@ -21,6 +21,7 @@ namespace BW_tool
 		private System.Windows.Forms.Button dumper_but;
 		private System.Windows.Forms.Button chk_but;
 		private System.Windows.Forms.Button chk_updt_but;
+		private System.Windows.Forms.Button grotto_but;
 		
 		/// <summary>
 		/// Disposes resources used by the form.
@@ -50,6 +51,7 @@ namespace BW_tool
 			this.dumper_but = new System.Windows.Forms.Button();
 			this.chk_but = new System.Windows.Forms.Button();
 			this.chk_updt_but = new System.Windows.Forms.Button();
+			this.grotto_but = new System.Windows.Forms.Button();
 			this.SuspendLayout();
 			// 
 			// loadsave_but
@@ -121,11 +123,23 @@ namespace BW_tool
 			this.chk_updt_but.UseVisualStyleBackColor = true;
 			this.chk_updt_but.Click += new System.EventHandler(this.Chk_updt_butClick);
 			// 
+			// grotto_but
+			// 
+			this.grotto_but.Enabled = false;
+			this.grotto_but.Location = new System.Drawing.Point(110, 80);
+			this.grotto_but.Name = "grotto_but";
+			this.grotto_but.Size = new System.Drawing.Size(140, 23);
+			this.grotto_but.TabIndex = 7;
+			this.grotto_but.Text = "Hidden Grotto and Swarm";
+			this.grotto_but.UseVisualStyleBackColor = true;
+			this.grotto_but.Click += new System.EventHandler(this.Grotto_butClick);
+			// 
 			// MainForm
 			// 
 			this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
 			this.ClientSize = new System.Drawing.Size(503, 119);
+			this.Controls.Add(this.grotto_but);
 			this.Controls.Add(this.chk_updt_but);
 			this.Controls.Add(this.chk_but);
 			this.Controls.Add(this.dumper_but);
