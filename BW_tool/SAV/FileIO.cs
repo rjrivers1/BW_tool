@@ -72,7 +72,8 @@ namespace BW_tool
 	                //MessageBox.Show(path.ToString());
 	                #endregion
 	                _read_data(ref buffer, path);
-	                return 1;
+	                //MessageBox.Show(buffer.Length.ToString());
+	                return buffer.Length;
 	            }else{
 	            	return -1;
 	            }

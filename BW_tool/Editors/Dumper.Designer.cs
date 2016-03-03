@@ -20,6 +20,7 @@ namespace BW_tool
 		private System.Windows.Forms.Button inject_crypt_but;
 		private System.Windows.Forms.ComboBox selectedblock;
 		private System.Windows.Forms.CheckBox crypt_check;
+		private System.Windows.Forms.ComboBox BW_blocklist;
 		
 		/// <summary>
 		/// Disposes resources used by the form.
@@ -48,6 +49,7 @@ namespace BW_tool
 			this.inject_crypt_but = new System.Windows.Forms.Button();
 			this.selectedblock = new System.Windows.Forms.ComboBox();
 			this.crypt_check = new System.Windows.Forms.CheckBox();
+			this.BW_blocklist = new System.Windows.Forms.ComboBox();
 			this.SuspendLayout();
 			// 
 			// dump_but
@@ -190,11 +192,93 @@ namespace BW_tool
 			this.crypt_check.UseVisualStyleBackColor = true;
 			this.crypt_check.CheckedChanged += new System.EventHandler(this.Crypt_checkCheckedChanged);
 			// 
+			// BW_blocklist
+			// 
+			this.BW_blocklist.FormattingEnabled = true;
+			this.BW_blocklist.Items.AddRange(new object[] {
+			"00 - Box Names",
+			"01 - Box 1",
+			"02 - Box 2",
+			"03 - Box 3",
+			"04 - Box 4",
+			"05 - Box 5",
+			"06 - Box 6",
+			"07 - Box 7",
+			"08 - Box 8",
+			"09 - Box 9",
+			"10 - Box 10",
+			"11 - Box 11",
+			"12 - Box 12",
+			"13 - Box 13",
+			"14 - Box 14",
+			"15 - Box 15",
+			"16 - Box 16",
+			"17 - Box 17",
+			"18 - Box 18",
+			"19 - Box 19",
+			"20 - Box 20",
+			"21 - Box 21",
+			"22 - Box 22",
+			"23 - Box 23",
+			"24 - Box 24",
+			"25 - Inventory",
+			"26 - Party Pokemon",
+			"27 - Trainer Data",
+			"28 - ",
+			"29 - ",
+			"30 - ",
+			"31 - ",
+			"32 - ",
+			"33 - ??? - Gym badge data",
+			"34 - ",
+			"35 - ",
+			"36 - ",
+			"37 - ",
+			"38 - ",
+			"39 - ",
+			"40 - ",
+			"41 - ",
+			"42 - ",
+			"43 - ",
+			"44 - ",
+			"45 - ",
+			"46 - ",
+			"47 - ",
+			"48 - ",
+			"49 - ",
+			"50 - ",
+			"51 - ",
+			"52 - ",
+			"53 - ",
+			"54 - ",
+			"55 - ",
+			"56 - ",
+			"57 - ",
+			"58 - ",
+			"59 - ",
+			"60 - ",
+			"61 - Entralink Forest pokémon data",
+			"62 - ",
+			"63 - ",
+			"64 - ",
+			"65 - ",
+			"66 - ",
+			"67 - ",
+			"68 - ",
+			"69 - Checksum Block (73d)"});
+			this.BW_blocklist.Location = new System.Drawing.Point(12, 12);
+			this.BW_blocklist.MaxDropDownItems = 10;
+			this.BW_blocklist.Name = "BW_blocklist";
+			this.BW_blocklist.Size = new System.Drawing.Size(692, 21);
+			this.BW_blocklist.TabIndex = 7;
+			this.BW_blocklist.SelectedIndexChanged += new System.EventHandler(this.BW_blocklistSelectedIndexChanged);
+			// 
 			// Dumper
 			// 
 			this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
 			this.ClientSize = new System.Drawing.Size(716, 103);
+			this.Controls.Add(this.BW_blocklist);
 			this.Controls.Add(this.crypt_check);
 			this.Controls.Add(this.selectedblock);
 			this.Controls.Add(this.inject_crypt_but);

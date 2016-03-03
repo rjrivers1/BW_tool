@@ -43,16 +43,43 @@ namespace BW_tool
 		{
 			versiontext.Text = "";
 			string path = null;
-			if(FileIO.load_file(ref savebuffer, ref path, dsfilter) == 1)
+			int filesize = FileIO.load_file(ref savebuffer, ref path, dsfilter);
+			if( filesize == SAV5.SIZERAW || filesize == SAV5.SIZERAW+122 )
 			{
 				savegamename.Text = path;
 				save = new SAV5(savebuffer);
-				if (save.B2W2) versiontext.Text = "Black/White 2";
-				else if (save.BW) versiontext.Text = "Black/White 1";
+			
+				if (save.B2W2)
+				{
+					versiontext.Text = "Black/White 2";
+					
+					dumper_but.Enabled = true;
+					chk_but.Enabled = true;
+					chk_updt_but.Enabled = true;
+					save_but.Enabled = true;
+					grotto_but.Enabled = true;
+				}
+				else if (save.BW)
+				{
+					versiontext.Text = "Black/White 1";
+					
+					dumper_but.Enabled = true;
+					chk_but.Enabled = true;
+					chk_updt_but.Enabled = true;
+					save_but.Enabled = true;
+					//grotto_but.Enabled = false;
+				}
 				else versiontext.Text = "Invalid file";
+
 				
 			}else{
+				MessageBox.Show("Invalid file.");
 				savegamename.Text = "";
+				dumper_but.Enabled = false;
+				chk_but.Enabled = false;
+				chk_updt_but.Enabled = false;
+				save_but.Enabled = false;
+				grotto_but.Enabled = false;
 			}
 		}
 		void Save_butClick(object sender, EventArgs e)
@@ -71,22 +98,7 @@ namespace BW_tool
 		}
 		void SavegamenameTextChanged(object sender, EventArgs e)
 		{
-			if (savegamename.Text != "")
-			{
-				dumper_but.Enabled = true;
-				chk_but.Enabled = true;
-				chk_updt_but.Enabled = true;
-				save_but.Enabled = true;
-				grotto_but.Enabled = true;
-			}
-			else
-			{
-				dumper_but.Enabled = false;
-				chk_but.Enabled = false;
-				chk_updt_but.Enabled = false;
-				save_but.Enabled = false;
-				grotto_but.Enabled = false;
-			}
+
 		}
 		void Dumper_butClick(object sender, EventArgs e)
 		{

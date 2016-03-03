@@ -58,8 +58,36 @@ namespace BW_tool
 		 0x35C, 0x1D4, 0x1E0, 0xF0, 0x1B4, 0x4DC, 0x34, //55
 		 0X3C, 0x1AC, 0xB90, 0xAC, 0x850, 0x284, 0x10, //62
 		 0xA8, 0x16C, 0x80, 0xFC, 0x16A8, 0x498, 0x60, //69
-		 0xFC, 0x3E4, 0xF0, 0x94};
-	
+		 0xFC, 0x3E4, 0xF0, 0x94}; //73
+
+    	private static int CrcTableBW2 = 73;
+    	
+    	private static int[] BlockTableBW =
+		{0x00000, 0x00400, 0x01400, 0x02400, 0x03400, 0x04400, 0x05400, //6
+		 0x06400, 0x07400, 0x08400, 0x09400, 0x0A400, 0x0B400, 0x0C400, //13
+		 0x0D400, 0x0E400, 0x0F400, 0x10400, 0x11400, 0x12400, 0x13400, //20
+		 0x14400, 0x15400, 0x16400, 0x17400, 0x18400, 0x18E00, 0x19400, //27
+		 0x19500, 0x19600, 0x1AA00, 0x1B200, 0x1C000, 0x1C100, 0x1C800, //34
+		 0x1D300, 0x1D500, 0x1D900, 0x1DA00, 0x1DC00, 0x1DD00, 0x1E200, //41
+		 0x1F700, 0x1FA00, 0x1FD00, 0x20100, 0x20500, 0x20600, 0x20900, //48
+		 0x20A00, 0x20E00, 0x21000, 0x21200, 0x21300, 0x21500, 0x21600, //55
+		 0x21B00, 0x21C00, 0x21D00, 0x21F00, 0x22B00, 0x22C00, 0x23500, //62
+		 0x23600, 0x23900, 0x23A00, 0x23B00, 0x23D00, 0x23E00, 0x23F00}; //69
+    	
+    	private static int[] BlockTableLengthBW =
+		{0x3E0, 0xFF0, 0xFF0, 0xFF0, 0xFF0, 0xFF0, 0xFF0, //6
+		 0xFF0, 0xFF0, 0xFF0, 0xFF0, 0xFF0, 0xFF0, 0xFF0, //13
+		 0xFF0, 0xFF0, 0xFF0, 0xFF0, 0xFF0, 0xFF0, 0xFF0, //20
+		 0xFF0, 0xFF0, 0xFF0, 0xFF0, 0x9C0, 0X534, 0x68, //27
+		 0x9C, 0x1338, 0x7C4, 0xD54, 0X2C, 0x658, 0xA94, //34
+		 0x1AC, 0x3EC, 0x5C, 0x1E0, 0xA8, 0x460, 0x1400, //41
+		 0x2A4, 0x2DC, 0x34C, 0x3EC, 0xF8, 0x2FC, 0x94, //48
+		 0x35C, 0x1CC, 0x168, 0xEC, 0x1B0, 0x1C, 0x4D4, //55
+		 0X34, 0x3C, 0x1AC, 0xB90, 0x9C, 0x850, 0x28, //62
+		 0x284, 0x10, 0x5C, 0x16C, 0x40, 0xFC, 0x8C}; //69
+    	
+    	private static int CrcTableBW = 69;
+    	
         internal const int SIZERAW = 0x80000; // 512KB
         internal const int SIZE1 = 0x24000; // B/W
         internal const int SIZE2 = 0x26000; // B2/W2
@@ -96,7 +124,7 @@ namespace BW_tool
 	
 	           //Build blockinfos
 	           int i;
-	           for (i=0;i<74;i++)
+	           for (i=0;i<=CrcTableBW2;i++)
 	           {
 	           		blocks[i] = new BlockInfo();
 	           		blocks[i].crypto = new Crypto();
@@ -114,6 +142,18 @@ namespace BW_tool
 	           		}
 	           		switch (i)
 	           		{
+	           			case 34: //Wondercards
+	           				blocks[i].encrypted=true;
+	           				blocks[i].crypto.start = 0x00;
+	           				blocks[i].crypto.length = 0xA90;
+	           				blocks[i].crypto.seed = 0xA90;
+	           				break;
+	           			case 38: //Trainer card records
+	           				blocks[i].encrypted=true;
+	           				blocks[i].crypto.start = 0x04;
+	           				blocks[i].crypto.length = 0x1DC;
+	           				blocks[i].crypto.seed = 0x1DC;
+	           				break;
 	           			case 60: //Entralink forest
 	           				blocks[i].encrypted=true;
 	           				blocks[i].crypto.start = 0x00;
@@ -125,10 +165,55 @@ namespace BW_tool
 	           				break;
 	           		}	           	
 	           }
-	           
-	            // Different Offsets for different games.
-	            BattleBox = B2W2 ? 0x20A00 : 0x20900;
             }
+            else if (BW)
+            {
+	           //Build blockinfos
+	           int i;
+	           for (i=0;i<=CrcTableBW;i++)
+	           {
+	           		blocks[i] = new BlockInfo();
+	           		blocks[i].crypto = new Crypto();
+		           	blocks[i].Offset=BlockTableBW[i];
+	           		blocks[i].Length=BlockTableLengthBW[i];
+	           		blocks[i].ID= i;
+	           		blocks[i].updtcnt=blocks[i].Offset+blocks[i].Length;
+	           		if (i != CrcTableBW)
+	           		{
+	           			blocks[i].Checksum=blocks[i].Offset+blocks[i].Length+2;
+	           		}
+	           		else if (i == CrcTableBW)
+	           		{
+	           			blocks[i].Checksum=0x23F9A;
+	           		}
+	           		switch (i)
+	           		{
+	           			/*case 34: //Wondercards
+	           				blocks[i].encrypted=true;
+	           				blocks[i].crypto.start = 0x00;
+	           				blocks[i].crypto.length = 0xA90;
+	           				blocks[i].crypto.seed = 0xA90;
+	           				break;
+	           			case 38: //Trainer card records
+	           				blocks[i].encrypted=true;
+	           				blocks[i].crypto.start = 0x04;
+	           				blocks[i].crypto.length = 0x1DC;
+	           				blocks[i].crypto.seed = 0x1DC;
+	           				break;*/
+	           			case 61: //Entralink forest
+	           				blocks[i].encrypted=true;
+	           				blocks[i].crypto.start = 0x00;
+	           				blocks[i].crypto.length = 0x84C;
+	           				blocks[i].crypto.seed = 0x84C;
+	           				break;
+	           			default:
+	           				blocks[i].encrypted=false;
+	           				break;
+	           		}	           	
+	           }
+            }
+           	// Different Offsets for different games.
+	        BattleBox = B2W2 ? 0x20A00 : 0x20900;
         }
 
         private const int Box = 0x400;
@@ -144,52 +229,84 @@ namespace BW_tool
         }
         public byte[] getBlock(int index)
         {
+        	int blocksnum = 0;
+        	int backupoffset = 0;
         	if (B2W2)
         	{
-        		if (index <73)
-        		{
-					return Data.Skip(blocks[index].Offset).Take(blocks[index+1].Offset-blocks[index].Offset).ToArray();
-        		}
-        		else if (index == 73)
-        		{
-	        		return Data.Skip(blocks[index].Offset).Take(SIZE2-blocks[index].Offset).ToArray();
-        		}
-        		else return null;
+        		blocksnum = CrcTableBW2;
+        		backupoffset = SIZE2;
+        	}
+        	else if (BW)
+        	{
+        		blocksnum = CrcTableBW;
+        		backupoffset = SIZE1;
         	}
         	else return null;
+
+			if (index < blocksnum)
+			{
+				return Data.Skip(blocks[index].Offset).Take(blocks[index + 1].Offset - blocks[index].Offset).ToArray();
+			} 
+			else if (index == blocksnum)
+			{
+				return Data.Skip(blocks[index].Offset).Take(backupoffset - blocks[index].Offset).ToArray();
+			} 
+			else
+				return null;
         }
         public byte[] getBlockDec(int index)
         {
         	byte[] decrypt = new byte[getBlockLength(index)];
-        	
+
+        	int blocksnum = 0;
+        	int backupoffset = 0;
         	if (B2W2)
         	{
-        		if (index <73)
-        		{
-        			//MessageBox.Show(decrypt.Length.ToString());
-        			//MessageBox.Show((blocks[index].Length-4).ToString());
-        			decrypt = PKX5.cryptoArray(Data.Skip(blocks[index].Offset).Take(blocks[index+1].Offset-blocks[index].Offset).ToArray(), blocks[index].crypto.start, blocks[index].crypto.length, blocks[index].crypto.seed);
-					//MessageBox.Show((blocks[index].Length-4).ToString());
-        			return decrypt;
-        		}
-        		else if (index == 73)
-        		{
-	        		return Data.Skip(blocks[index].Offset).Take(SIZE2-blocks[index].Offset).ToArray();
-        		}
-        		else return null;
+        		blocksnum = CrcTableBW2;
+        		backupoffset = SIZE2;
+        	}
+        	else if (BW)
+        	{
+        		blocksnum = CrcTableBW;
+        		backupoffset = SIZE1;
         	}
         	else return null;
+        	
+			if (index < blocksnum) {
+				//MessageBox.Show(decrypt.Length.ToString());
+				//MessageBox.Show((blocks[index].Length-4).ToString());
+				decrypt = PKX5.cryptoArray(Data.Skip(blocks[index].Offset).Take(blocks[index + 1].Offset - blocks[index].Offset).ToArray(), blocks[index].crypto.start, blocks[index].crypto.length, blocks[index].crypto.seed);
+				//MessageBox.Show((blocks[index].Length-4).ToString());
+				return decrypt;
+			} else if (index == 73) {
+				return Data.Skip(blocks[index].Offset).Take(backupoffset - blocks[index].Offset).ToArray();
+			} else
+				return null;
         }
         public int getBlockLength(int index)
         {
-        	if (B2W2){
-	        	if (index < 73)
-	        		return blocks[index+1].Offset-blocks[index].Offset;
-	        	else if (index == 73)
-	        		return SIZE2-blocks[index].Offset;
-	        	else return -1;
+        	int blocksnum = 0;
+        	int backupoffset = 0;
+        	if (B2W2)
+        	{
+        		blocksnum = CrcTableBW2;
+        		backupoffset = SIZE2;
+        	}
+        	else if (BW)
+        	{
+        		blocksnum = CrcTableBW;
+        		backupoffset = SIZE1;
         	}
         	else return -1;
+        	
+        	//Get size
+			if (index < blocksnum)
+				return blocks[index + 1].Offset - blocks[index].Offset;
+			else if (index == blocksnum)
+				return backupoffset - blocks[index].Offset;
+			else
+				return -1;
+
         }
         public void setBlock(byte[] input, int index)
         {
@@ -198,66 +315,59 @@ namespace BW_tool
         		MessageBox.Show("Block has invalid size!");
         		return;
         	}
-        	
+        	        	
+        	int blocksnum = 0;
+        	int backupoffset = 0;
         	if (B2W2)
         	{
-        		if (index <74)
-        		{
-        			//Recalculate checksum before applying to savedata
-        			ushort crc = ccitt16(input.Take(blocks[index].Length).ToArray());
-        			if (crc != BitConverter.ToUInt16(input, blocks[index].Checksum-blocks[index].Offset) )
-        			{
-        				Array.Copy(BitConverter.GetBytes(crc), 0, input, blocks[index].Checksum-blocks[index].Offset, 2);
-        				MessageBox.Show("Block's checksum updated");
-        			}else
-        			{
-        				MessageBox.Show("Checksum doesn't need update");
-        			}
-
-
-        			
-					input.CopyTo(Data, blocks[index].Offset);
-					input.CopyTo(Data, blocks[index].Offset+SIZE2);
-					Edited = true;
-        		}
-        		else return;
+        		blocksnum = CrcTableBW2;
+        		backupoffset = SIZE2;
         	}
-        	else return;
-        }
-        public void setBlockCrypt(byte[] input, int index)
-        {
-        	if (getBlockLength(index) != input.Length)
+        	else if (BW)
         	{
-        		MessageBox.Show("Block has invalid size!");
+        		blocksnum = CrcTableBW;
+        		backupoffset = SIZE1;
+        	}
+        	else
+        	{
+        		MessageBox.Show("Invalid file");
         		return;
         	}
-        	
-        	if (B2W2)
-        	{
-        		if (index <74)
-        		{
-        			//Encrypt
-        			byte[] encrypt = new byte[getBlockLength(index)];
-        			encrypt = PKX5.cryptoArray(input, blocks[index].crypto.start, blocks[index].crypto.length, blocks[index].crypto.seed);
-        			
-        			//Recalculate checksum before applying to savedata
-        			ushort crc = ccitt16(encrypt.Take(blocks[index].Length).ToArray());
-        			if (crc != BitConverter.ToUInt16(encrypt, blocks[index].Checksum-blocks[index].Offset) )
-        			{
-        				Array.Copy(BitConverter.GetBytes(crc), 0, encrypt, blocks[index].Checksum-blocks[index].Offset, 2);
-        				MessageBox.Show("Block's checksum updated");
-        			}else
-        			{
-        				MessageBox.Show("Checksum doesn't need update");
-        			}
-        			
-					encrypt.CopyTo(Data, blocks[index].Offset);
-					encrypt.CopyTo(Data, blocks[index].Offset+SIZE2);
-					Edited = true;
-        		}
-        		else return;
-        	}
-        	else return;
+ 			
+			if (index <= blocksnum)
+			{
+				//Recalculate checksum before applying to savedata
+				ushort crc = ccitt16(input.Take(blocks[index].Length).ToArray());
+				if (crc != BitConverter.ToUInt16(input, blocks[index].Checksum - blocks[index].Offset)) {
+					Array.Copy(BitConverter.GetBytes(crc), 0, input, blocks[index].Checksum - blocks[index].Offset, 2);
+					//Update CRC tables
+					Array.Copy(BitConverter.GetBytes(crc), 0, Data, ((blocks[blocksnum].Offset) + (index * 2)), 2);
+					Array.Copy(BitConverter.GetBytes(crc), 0, Data, ((blocks[blocksnum].Offset) + (index * 2) + backupoffset), 2);
+					//recalculate crc table's checksum
+					ushort crctable = ccitt16(Data.Skip(blocks[blocksnum].Offset).Take(((blocksnum + 1) * 2)).ToArray());
+					Array.Copy(BitConverter.GetBytes(crctable), 0, Data, blocks[blocksnum].Checksum, 2);
+					Array.Copy(BitConverter.GetBytes(crctable), 0, Data, blocks[blocksnum].Checksum + backupoffset, 2);
+					MessageBox.Show("Block's checksum updated");
+				} else {
+					MessageBox.Show("Checksum doesn't need update");
+				}
+      			
+				input.CopyTo(Data, blocks[index].Offset);
+				input.CopyTo(Data, blocks[index].Offset + backupoffset);
+				Edited = true;
+			}
+			else
+			{
+				MessageBox.Show("Invalid index");
+        		return;
+			}
+        }
+		public void setBlockCrypt(byte[] input, int index)
+        {
+   			//Encrypt
+   			byte[] encrypt = new byte[getBlockLength(index)];
+   			encrypt = PKX5.cryptoArray(input, blocks[index].crypto.start, blocks[index].crypto.length, blocks[index].crypto.seed);
+   			setBlock(encrypt, index);
         }
         public void setData(byte[] input, int Offset)
         {
@@ -273,113 +383,99 @@ namespace BW_tool
         	correctedblocks = "Corrected checksums in MAIN save at blocks: ";
         	bool badcheck = false;
         	bool firstcorrect = false;
+        	
+        	int blocksnum = 0;
+        	int backupoffset = 0;
+        	
         	if (B2W2)
         	{
-        		//Main save checksums
-        		for(i=0; i<74; i++)
-        		{
-        			ushort crc = ccitt16(Data.Skip(blocks[i].Offset).Take(blocks[i].Length).ToArray());
-        			if ( crc != BitConverter.ToUInt16(Data, blocks[i].Checksum) )
-        			{
-        				if (correct)
-        				{
-        					Array.Copy(BitConverter.GetBytes(crc), 0, Data, blocks[i].Checksum, 2);
-	        				if (!firstcorrect)
-	        				{
-	        					firstcorrect = true;
-	        					correctedblocks = correctedblocks + i.ToString();
-	        				}else
-	        				{
-	        					correctedblocks = correctedblocks + ", " + i.ToString();
-	        				}
-        					Edited = true;
-        				}
-        				//Build bad checksum message
-        				if (!badcheck)
-        				{
-        					badcheck = true;
-        					badblocks = badblocks + i.ToString();
-        				}else
-        				{
-        					badblocks = badblocks + ", " + i.ToString();
-        				}
-        			}
-        			else
-        			{
-        				//MessageBox.Show("Checksum doesn't need update " + i.ToString());
-        			}
-        		}
-        		
-        		if(badcheck)
-        		{
-        			if (correct)
-        				MessageBox.Show(correctedblocks);
-        			else
-        				MessageBox.Show(badblocks);
-        		}
-        		else
-        			MessageBox.Show("All 74 checksums OK in MAIN save");
-
-        		//Backup save checksums
-        		badcheck = false;
-        		badblocks = "Found bad checksums in BACKUP save at blocks: ";
-        		firstcorrect = false;
-        		correctedblocks = "Corrected checksums in BACKUP save at blocks: ";
-        		for(i=0; i<74; i++)
-        		{
-        			ushort crc = ccitt16(Data.Skip(blocks[i].Offset+SIZE2).Take(blocks[i].Length).ToArray());
-        			if ( crc != BitConverter.ToUInt16(Data, blocks[i].Checksum+SIZE2) )
-        			{
-        				if (correct)
-        				{
-        					Array.Copy(BitConverter.GetBytes(crc), 0, Data, blocks[i].Checksum+SIZE2, 2);
-	        				if (!firstcorrect)
-	        				{
-	        					firstcorrect = true;
-	        					correctedblocks = correctedblocks + i.ToString();
-	        				}else
-	        				{
-	        					correctedblocks = correctedblocks + ", " + i.ToString();
-	        				}
-        					Edited = true;
-        				}
-        				//Build bad checksum message
-        				if (!badcheck)
-        				{
-        					badcheck = true;
-        					badblocks = badblocks + i.ToString();
-        				}else
-        				{
-        					badblocks = badblocks + ", " + i.ToString();
-        				}
-        			}
-        			else
-        			{
-        				//MessageBox.Show("Checksum doesn't need update " + i.ToString());
-        			}
-        		}
-        		
-        		if(badcheck)
-        		{
-        			if (correct)
-        				MessageBox.Show(correctedblocks);
-        			else
-        				MessageBox.Show(badblocks);
-        		}
-        		else
-        			MessageBox.Show("All 74 checksums OK in BACKUP save");
-        		
-        		return;
+        		blocksnum = CrcTableBW2;
+        		backupoffset = SIZE2;
         	}
         	else if (BW)
         	{
-        		MessageBox.Show("Not yet implemented for BW 1");
+        		blocksnum = CrcTableBW;
+        		backupoffset = SIZE1;
         	}
         	else
         	{
         		MessageBox.Show("Invalid file");
         		return;
         	}
+        	
+			//Main save checksums
+			for (i = 0; i <= blocksnum; i++) {
+				ushort crc = ccitt16(Data.Skip(blocks[i].Offset).Take(blocks[i].Length).ToArray());
+				if (crc != BitConverter.ToUInt16(Data, blocks[i].Checksum)) {
+					if (correct) {
+						Array.Copy(BitConverter.GetBytes(crc), 0, Data, blocks[i].Checksum, 2);
+						if (!firstcorrect) {
+							firstcorrect = true;
+							correctedblocks = correctedblocks + i.ToString();
+						} else {
+							correctedblocks = correctedblocks + ", " + i.ToString();
+						}
+						Edited = true;
+					}
+					//Build bad checksum message
+					if (!badcheck) {
+						badcheck = true;
+						badblocks = badblocks + i.ToString();
+					} else {
+						badblocks = badblocks + ", " + i.ToString();
+					}
+				} else {
+					//MessageBox.Show("Checksum doesn't need update " + i.ToString());
+				}
+			}
+        		
+			if (badcheck) {
+				if (correct)
+					MessageBox.Show(correctedblocks);
+				else
+					MessageBox.Show(badblocks);
+			} else
+				MessageBox.Show("All checksums OK in MAIN save");
+
+			//Backup save checksums
+			badcheck = false;
+			badblocks = "Found bad checksums in BACKUP save at blocks: ";
+			firstcorrect = false;
+			correctedblocks = "Corrected checksums in BACKUP save at blocks: ";
+			for (i = 0; i <= blocksnum; i++) {
+				ushort crc = ccitt16(Data.Skip(blocks[i].Offset + backupoffset).Take(blocks[i].Length).ToArray());
+				if (crc != BitConverter.ToUInt16(Data, blocks[i].Checksum + backupoffset)) {
+					if (correct) {
+						Array.Copy(BitConverter.GetBytes(crc), 0, Data, blocks[i].Checksum + backupoffset, 2);
+						if (!firstcorrect) {
+							firstcorrect = true;
+							correctedblocks = correctedblocks + i.ToString();
+						} else {
+							correctedblocks = correctedblocks + ", " + i.ToString();
+						}
+						Edited = true;
+					}
+					//Build bad checksum message
+					if (!badcheck) {
+						badcheck = true;
+						badblocks = badblocks + i.ToString();
+					} else {
+						badblocks = badblocks + ", " + i.ToString();
+					}
+				} else {
+					//MessageBox.Show("Checksum doesn't need update " + i.ToString());
+				}
+			}
+        		
+			if (badcheck) {
+				if (correct)
+					MessageBox.Show(correctedblocks);
+				else
+					MessageBox.Show(badblocks);
+			} else
+				MessageBox.Show("All checksums OK in BACKUP save");
+        		
+			return;
         }
     }
 }
