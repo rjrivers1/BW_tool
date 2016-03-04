@@ -58,6 +58,14 @@
     <Compile Include="Editors\Grotto.Designer.cs">
       <DependentUpon>Grotto.cs</DependentUpon>
     </Compile>
+    <Compile Include="Editors\Medals.cs" />
+    <Compile Include="Editors\Medals.Designer.cs">
+      <DependentUpon>Medals.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Editors\TrainerRec.cs" />
+    <Compile Include="Editors\TrainerRec.Designer.cs">
+      <DependentUpon>TrainerRec.cs</DependentUpon>
+    </Compile>
     <Compile Include="MainForm.cs" />
     <Compile Include="MainForm.Designer.cs">
       <DependentUpon>MainForm.cs</DependentUpon>
@@ -81,6 +89,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Editors\Grotto.resx">
       <DependentUpon>Grotto.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Editors\Medals.resx">
+      <DependentUpon>Medals.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Editors\TrainerRec.resx">
+      <DependentUpon>TrainerRec.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="MainForm.resx">
       <DependentUpon>MainForm.cs</DependentUpon>

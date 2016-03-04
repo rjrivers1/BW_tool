@@ -84,7 +84,7 @@ namespace BW_tool
 				if (buffer == null) return;
 	            SaveFileDialog saveFD = new SaveFileDialog();
 	            //saveFD.InitialDirectory = "c:\\";
-	            saveFD.Filter = "NDS save data|*.sav;*.dsv|All Files (*.*)|*.*";
+	            saveFD.Filter = "NDS RAW save data|*.sav|All Files (*.*)|*.*";
 	            if (saveFD.ShowDialog() == DialogResult.OK)
 	            {
 		            System.IO.FileStream saveFile;

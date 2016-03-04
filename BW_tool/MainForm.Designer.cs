@@ -22,6 +22,8 @@ namespace BW_tool
 		private System.Windows.Forms.Button chk_but;
 		private System.Windows.Forms.Button chk_updt_but;
 		private System.Windows.Forms.Button grotto_but;
+		private System.Windows.Forms.Button trainer_records_but;
+		private System.Windows.Forms.Button medal_but;
 		
 		/// <summary>
 		/// Disposes resources used by the form.
@@ -52,6 +54,8 @@ namespace BW_tool
 			this.chk_but = new System.Windows.Forms.Button();
 			this.chk_updt_but = new System.Windows.Forms.Button();
 			this.grotto_but = new System.Windows.Forms.Button();
+			this.trainer_records_but = new System.Windows.Forms.Button();
+			this.medal_but = new System.Windows.Forms.Button();
 			this.SuspendLayout();
 			// 
 			// loadsave_but
@@ -93,7 +97,7 @@ namespace BW_tool
 			// dumper_but
 			// 
 			this.dumper_but.Enabled = false;
-			this.dumper_but.Location = new System.Drawing.Point(12, 80);
+			this.dumper_but.Location = new System.Drawing.Point(323, 67);
 			this.dumper_but.Name = "dumper_but";
 			this.dumper_but.Size = new System.Drawing.Size(92, 23);
 			this.dumper_but.TabIndex = 4;
@@ -126,7 +130,7 @@ namespace BW_tool
 			// grotto_but
 			// 
 			this.grotto_but.Enabled = false;
-			this.grotto_but.Location = new System.Drawing.Point(110, 80);
+			this.grotto_but.Location = new System.Drawing.Point(12, 78);
 			this.grotto_but.Name = "grotto_but";
 			this.grotto_but.Size = new System.Drawing.Size(140, 23);
 			this.grotto_but.TabIndex = 7;
@@ -134,11 +138,35 @@ namespace BW_tool
 			this.grotto_but.UseVisualStyleBackColor = true;
 			this.grotto_but.Click += new System.EventHandler(this.Grotto_butClick);
 			// 
+			// trainer_records_but
+			// 
+			this.trainer_records_but.Enabled = false;
+			this.trainer_records_but.Location = new System.Drawing.Point(12, 107);
+			this.trainer_records_but.Name = "trainer_records_but";
+			this.trainer_records_but.Size = new System.Drawing.Size(140, 23);
+			this.trainer_records_but.TabIndex = 8;
+			this.trainer_records_but.Text = "Trainer Records";
+			this.trainer_records_but.UseVisualStyleBackColor = true;
+			this.trainer_records_but.Click += new System.EventHandler(this.Trainer_records_butClick);
+			// 
+			// medal_but
+			// 
+			this.medal_but.Enabled = false;
+			this.medal_but.Location = new System.Drawing.Point(158, 107);
+			this.medal_but.Name = "medal_but";
+			this.medal_but.Size = new System.Drawing.Size(140, 23);
+			this.medal_but.TabIndex = 9;
+			this.medal_but.Text = "Medals";
+			this.medal_but.UseVisualStyleBackColor = true;
+			this.medal_but.Click += new System.EventHandler(this.Medal_butClick);
+			// 
 			// MainForm
 			// 
 			this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-			this.ClientSize = new System.Drawing.Size(503, 119);
+			this.ClientSize = new System.Drawing.Size(503, 147);
+			this.Controls.Add(this.medal_but);
+			this.Controls.Add(this.trainer_records_but);
 			this.Controls.Add(this.grotto_but);
 			this.Controls.Add(this.chk_updt_but);
 			this.Controls.Add(this.chk_but);

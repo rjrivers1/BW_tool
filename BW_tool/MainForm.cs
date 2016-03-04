@@ -46,6 +46,10 @@ namespace BW_tool
 			int filesize = FileIO.load_file(ref savebuffer, ref path, dsfilter);
 			if( filesize == SAV5.SIZERAW || filesize == SAV5.SIZERAW+122 )
 			{
+				//Convert DSV to SAV
+				if (filesize == SAV5.SIZERAW+122)
+					Array.Resize(ref savebuffer, SAV5.SIZERAW);
+				
 				savegamename.Text = path;
 				save = new SAV5(savebuffer);
 			
@@ -58,6 +62,8 @@ namespace BW_tool
 					chk_updt_but.Enabled = true;
 					save_but.Enabled = true;
 					grotto_but.Enabled = true;
+					trainer_records_but.Enabled = true;
+					medal_but.Enabled = true;
 				}
 				else if (save.BW)
 				{
@@ -67,7 +73,9 @@ namespace BW_tool
 					chk_but.Enabled = true;
 					chk_updt_but.Enabled = true;
 					save_but.Enabled = true;
-					//grotto_but.Enabled = false;
+					grotto_but.Enabled = false;
+					trainer_records_but.Enabled = false;
+					medal_but.Enabled = false;
 				}
 				else versiontext.Text = "Invalid file";
 
@@ -80,6 +88,8 @@ namespace BW_tool
 				chk_updt_but.Enabled = false;
 				save_but.Enabled = false;
 				grotto_but.Enabled = false;
+				trainer_records_but.Enabled = false;
+				medal_but.Enabled = false;
 			}
 		}
 		void Save_butClick(object sender, EventArgs e)
@@ -109,6 +119,16 @@ namespace BW_tool
 		{
 			Form grotto = new Grotto();
 			grotto.ShowDialog();
+		}
+		void Trainer_records_butClick(object sender, EventArgs e)
+		{
+			Form trainerrec = new TrainerRec();
+			trainerrec.ShowDialog();
+		}
+		void Medal_butClick(object sender, EventArgs e)
+		{
+			Form medals = new Medals();
+			medals.ShowDialog();
 		}
 	}
 }
