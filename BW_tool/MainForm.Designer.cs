@@ -24,6 +24,7 @@ namespace BW_tool
 		private System.Windows.Forms.Button grotto_but;
 		private System.Windows.Forms.Button trainer_records_but;
 		private System.Windows.Forms.Button medal_but;
+		private System.Windows.Forms.Button forest_but;
 		
 		/// <summary>
 		/// Disposes resources used by the form.
@@ -56,6 +57,7 @@ namespace BW_tool
 			this.grotto_but = new System.Windows.Forms.Button();
 			this.trainer_records_but = new System.Windows.Forms.Button();
 			this.medal_but = new System.Windows.Forms.Button();
+			this.forest_but = new System.Windows.Forms.Button();
 			this.SuspendLayout();
 			// 
 			// loadsave_but
@@ -160,11 +162,23 @@ namespace BW_tool
 			this.medal_but.UseVisualStyleBackColor = true;
 			this.medal_but.Click += new System.EventHandler(this.Medal_butClick);
 			// 
+			// forest_but
+			// 
+			this.forest_but.Enabled = false;
+			this.forest_but.Location = new System.Drawing.Point(158, 78);
+			this.forest_but.Name = "forest_but";
+			this.forest_but.Size = new System.Drawing.Size(140, 23);
+			this.forest_but.TabIndex = 10;
+			this.forest_but.Text = "Entralink Forest";
+			this.forest_but.UseVisualStyleBackColor = true;
+			this.forest_but.Click += new System.EventHandler(this.Forest_butClick);
+			// 
 			// MainForm
 			// 
 			this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
 			this.ClientSize = new System.Drawing.Size(503, 147);
+			this.Controls.Add(this.forest_but);
 			this.Controls.Add(this.medal_but);
 			this.Controls.Add(this.trainer_records_but);
 			this.Controls.Add(this.grotto_but);

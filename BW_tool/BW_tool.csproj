@@ -50,9 +50,14 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Editors\Text.cs" />
     <Compile Include="Editors\Dumper.cs" />
     <Compile Include="Editors\Dumper.Designer.cs">
       <DependentUpon>Dumper.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Editors\Entralink.cs" />
+    <Compile Include="Editors\Entralink.Designer.cs">
+      <DependentUpon>Entralink.cs</DependentUpon>
     </Compile>
     <Compile Include="Editors\Grotto.cs" />
     <Compile Include="Editors\Grotto.Designer.cs">
@@ -86,6 +91,9 @@
   <ItemGroup>
     <EmbeddedResource Include="Editors\Dumper.resx">
       <DependentUpon>Dumper.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Editors\Entralink.resx">
+      <DependentUpon>Entralink.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Editors\Grotto.resx">
       <DependentUpon>Grotto.cs</DependentUpon>
