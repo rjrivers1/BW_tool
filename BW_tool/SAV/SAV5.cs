@@ -338,7 +338,8 @@ namespace BW_tool
 			{
 				//Recalculate checksum before applying to savedata
 				ushort crc = ccitt16(input.Take(blocks[index].Length).ToArray());
-				if (crc != BitConverter.ToUInt16(input, blocks[index].Checksum - blocks[index].Offset)) {
+				ushort crcintable = BitConverter.ToUInt16(Data, ((blocks[blocksnum].Offset) + (index * 2)));
+				if (crc != BitConverter.ToUInt16(input, blocks[index].Checksum - blocks[index].Offset) || crc!=crcintable) {
 					Array.Copy(BitConverter.GetBytes(crc), 0, input, blocks[index].Checksum - blocks[index].Offset, 2);
 					//Update CRC tables
 					Array.Copy(BitConverter.GetBytes(crc), 0, Data, ((blocks[blocksnum].Offset) + (index * 2)), 2);
@@ -409,6 +410,12 @@ namespace BW_tool
 				if (crc != BitConverter.ToUInt16(Data, blocks[i].Checksum)) {
 					if (correct) {
 						Array.Copy(BitConverter.GetBytes(crc), 0, Data, blocks[i].Checksum, 2);
+						//Update CRC tables
+						Array.Copy(BitConverter.GetBytes(crc), 0, Data, ((blocks[blocksnum].Offset) + (i * 2)), 2);
+						//recalculate crc table's checksum
+						ushort crctable = ccitt16(Data.Skip(blocks[blocksnum].Offset).Take(((blocksnum + 1) * 2)).ToArray());
+						Array.Copy(BitConverter.GetBytes(crctable), 0, Data, blocks[blocksnum].Checksum, 2);
+						
 						if (!firstcorrect) {
 							firstcorrect = true;
 							correctedblocks = correctedblocks + i.ToString();
@@ -447,6 +454,12 @@ namespace BW_tool
 				if (crc != BitConverter.ToUInt16(Data, blocks[i].Checksum + backupoffset)) {
 					if (correct) {
 						Array.Copy(BitConverter.GetBytes(crc), 0, Data, blocks[i].Checksum + backupoffset, 2);
+						//Update CRC tables
+						Array.Copy(BitConverter.GetBytes(crc), 0, Data, ((blocks[blocksnum].Offset) + (i * 2) + backupoffset), 2);
+						//recalculate crc table's checksum
+						ushort crctable = ccitt16(Data.Skip(blocks[blocksnum].Offset + backupoffset).Take(((blocksnum + 1) * 2)).ToArray());
+						Array.Copy(BitConverter.GetBytes(crctable), 0, Data, blocks[blocksnum].Checksum + backupoffset, 2);
+						
 						if (!firstcorrect) {
 							firstcorrect = true;
 							correctedblocks = correctedblocks + i.ToString();

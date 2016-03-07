@@ -55,6 +55,8 @@ namespace BW_tool
 			checkboxlist.Add(check8c);
 			checkboxlist.Add(check8l);
 			checkboxlist.Add(check8r);
+			
+			dataGridView1.Rows.Add(19);
 
 			forest =  new FOREST(MainForm.save.B2W2? MainForm.save.getBlockDec(60) : MainForm.save.getBlockDec(61));
 			unlock8box.SelectedIndex = forest.Unlock8;
@@ -156,6 +158,7 @@ namespace BW_tool
 			
 			forest.Indexpkm = 0;
 			slot.Value = forest.Indexpkm;
+			updateGrid();
 			
 		}
 	
@@ -190,6 +193,49 @@ namespace BW_tool
 			forest.Unlock9 = (byte)unlock9.SelectedIndex;
 			updatearea();
 			updateslot();
+		}
+		void updateGrid()
+		{
+			int n;
+			int i;
+			int temp = forest.Indexpkm;
+			for (i=0;i<20;i++)
+			{
+				if (forest.Area > 0 && forest.Area < 3 && i > 9)
+				{
+					dataGridView1.Rows[i].Cells[0].Value = " ";
+					dataGridView1.Rows[i].Cells[1].Value = " ";
+					dataGridView1.Rows[i].Cells[2].Value = " ";
+					dataGridView1.Rows[i].Cells[3].Value = " ";
+					dataGridView1.Rows[i].Cells[4].Value = " ";
+				}else
+				{
+					forest.Indexpkm = i;
+					if (forest.Species == 0)
+					{
+						dataGridView1.Rows[i].Cells[0].Value = " ";
+						dataGridView1.Rows[i].Cells[1].Value = " ";
+						dataGridView1.Rows[i].Cells[2].Value = " ";
+						dataGridView1.Rows[i].Cells[3].Value = " ";
+						dataGridView1.Rows[i].Cells[4].Value = " ";
+					}
+					else
+					{
+						dataGridView1.Rows[i].Cells[0].Value = TEXT.pkmlist[forest.Species];
+						dataGridView1.Rows[i].Cells[1].Value = TEXT.movelist[forest.Move];
+						dataGridView1.Rows[i].Cells[2].Value = forest.Gender;
+						dataGridView1.Rows[i].Cells[3].Value = forest.Form;
+						dataGridView1.Rows[i].Cells[4].Value = forest.Animation;
+					}
+
+				}
+			}
+			forest.Indexpkm = temp;
+		}
+		void DataGridView1CellContentClick(object sender, DataGridViewCellEventArgs e)
+		{
+			//if (!(forest.Area >0 && forest.Area > 4 && dataGridView1.CurrentRow.Index > 9))
+				slot.Value = (int)dataGridView1.CurrentRow.Index;
 		}
 
 	public class FOREST
