@@ -96,10 +96,42 @@ namespace BW_tool
 		void MonthValueChanged(object sender, EventArgs e)
 		{
 			medals.Month = (int)month.Value;
+			switch((int)month.Value)
+			{
+				case 01:
+				case 03:
+				case 05:
+				case 07:
+				case 08:
+				case 10:
+				case 12:
+					day.Maximum = 31;
+					break;
+				case 04:
+				case 06:
+				case 09:
+				case 11:
+					day.Maximum = 30;
+					break;
+				case 02:
+					if (DateTime.IsLeapYear((int)year.Value))
+						day.Maximum = 29;
+					else
+						day.Maximum = 28;
+					break;
+				
+			}
 		}
 		void YearValueChanged(object sender, EventArgs e)
 		{
 			medals.Year = (int)year.Value;
+			if(month.Value == 2)
+			{
+					if (DateTime.IsLeapYear((int)year.Value))
+						day.Maximum = 29;
+					else
+						day.Maximum = 28;
+			}
 		}
 		void Exit_butClick(object sender, EventArgs e)
 		{
