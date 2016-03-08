@@ -25,6 +25,7 @@ namespace BW_tool
 		private System.Windows.Forms.Button trainer_records_but;
 		private System.Windows.Forms.Button medal_but;
 		private System.Windows.Forms.Button forest_but;
+		private System.Windows.Forms.Button key_but;
 		
 		/// <summary>
 		/// Disposes resources used by the form.
@@ -58,6 +59,7 @@ namespace BW_tool
 			this.trainer_records_but = new System.Windows.Forms.Button();
 			this.medal_but = new System.Windows.Forms.Button();
 			this.forest_but = new System.Windows.Forms.Button();
+			this.key_but = new System.Windows.Forms.Button();
 			this.SuspendLayout();
 			// 
 			// loadsave_but
@@ -173,11 +175,23 @@ namespace BW_tool
 			this.forest_but.UseVisualStyleBackColor = true;
 			this.forest_but.Click += new System.EventHandler(this.Forest_butClick);
 			// 
+			// key_but
+			// 
+			this.key_but.Enabled = false;
+			this.key_but.Location = new System.Drawing.Point(158, 136);
+			this.key_but.Name = "key_but";
+			this.key_but.Size = new System.Drawing.Size(140, 23);
+			this.key_but.TabIndex = 11;
+			this.key_but.Text = "Key System";
+			this.key_but.UseVisualStyleBackColor = true;
+			this.key_but.Click += new System.EventHandler(this.Key_butClick);
+			// 
 			// MainForm
 			// 
 			this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-			this.ClientSize = new System.Drawing.Size(503, 147);
+			this.ClientSize = new System.Drawing.Size(503, 192);
+			this.Controls.Add(this.key_but);
 			this.Controls.Add(this.forest_but);
 			this.Controls.Add(this.medal_but);
 			this.Controls.Add(this.trainer_records_but);

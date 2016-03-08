@@ -65,6 +65,7 @@ namespace BW_tool
 					trainer_records_but.Enabled = true;
 					medal_but.Enabled = true;
 					forest_but.Enabled = true;
+					key_but.Enabled = true;
 				}
 				else if (save.BW)
 				{
@@ -78,6 +79,7 @@ namespace BW_tool
 					trainer_records_but.Enabled = false;
 					medal_but.Enabled = false;
 					forest_but.Enabled = true;
+					key_but.Enabled = false;
 				}
 				else versiontext.Text = "Invalid file";
 
@@ -93,6 +95,7 @@ namespace BW_tool
 				trainer_records_but.Enabled = false;
 				medal_but.Enabled = false;
 				forest_but.Enabled = false;
+				key_but.Enabled = false;
 			}
 		}
 		void Save_butClick(object sender, EventArgs e)
@@ -137,6 +140,11 @@ namespace BW_tool
 		{
 			Form forest = new Entralink();
 			forest.ShowDialog();
+		}
+		void Key_butClick(object sender, EventArgs e)
+		{
+			Form keys = new KeySystem();
+			keys.ShowDialog();
 		}
 	}
 }

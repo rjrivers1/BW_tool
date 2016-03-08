@@ -50,6 +50,10 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Editors\KeySystem.cs" />
+    <Compile Include="Editors\KeySystem.Designer.cs">
+      <DependentUpon>KeySystem.cs</DependentUpon>
+    </Compile>
     <Compile Include="Editors\Text.cs" />
     <Compile Include="Editors\Dumper.cs" />
     <Compile Include="Editors\Dumper.Designer.cs">
@@ -97,6 +101,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Editors\Grotto.resx">
       <DependentUpon>Grotto.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Editors\KeySystem.resx">
+      <DependentUpon>KeySystem.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Editors\Medals.resx">
       <DependentUpon>Medals.cs</DependentUpon>
