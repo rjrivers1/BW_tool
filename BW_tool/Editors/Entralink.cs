@@ -201,7 +201,7 @@ namespace BW_tool
 			int temp = forest.Indexpkm;
 			for (i=0;i<20;i++)
 			{
-				if (forest.Area > 0 && forest.Area < 3 && i > 9)
+				if (forest.Area > 0 && forest.Area <= 3 && i > 9)
 				{
 					dataGridView1.Rows[i].Cells[0].Value = " ";
 					dataGridView1.Rows[i].Cells[1].Value = " ";
