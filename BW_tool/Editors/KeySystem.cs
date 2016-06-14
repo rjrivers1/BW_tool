@@ -181,7 +181,6 @@ namespace BW_tool
 						if 	(getKeyXor(10) == difficult_cfg[i])
 						{
 							return i;
-							break;
 						}
 					}
 					return 0;
@@ -194,7 +193,6 @@ namespace BW_tool
 						if 	(getKeyXor(11) == city_cfg[i])
 						{
 							return i;
-							break;
 						}
 					}
 					return 0;
@@ -206,7 +204,6 @@ namespace BW_tool
 						if 	(getKeyXor(12) == chamber_cfg[i])
 						{
 							return i;
-							break;
 						}
 					}
 					return 0;
@@ -229,37 +226,26 @@ namespace BW_tool
 				{
 					case easykey:
 						return true;
-						break;
 					case challengekey:
 						return true;
-						break;
 					case citykey:
 						return true;
-						break;
 					case ironkey:
 						return true;
-						break;
 					case icebergkey:
 						return true;
-						break;
 					case easy_u:
 						return true;
-						break;
 					case challenge_u:
 						return true;
-						break;
 					case city_u:
 						return true;
-						break;
 					case iron_u:
 						return true;
-						break;
 					case iceberg_u:
 						return true;
-						break;
 					default:
 						return false;
-						break;
 				}
 			}
 			public void setKey(bool state, int keyIndex)
@@ -312,7 +298,6 @@ namespace BW_tool
 				
 			}
 			
-			private UInt32 id;
 			private UInt32 ID {
 	        	get { return BitConverter.ToUInt32(Data, 0x5C); }
 	        	set { BitConverter.GetBytes(value).CopyTo(Data, 0x5C); } }

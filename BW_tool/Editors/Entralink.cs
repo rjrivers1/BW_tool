@@ -158,6 +158,32 @@ namespace BW_tool
 			
 			forest.Indexpkm = 0;
 			slot.Value = forest.Indexpkm;
+			
+        	if(forest.Area > 0 && forest.Area < 4) //Area 9 ony holds 10 pokes
+	        {
+        		
+        		hiderows.Visible = true;
+        		/*
+        		if (dataGridView1.Rows.Count == 20)
+        		{
+        			for (i=18;i>9;i--)
+        				dataGridView1.Rows.Remove(dataGridView1.Rows[i]);
+        		}*/
+        		
+        	}
+        	else
+        	{
+        		hiderows.Visible = false;
+        		/*
+        		if (dataGridView1.Rows.Count == 10)
+        		{
+
+	        		for (i=0;i<10;i++)
+		        		dataGridView1.Rows.Add();
+        		}
+        		*/
+        	}
+			
 			updateGrid();
 			
 		}
@@ -168,7 +194,7 @@ namespace BW_tool
 			move1box.SelectedIndex = forest.Move;
 			genderbox1.SelectedIndex = forest.Gender;
 			formbox1.Value = forest.Form;
-			animbox1.Value = forest.Animation;
+			animbox1.SelectedIndex = (forest.Animation/2);
 		}
 
 		void SlotValueChanged(object sender, EventArgs e)
@@ -196,10 +222,9 @@ namespace BW_tool
 		}
 		void updateGrid()
 		{
-			int n;
 			int i;
 			int temp = forest.Indexpkm;
-			for (i=0;i<20;i++)
+			for (i=0;i<=slot.Maximum;i++)
 			{
 				if (forest.Area > 0 && forest.Area <= 3 && i > 9)
 				{
@@ -232,11 +257,39 @@ namespace BW_tool
 			}
 			forest.Indexpkm = temp;
 		}
-		void DataGridView1CellContentClick(object sender, DataGridViewCellEventArgs e)
+		void DataGridView1CurrentCellChanged(object sender, EventArgs e)
 		{
-			//if (!(forest.Area >0 && forest.Area > 4 && dataGridView1.CurrentRow.Index > 9))
-				slot.Value = (int)dataGridView1.CurrentRow.Index;
+		    slot.Value = (int)dataGridView1.CurrentRow.Index;
 		}
+		void Add_pkmClick(object sender, EventArgs e)
+		{
+			forest.add_pkm(forest.create_pkm((int)spbox1.SelectedIndex, (int)move1box.SelectedIndex, (int)genderbox1.SelectedIndex, (int)formbox1.Value, (int)(animbox1.SelectedIndex*2)));
+			updateGrid();
+		}
+		void Del_pkmClick(object sender, EventArgs e)
+		{
+			forest.delete_pkm();
+			updateGrid();
+		}
+		void Edit_pkmClick(object sender, EventArgs e)
+		{
+			forest.edit_pkm(forest.create_pkm((int)spbox1.SelectedIndex, (int)move1box.SelectedIndex, (int)genderbox1.SelectedIndex, (int)formbox1.Value, (int)(animbox1.SelectedIndex*2)));
+			updateGrid();
+		}
+		void Exit_butClick(object sender, EventArgs e)
+		{
+			this.Close();
+		}
+		void Saveexit_butClick(object sender, EventArgs e)
+		{
+			if (MainForm.save.B2W2 == true)
+				MainForm.save.setBlockCrypt(forest.Data, 60);
+			else
+				MainForm.save.setBlockCrypt(forest.Data, 61);
+			
+			this.Close();
+		}
+
 
 	public class FOREST
 	    {
@@ -317,13 +370,116 @@ Bits
 	        public int Animation {
 				get { return (int)((BitConverter.ToInt32(Data, get_pkmoffset()) & 0xF0000000) >> 27); }
 	            set { animation = value; } }
-	        private UInt32 build_pkm()
+
+	        //Just return if there's a valid pkm in current slot
+	        public bool is_pkm_empty()
 	        {
-	        	return (UInt32) ( ((species & 0x1F) << 11) | ((move & 0x0F) << 7) | (gender & 0x7F) | ((form & 0x0F) << 7) | ((animation & 0x0F) << 7) );
+	        	if (Species == 0)
+	        		return true;
+	        	else
+	        		return false;
 	        }
-	        public void set_pkm()
+	        //Build a u32 pkm for entralink forest
+	        public UInt32 create_pkm(int sp, int mv, int gdr, int frm, int anim)
 	        {
-	        	Array.Copy(BitConverter.GetBytes(build_pkm()), 0, Data, get_pkmoffset(), 4);
+	        	return (UInt32) ( (sp) | (mv << 11) | (gdr << 21) | (frm << 23) | (anim << 27) );
+	        }
+	        //Sets pkm data to current slot
+	        public void edit_pkm(UInt32 pkm)
+	        {
+	        	Array.Copy(BitConverter.GetBytes(pkm), 0, Data, get_pkmoffset(), 4);
+	        }
+	        //Sets pkm data to first available slot, if there's one
+	        public void add_pkm(UInt32 pkm)
+	        {
+	        	int tmp_slot = indexpkm;
+	        	bool found_empty = false;
+	        	//Find first available slot
+	        	if(area > 0 && area < 4) //Area 9 ony holds 10 pokes
+	        	{
+	        		for (indexpkm=0;indexpkm<10;indexpkm++)
+	        		{
+	        			if (is_pkm_empty() == true)
+	        			{
+	        				found_empty = true;
+	        				break;
+	        			}
+	        		}
+	        	}
+	        	else
+	        	{
+	        		for (indexpkm=0;indexpkm<20;indexpkm++)
+	        		{
+	        			if (is_pkm_empty() == true)
+	        			{
+	        				found_empty = true;
+	        				break;
+	        			}
+	        		}
+	        	}
+	        	       	
+	        	if (found_empty == true)
+	        		Array.Copy(BitConverter.GetBytes(pkm), 0, Data, get_pkmoffset(), 4);
+	        	else
+	        		MessageBox.Show("There are no free slots in this area.");
+	        	
+	        	indexpkm = tmp_slot;
+	        }
+	        //deletes current slot
+	        //todo: move all slots up
+	        public void delete_pkm()
+	        {
+	        	int tmp_slot = indexpkm;
+	        	UInt32 temp_pkm = 0;
+	        	
+				//Delete selected pkm
+	        	UInt32 delete = 0;
+	        	Array.Copy(BitConverter.GetBytes(delete), 0, Data, get_pkmoffset(), 4);
+
+	        	//Move all pkm up 1 slot
+	        	int i;
+	        	if(area > 0 && area < 4) //Area 9 ony holds 10 pokes
+	        	{
+	        		if (indexpkm!=9)//If user didn't delete last slot
+	        		{
+		        		for (i=indexpkm;i<9;i++)
+		        		{
+		        			//Get next pkm
+		        			indexpkm = indexpkm+1;
+		        			temp_pkm = BitConverter.ToUInt32(Data, get_pkmoffset());
+		        			//Set to previous slot
+		        			indexpkm = indexpkm-1;
+		        			edit_pkm(temp_pkm);
+							//Return index to next slot
+		        			indexpkm = indexpkm+1;
+		        		}
+		        		//Now empty last slot
+		        		temp_pkm = 0;
+		        		edit_pkm(temp_pkm);
+	        		}
+	        	}
+	        	else
+	        	{
+	        		if (indexpkm!=19)//If user didn't delete last slot
+	        		{
+		        		for (i=indexpkm;i<19;i++)
+		        		{
+		        			//Get next pkm
+		        			indexpkm = indexpkm+1;
+		        			temp_pkm = BitConverter.ToUInt32(Data, get_pkmoffset());
+		        			//Set to previous slot
+		        			indexpkm = indexpkm-1;
+		        			edit_pkm(temp_pkm);
+							//Return index to next slot
+		        			indexpkm = indexpkm+1;
+		        		}
+		        		//Now empty last slot
+		        		temp_pkm = 0;
+		        		edit_pkm(temp_pkm);
+	        		}
+	        	}
+	        	
+	        	indexpkm = tmp_slot;	        	
 	        }
 		}
 	}

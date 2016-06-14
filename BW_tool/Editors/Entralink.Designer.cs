@@ -51,7 +51,7 @@ namespace BW_tool
 		private System.Windows.Forms.ComboBox unlock9;
 		private System.Windows.Forms.Label label1;
 		private System.Windows.Forms.Label label2;
-		private System.Windows.Forms.NumericUpDown animbox1;
+		private System.Windows.Forms.ComboBox animbox1;
 		private System.Windows.Forms.ComboBox unlock8box;
 		private System.Windows.Forms.Label label3;
 		private System.Windows.Forms.Label label4;
@@ -66,6 +66,13 @@ namespace BW_tool
 		private System.Windows.Forms.DataGridViewTextBoxColumn Gender;
 		private System.Windows.Forms.DataGridViewTextBoxColumn Form;
 		private System.Windows.Forms.DataGridViewTextBoxColumn Anim;
+		private System.Windows.Forms.Button del_pkm;
+		private System.Windows.Forms.Button add_pkm;
+		private System.Windows.Forms.Button edit_pkm;
+		private System.Windows.Forms.Panel hiderows;
+		private System.Windows.Forms.Label label8;
+		private System.Windows.Forms.Button saveexit_but;
+		private System.Windows.Forms.Button exit_but;
 		
 		/// <summary>
 		/// Disposes resources used by the form.
@@ -121,7 +128,6 @@ namespace BW_tool
 			this.genderbox1 = new System.Windows.Forms.ComboBox();
 			this.formbox1 = new System.Windows.Forms.NumericUpDown();
 			this.label1 = new System.Windows.Forms.Label();
-			this.animbox1 = new System.Windows.Forms.NumericUpDown();
 			this.unlock8box = new System.Windows.Forms.ComboBox();
 			this.label3 = new System.Windows.Forms.Label();
 			this.label4 = new System.Windows.Forms.Label();
@@ -138,8 +144,15 @@ namespace BW_tool
 			this.Gender = new System.Windows.Forms.DataGridViewTextBoxColumn();
 			this.Form = new System.Windows.Forms.DataGridViewTextBoxColumn();
 			this.Anim = new System.Windows.Forms.DataGridViewTextBoxColumn();
+			this.del_pkm = new System.Windows.Forms.Button();
+			this.add_pkm = new System.Windows.Forms.Button();
+			this.edit_pkm = new System.Windows.Forms.Button();
+			this.hiderows = new System.Windows.Forms.Panel();
+			this.label8 = new System.Windows.Forms.Label();
+			this.animbox1 = new System.Windows.Forms.ComboBox();
+			this.saveexit_but = new System.Windows.Forms.Button();
+			this.exit_but = new System.Windows.Forms.Button();
 			((System.ComponentModel.ISupportInitialize)(this.formbox1)).BeginInit();
-			((System.ComponentModel.ISupportInitialize)(this.animbox1)).BeginInit();
 			((System.ComponentModel.ISupportInitialize)(this.slot)).BeginInit();
 			this.groupBox1.SuspendLayout();
 			((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
@@ -1163,9 +1176,9 @@ namespace BW_tool
 			"647 - Keldeo",
 			"648 - Meloetta",
 			"649 - Genesect"});
-			this.spbox1.Location = new System.Drawing.Point(297, 58);
+			this.spbox1.Location = new System.Drawing.Point(266, 59);
 			this.spbox1.Name = "spbox1";
-			this.spbox1.Size = new System.Drawing.Size(121, 21);
+			this.spbox1.Size = new System.Drawing.Size(141, 21);
 			this.spbox1.TabIndex = 190;
 			// 
 			// move1box
@@ -1731,9 +1744,9 @@ namespace BW_tool
 			"V-create",
 			"Fusion Flare",
 			"Fusion Bolt"});
-			this.move1box.Location = new System.Drawing.Point(424, 58);
+			this.move1box.Location = new System.Drawing.Point(413, 59);
 			this.move1box.Name = "move1box";
-			this.move1box.Size = new System.Drawing.Size(121, 21);
+			this.move1box.Size = new System.Drawing.Size(139, 21);
 			this.move1box.TabIndex = 53;
 			// 
 			// genderbox1
@@ -1743,16 +1756,16 @@ namespace BW_tool
 			"Male",
 			"Female",
 			"Genderless"});
-			this.genderbox1.Location = new System.Drawing.Point(551, 58);
+			this.genderbox1.Location = new System.Drawing.Point(558, 59);
 			this.genderbox1.Name = "genderbox1";
-			this.genderbox1.Size = new System.Drawing.Size(66, 21);
+			this.genderbox1.Size = new System.Drawing.Size(94, 21);
 			this.genderbox1.TabIndex = 54;
 			// 
 			// formbox1
 			// 
-			this.formbox1.Location = new System.Drawing.Point(623, 58);
+			this.formbox1.Location = new System.Drawing.Point(658, 60);
 			this.formbox1.Name = "formbox1";
-			this.formbox1.Size = new System.Drawing.Size(41, 20);
+			this.formbox1.Size = new System.Drawing.Size(98, 20);
 			this.formbox1.TabIndex = 62;
 			// 
 			// label1
@@ -1762,13 +1775,6 @@ namespace BW_tool
 			this.label1.Size = new System.Drawing.Size(98, 15);
 			this.label1.TabIndex = 63;
 			this.label1.Text = "Area 9:";
-			// 
-			// animbox1
-			// 
-			this.animbox1.Location = new System.Drawing.Point(670, 59);
-			this.animbox1.Name = "animbox1";
-			this.animbox1.Size = new System.Drawing.Size(41, 20);
-			this.animbox1.TabIndex = 65;
 			// 
 			// unlock8box
 			// 
@@ -1789,7 +1795,7 @@ namespace BW_tool
 			// 
 			// label3
 			// 
-			this.label3.Location = new System.Drawing.Point(297, 42);
+			this.label3.Location = new System.Drawing.Point(266, 44);
 			this.label3.Name = "label3";
 			this.label3.Size = new System.Drawing.Size(121, 12);
 			this.label3.TabIndex = 67;
@@ -1798,7 +1804,7 @@ namespace BW_tool
 			// 
 			// label4
 			// 
-			this.label4.Location = new System.Drawing.Point(424, 42);
+			this.label4.Location = new System.Drawing.Point(413, 44);
 			this.label4.Name = "label4";
 			this.label4.Size = new System.Drawing.Size(121, 12);
 			this.label4.TabIndex = 68;
@@ -1807,7 +1813,7 @@ namespace BW_tool
 			// 
 			// label5
 			// 
-			this.label5.Location = new System.Drawing.Point(551, 43);
+			this.label5.Location = new System.Drawing.Point(569, 44);
 			this.label5.Name = "label5";
 			this.label5.Size = new System.Drawing.Size(66, 12);
 			this.label5.TabIndex = 69;
@@ -1816,7 +1822,7 @@ namespace BW_tool
 			// 
 			// label6
 			// 
-			this.label6.Location = new System.Drawing.Point(623, 42);
+			this.label6.Location = new System.Drawing.Point(682, 44);
 			this.label6.Name = "label6";
 			this.label6.Size = new System.Drawing.Size(41, 12);
 			this.label6.TabIndex = 70;
@@ -1825,23 +1831,23 @@ namespace BW_tool
 			// 
 			// label7
 			// 
-			this.label7.Location = new System.Drawing.Point(670, 42);
+			this.label7.Location = new System.Drawing.Point(865, 43);
 			this.label7.Name = "label7";
-			this.label7.Size = new System.Drawing.Size(41, 12);
+			this.label7.Size = new System.Drawing.Size(55, 13);
 			this.label7.TabIndex = 71;
-			this.label7.Text = "Anim";
+			this.label7.Text = "Animation";
 			this.label7.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
 			// 
 			// slot
 			// 
-			this.slot.Location = new System.Drawing.Point(211, 38);
+			this.slot.Location = new System.Drawing.Point(216, 59);
 			this.slot.Maximum = new decimal(new int[] {
 			19,
 			0,
 			0,
 			0});
 			this.slot.Name = "slot";
-			this.slot.Size = new System.Drawing.Size(60, 20);
+			this.slot.Size = new System.Drawing.Size(44, 20);
 			this.slot.TabIndex = 72;
 			this.slot.ValueChanged += new System.EventHandler(this.SlotValueChanged);
 			// 
@@ -1919,21 +1925,22 @@ namespace BW_tool
 			this.dataGridView1.ReadOnly = true;
 			this.dataGridView1.RowHeadersWidthSizeMode = System.Windows.Forms.DataGridViewRowHeadersWidthSizeMode.DisableResizing;
 			this.dataGridView1.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-			this.dataGridView1.Size = new System.Drawing.Size(495, 499);
+			this.dataGridView1.Size = new System.Drawing.Size(643, 463);
 			this.dataGridView1.TabIndex = 192;
-			this.dataGridView1.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.DataGridView1CellContentClick);
+			this.dataGridView1.CurrentCellChanged += new System.EventHandler(this.DataGridView1CurrentCellChanged);
 			// 
 			// Species
 			// 
-			this.Species.HeaderText = "Species";
 			this.Species.Name = "Species";
 			this.Species.ReadOnly = true;
+			this.Species.Width = 150;
 			// 
 			// Move
 			// 
 			this.Move.HeaderText = "Move";
 			this.Move.Name = "Move";
 			this.Move.ReadOnly = true;
+			this.Move.Width = 150;
 			// 
 			// Gender
 			// 
@@ -1953,11 +1960,101 @@ namespace BW_tool
 			this.Anim.Name = "Anim";
 			this.Anim.ReadOnly = true;
 			// 
+			// del_pkm
+			// 
+			this.del_pkm.Location = new System.Drawing.Point(865, 145);
+			this.del_pkm.Name = "del_pkm";
+			this.del_pkm.Size = new System.Drawing.Size(60, 23);
+			this.del_pkm.TabIndex = 193;
+			this.del_pkm.Text = "Remove";
+			this.del_pkm.UseVisualStyleBackColor = true;
+			this.del_pkm.Click += new System.EventHandler(this.Del_pkmClick);
+			// 
+			// add_pkm
+			// 
+			this.add_pkm.Location = new System.Drawing.Point(865, 116);
+			this.add_pkm.Name = "add_pkm";
+			this.add_pkm.Size = new System.Drawing.Size(60, 23);
+			this.add_pkm.TabIndex = 194;
+			this.add_pkm.Text = "Add";
+			this.add_pkm.UseVisualStyleBackColor = true;
+			this.add_pkm.Click += new System.EventHandler(this.Add_pkmClick);
+			// 
+			// edit_pkm
+			// 
+			this.edit_pkm.Location = new System.Drawing.Point(865, 87);
+			this.edit_pkm.Name = "edit_pkm";
+			this.edit_pkm.Size = new System.Drawing.Size(60, 23);
+			this.edit_pkm.TabIndex = 195;
+			this.edit_pkm.Text = "Edit";
+			this.edit_pkm.UseVisualStyleBackColor = true;
+			this.edit_pkm.Click += new System.EventHandler(this.Edit_pkmClick);
+			// 
+			// hiderows
+			// 
+			this.hiderows.Location = new System.Drawing.Point(216, 327);
+			this.hiderows.Name = "hiderows";
+			this.hiderows.Size = new System.Drawing.Size(643, 221);
+			this.hiderows.TabIndex = 196;
+			// 
+			// label8
+			// 
+			this.label8.Location = new System.Drawing.Point(216, 40);
+			this.label8.Name = "label8";
+			this.label8.Size = new System.Drawing.Size(44, 17);
+			this.label8.TabIndex = 197;
+			this.label8.Text = "   Slot";
+			// 
+			// animbox1
+			// 
+			this.animbox1.FormattingEnabled = true;
+			this.animbox1.Items.AddRange(new object[] {
+			" randomly turning around",
+			" randomly walking",
+			" randomly walking",
+			" walking up/down",
+			" walking left/right",
+			" walking left/right and randomly looking up/down",
+			" turning around clockwise",
+			" turning around counterclockwise"});
+			this.animbox1.Location = new System.Drawing.Point(762, 60);
+			this.animbox1.Name = "animbox1";
+			this.animbox1.Size = new System.Drawing.Size(243, 21);
+			this.animbox1.TabIndex = 198;
+			// 
+			// saveexit_but
+			// 
+			this.saveexit_but.Location = new System.Drawing.Point(40, 513);
+			this.saveexit_but.Name = "saveexit_but";
+			this.saveexit_but.Size = new System.Drawing.Size(99, 29);
+			this.saveexit_but.TabIndex = 200;
+			this.saveexit_but.Text = "Save and Exit";
+			this.saveexit_but.UseVisualStyleBackColor = true;
+			this.saveexit_but.Click += new System.EventHandler(this.Saveexit_butClick);
+			// 
+			// exit_but
+			// 
+			this.exit_but.Location = new System.Drawing.Point(40, 480);
+			this.exit_but.Name = "exit_but";
+			this.exit_but.Size = new System.Drawing.Size(97, 27);
+			this.exit_but.TabIndex = 199;
+			this.exit_but.Text = "Exit";
+			this.exit_but.UseVisualStyleBackColor = true;
+			this.exit_but.Click += new System.EventHandler(this.Exit_butClick);
+			// 
 			// Entralink
 			// 
 			this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-			this.ClientSize = new System.Drawing.Size(723, 596);
+			this.ClientSize = new System.Drawing.Size(1014, 552);
+			this.Controls.Add(this.saveexit_but);
+			this.Controls.Add(this.exit_but);
+			this.Controls.Add(this.animbox1);
+			this.Controls.Add(this.label8);
+			this.Controls.Add(this.hiderows);
+			this.Controls.Add(this.edit_pkm);
+			this.Controls.Add(this.add_pkm);
+			this.Controls.Add(this.del_pkm);
 			this.Controls.Add(this.dataGridView1);
 			this.Controls.Add(this.unlock9);
 			this.Controls.Add(this.groupBox1);
@@ -1968,7 +2065,6 @@ namespace BW_tool
 			this.Controls.Add(this.label4);
 			this.Controls.Add(this.label3);
 			this.Controls.Add(this.unlock8box);
-			this.Controls.Add(this.animbox1);
 			this.Controls.Add(this.label2);
 			this.Controls.Add(this.label1);
 			this.Controls.Add(this.formbox1);
@@ -1978,7 +2074,6 @@ namespace BW_tool
 			this.Name = "Entralink";
 			this.Text = "Entralink Forest";
 			((System.ComponentModel.ISupportInitialize)(this.formbox1)).EndInit();
-			((System.ComponentModel.ISupportInitialize)(this.animbox1)).EndInit();
 			((System.ComponentModel.ISupportInitialize)(this.slot)).EndInit();
 			this.groupBox1.ResumeLayout(false);
 			((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();

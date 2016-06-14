@@ -1,10 +1,6 @@
 ﻿//Base file from kaphotic's pkhex
 
 using System;
-using System.Linq;
-
-
-using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
