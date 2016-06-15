@@ -45,7 +45,7 @@ namespace BW_tool
 			// record_value
 			// 
 			this.record_value.Location = new System.Drawing.Point(284, 50);
-			this.record_value.Maximum = new decimal(new int[] {
+			this.record_value.Maximum = new decimal(new int[]{
 			-1,
 			0,
 			0,

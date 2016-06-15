@@ -557,7 +557,7 @@ namespace BW_tool
 			// unknowngrottobox
 			// 
 			this.unknowngrottobox.Location = new System.Drawing.Point(538, 89);
-			this.unknowngrottobox.Maximum = new decimal(new int[] {
+			this.unknowngrottobox.Maximum = new decimal(new int[]{
 			255,
 			0,
 			0,

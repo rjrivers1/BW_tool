@@ -68,7 +68,7 @@ namespace BW_tool
 			// day
 			// 
 			this.day.Location = new System.Drawing.Point(49, 39);
-			this.day.Maximum = new decimal(new int[] {
+			this.day.Maximum = new decimal(new int[]{
 			31,
 			0,
 			0,
@@ -81,7 +81,7 @@ namespace BW_tool
 			// month
 			// 
 			this.month.Location = new System.Drawing.Point(140, 39);
-			this.month.Maximum = new decimal(new int[] {
+			this.month.Maximum = new decimal(new int[]{
 			12,
 			0,
 			0,
@@ -94,7 +94,7 @@ namespace BW_tool
 			// year
 			// 
 			this.year.Location = new System.Drawing.Point(229, 39);
-			this.year.Maximum = new decimal(new int[] {
+			this.year.Maximum = new decimal(new int[]{
 			127,
 			0,
 			0,

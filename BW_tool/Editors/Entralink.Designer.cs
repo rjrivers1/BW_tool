@@ -47,7 +47,7 @@ namespace BW_tool
 		private System.Windows.Forms.ComboBox spbox1;
 		private System.Windows.Forms.ComboBox move1box;
 		private System.Windows.Forms.ComboBox genderbox1;
-		private System.Windows.Forms.NumericUpDown formbox1;
+		private System.Windows.Forms.ComboBox formbox1;
 		private System.Windows.Forms.ComboBox unlock9;
 		private System.Windows.Forms.Label label1;
 		private System.Windows.Forms.Label label2;
@@ -73,6 +73,20 @@ namespace BW_tool
 		private System.Windows.Forms.Label label8;
 		private System.Windows.Forms.Button saveexit_but;
 		private System.Windows.Forms.Button exit_but;
+		private System.Windows.Forms.Button export_area;
+		private System.Windows.Forms.Button import_area;
+		private System.Windows.Forms.Button export_forest;
+		private System.Windows.Forms.Button import_forest;
+		private System.Windows.Forms.Label sprite_warning;
+		private System.Windows.Forms.GroupBox groupBox2;
+		private System.Windows.Forms.Button pkmcafe_but;
+		private System.Windows.Forms.Button dream_but;
+		private System.Windows.Forms.Button icy_but;
+		private System.Windows.Forms.Button rugged_but;
+		private System.Windows.Forms.Button spooky_but;
+		private System.Windows.Forms.Button spark_but;
+		private System.Windows.Forms.Button wind_but;
+		private System.Windows.Forms.Button pleasant_but;
 		
 		/// <summary>
 		/// Disposes resources used by the form.
@@ -126,7 +140,6 @@ namespace BW_tool
 			this.spbox1 = new System.Windows.Forms.ComboBox();
 			this.move1box = new System.Windows.Forms.ComboBox();
 			this.genderbox1 = new System.Windows.Forms.ComboBox();
-			this.formbox1 = new System.Windows.Forms.NumericUpDown();
 			this.label1 = new System.Windows.Forms.Label();
 			this.unlock8box = new System.Windows.Forms.ComboBox();
 			this.label3 = new System.Windows.Forms.Label();
@@ -152,10 +165,25 @@ namespace BW_tool
 			this.animbox1 = new System.Windows.Forms.ComboBox();
 			this.saveexit_but = new System.Windows.Forms.Button();
 			this.exit_but = new System.Windows.Forms.Button();
-			((System.ComponentModel.ISupportInitialize)(this.formbox1)).BeginInit();
+			this.export_area = new System.Windows.Forms.Button();
+			this.import_area = new System.Windows.Forms.Button();
+			this.export_forest = new System.Windows.Forms.Button();
+			this.import_forest = new System.Windows.Forms.Button();
+			this.sprite_warning = new System.Windows.Forms.Label();
+			this.formbox1 = new System.Windows.Forms.ComboBox();
+			this.groupBox2 = new System.Windows.Forms.GroupBox();
+			this.pkmcafe_but = new System.Windows.Forms.Button();
+			this.dream_but = new System.Windows.Forms.Button();
+			this.icy_but = new System.Windows.Forms.Button();
+			this.rugged_but = new System.Windows.Forms.Button();
+			this.spooky_but = new System.Windows.Forms.Button();
+			this.spark_but = new System.Windows.Forms.Button();
+			this.wind_but = new System.Windows.Forms.Button();
+			this.pleasant_but = new System.Windows.Forms.Button();
 			((System.ComponentModel.ISupportInitialize)(this.slot)).BeginInit();
 			this.groupBox1.SuspendLayout();
 			((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
+			this.groupBox2.SuspendLayout();
 			this.SuspendLayout();
 			// 
 			// check9r
@@ -555,10 +583,10 @@ namespace BW_tool
 			"026 - Raichu",
 			"027 - Sandshrew",
 			"028 - Sandslash",
-			"029 - Nidoran?",
+			"029 - Nidoran (F)",
 			"030 - Nidorina",
 			"031 - Nidoqueen",
-			"032 - Nidoran?",
+			"032 - Nidoran(M)",
 			"033 - Nidorino",
 			"034 - Nidoking",
 			"035 - Clefairy",
@@ -1180,6 +1208,7 @@ namespace BW_tool
 			this.spbox1.Name = "spbox1";
 			this.spbox1.Size = new System.Drawing.Size(141, 21);
 			this.spbox1.TabIndex = 190;
+			this.spbox1.SelectedIndexChanged += new System.EventHandler(this.Spbox1SelectedIndexChanged);
 			// 
 			// move1box
 			// 
@@ -1761,13 +1790,6 @@ namespace BW_tool
 			this.genderbox1.Size = new System.Drawing.Size(94, 21);
 			this.genderbox1.TabIndex = 54;
 			// 
-			// formbox1
-			// 
-			this.formbox1.Location = new System.Drawing.Point(658, 60);
-			this.formbox1.Name = "formbox1";
-			this.formbox1.Size = new System.Drawing.Size(98, 20);
-			this.formbox1.TabIndex = 62;
-			// 
 			// label1
 			// 
 			this.label1.Location = new System.Drawing.Point(12, 333);
@@ -1999,9 +2021,9 @@ namespace BW_tool
 			// 
 			// label8
 			// 
-			this.label8.Location = new System.Drawing.Point(216, 40);
+			this.label8.Location = new System.Drawing.Point(215, 43);
 			this.label8.Name = "label8";
-			this.label8.Size = new System.Drawing.Size(44, 17);
+			this.label8.Size = new System.Drawing.Size(44, 12);
 			this.label8.TabIndex = 197;
 			this.label8.Text = "   Slot";
 			// 
@@ -2009,14 +2031,15 @@ namespace BW_tool
 			// 
 			this.animbox1.FormattingEnabled = true;
 			this.animbox1.Items.AddRange(new object[] {
-			" randomly turning around",
-			" randomly walking",
-			" randomly walking",
-			" walking up/down",
-			" walking left/right",
-			" walking left/right and randomly looking up/down",
-			" turning around clockwise",
-			" turning around counterclockwise"});
+			"Randomly turning around",
+			"Randomly walking",
+			"Randomly walking",
+			"Walking up/down",
+			"Walking left/right",
+			"Walking left/right and randomly looking up/down",
+			"Turning around clockwise",
+			"Turning around counterclockwise",
+			"--- Randomize ---"});
 			this.animbox1.Location = new System.Drawing.Point(762, 60);
 			this.animbox1.Name = "animbox1";
 			this.animbox1.Size = new System.Drawing.Size(243, 21);
@@ -2024,7 +2047,7 @@ namespace BW_tool
 			// 
 			// saveexit_but
 			// 
-			this.saveexit_but.Location = new System.Drawing.Point(40, 513);
+			this.saveexit_but.Location = new System.Drawing.Point(906, 511);
 			this.saveexit_but.Name = "saveexit_but";
 			this.saveexit_but.Size = new System.Drawing.Size(99, 29);
 			this.saveexit_but.TabIndex = 200;
@@ -2034,7 +2057,7 @@ namespace BW_tool
 			// 
 			// exit_but
 			// 
-			this.exit_but.Location = new System.Drawing.Point(40, 480);
+			this.exit_but.Location = new System.Drawing.Point(906, 478);
 			this.exit_but.Name = "exit_but";
 			this.exit_but.Size = new System.Drawing.Size(97, 27);
 			this.exit_but.TabIndex = 199;
@@ -2042,11 +2065,174 @@ namespace BW_tool
 			this.exit_but.UseVisualStyleBackColor = true;
 			this.exit_but.Click += new System.EventHandler(this.Exit_butClick);
 			// 
+			// export_area
+			// 
+			this.export_area.Location = new System.Drawing.Point(12, 420);
+			this.export_area.Name = "export_area";
+			this.export_area.Size = new System.Drawing.Size(84, 23);
+			this.export_area.TabIndex = 201;
+			this.export_area.Text = "Export Area";
+			this.export_area.UseVisualStyleBackColor = true;
+			this.export_area.Click += new System.EventHandler(this.Export_areaClick);
+			// 
+			// import_area
+			// 
+			this.import_area.Location = new System.Drawing.Point(102, 420);
+			this.import_area.Name = "import_area";
+			this.import_area.Size = new System.Drawing.Size(87, 23);
+			this.import_area.TabIndex = 202;
+			this.import_area.Text = "Import Area";
+			this.import_area.UseVisualStyleBackColor = true;
+			this.import_area.Click += new System.EventHandler(this.Import_areaClick);
+			// 
+			// export_forest
+			// 
+			this.export_forest.Location = new System.Drawing.Point(9, 517);
+			this.export_forest.Name = "export_forest";
+			this.export_forest.Size = new System.Drawing.Size(87, 23);
+			this.export_forest.TabIndex = 203;
+			this.export_forest.Text = "Export Forest";
+			this.export_forest.UseVisualStyleBackColor = true;
+			this.export_forest.Click += new System.EventHandler(this.Export_forestClick);
+			// 
+			// import_forest
+			// 
+			this.import_forest.Location = new System.Drawing.Point(102, 517);
+			this.import_forest.Name = "import_forest";
+			this.import_forest.Size = new System.Drawing.Size(87, 23);
+			this.import_forest.TabIndex = 204;
+			this.import_forest.Text = "Import Forest";
+			this.import_forest.UseVisualStyleBackColor = true;
+			this.import_forest.Click += new System.EventHandler(this.Import_forestClick);
+			// 
+			// sprite_warning
+			// 
+			this.sprite_warning.ForeColor = System.Drawing.Color.Red;
+			this.sprite_warning.Location = new System.Drawing.Point(266, 21);
+			this.sprite_warning.Name = "sprite_warning";
+			this.sprite_warning.Size = new System.Drawing.Size(244, 23);
+			this.sprite_warning.TabIndex = 205;
+			this.sprite_warning.Text = "Selected species does not have a sprite for BW2";
+			// 
+			// formbox1
+			// 
+			this.formbox1.FormattingEnabled = true;
+			this.formbox1.Items.AddRange(new object[] {
+			""});
+			this.formbox1.Location = new System.Drawing.Point(658, 60);
+			this.formbox1.Name = "formbox1";
+			this.formbox1.Size = new System.Drawing.Size(98, 21);
+			this.formbox1.TabIndex = 206;
+			// 
+			// groupBox2
+			// 
+			this.groupBox2.Controls.Add(this.pkmcafe_but);
+			this.groupBox2.Controls.Add(this.dream_but);
+			this.groupBox2.Controls.Add(this.icy_but);
+			this.groupBox2.Controls.Add(this.rugged_but);
+			this.groupBox2.Controls.Add(this.spooky_but);
+			this.groupBox2.Controls.Add(this.spark_but);
+			this.groupBox2.Controls.Add(this.wind_but);
+			this.groupBox2.Controls.Add(this.pleasant_but);
+			this.groupBox2.Location = new System.Drawing.Point(864, 187);
+			this.groupBox2.Name = "groupBox2";
+			this.groupBox2.Size = new System.Drawing.Size(141, 256);
+			this.groupBox2.TabIndex = 207;
+			this.groupBox2.TabStop = false;
+			this.groupBox2.Text = "Dream World";
+			// 
+			// pkmcafe_but
+			// 
+			this.pkmcafe_but.Location = new System.Drawing.Point(6, 222);
+			this.pkmcafe_but.Name = "pkmcafe_but";
+			this.pkmcafe_but.Size = new System.Drawing.Size(129, 23);
+			this.pkmcafe_but.TabIndex = 7;
+			this.pkmcafe_but.Text = "Pokémon Café Forest";
+			this.pkmcafe_but.UseVisualStyleBackColor = true;
+			this.pkmcafe_but.Click += new System.EventHandler(this.pkmcafe_butClick);
+			// 
+			// dream_but
+			// 
+			this.dream_but.Location = new System.Drawing.Point(6, 193);
+			this.dream_but.Name = "dream_but";
+			this.dream_but.Size = new System.Drawing.Size(129, 23);
+			this.dream_but.TabIndex = 6;
+			this.dream_but.Text = "Dream Park";
+			this.dream_but.UseVisualStyleBackColor = true;
+			this.dream_but.Click += new System.EventHandler(this.Dream_butClick);
+			// 
+			// icy_but
+			// 
+			this.icy_but.Location = new System.Drawing.Point(6, 164);
+			this.icy_but.Name = "icy_but";
+			this.icy_but.Size = new System.Drawing.Size(129, 23);
+			this.icy_but.TabIndex = 5;
+			this.icy_but.Text = "Icy Cave";
+			this.icy_but.UseVisualStyleBackColor = true;
+			this.icy_but.Click += new System.EventHandler(this.Icy_butClick);
+			// 
+			// rugged_but
+			// 
+			this.rugged_but.Location = new System.Drawing.Point(6, 135);
+			this.rugged_but.Name = "rugged_but";
+			this.rugged_but.Size = new System.Drawing.Size(129, 23);
+			this.rugged_but.TabIndex = 4;
+			this.rugged_but.Text = "Rugged Mountain";
+			this.rugged_but.UseVisualStyleBackColor = true;
+			this.rugged_but.Click += new System.EventHandler(this.Rugged_butClick);
+			// 
+			// spooky_but
+			// 
+			this.spooky_but.Location = new System.Drawing.Point(6, 106);
+			this.spooky_but.Name = "spooky_but";
+			this.spooky_but.Size = new System.Drawing.Size(129, 23);
+			this.spooky_but.TabIndex = 3;
+			this.spooky_but.Text = "Spooky Manor";
+			this.spooky_but.UseVisualStyleBackColor = true;
+			this.spooky_but.Click += new System.EventHandler(this.Spooky_butClick);
+			// 
+			// spark_but
+			// 
+			this.spark_but.Location = new System.Drawing.Point(6, 77);
+			this.spark_but.Name = "spark_but";
+			this.spark_but.Size = new System.Drawing.Size(129, 23);
+			this.spark_but.TabIndex = 2;
+			this.spark_but.Text = "Sparkling Sea";
+			this.spark_but.UseVisualStyleBackColor = true;
+			this.spark_but.Click += new System.EventHandler(this.Spark_butClick);
+			// 
+			// wind_but
+			// 
+			this.wind_but.Location = new System.Drawing.Point(6, 48);
+			this.wind_but.Name = "wind_but";
+			this.wind_but.Size = new System.Drawing.Size(129, 23);
+			this.wind_but.TabIndex = 1;
+			this.wind_but.Text = "Windswept Sky";
+			this.wind_but.UseVisualStyleBackColor = true;
+			this.wind_but.Click += new System.EventHandler(this.Wind_butClick);
+			// 
+			// pleasant_but
+			// 
+			this.pleasant_but.Location = new System.Drawing.Point(6, 19);
+			this.pleasant_but.Name = "pleasant_but";
+			this.pleasant_but.Size = new System.Drawing.Size(129, 23);
+			this.pleasant_but.TabIndex = 0;
+			this.pleasant_but.Text = "Pleasant Forest";
+			this.pleasant_but.UseVisualStyleBackColor = true;
+			this.pleasant_but.Click += new System.EventHandler(this.Pleasant_butClick);
+			// 
 			// Entralink
 			// 
 			this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
 			this.ClientSize = new System.Drawing.Size(1014, 552);
+			this.Controls.Add(this.groupBox2);
+			this.Controls.Add(this.formbox1);
+			this.Controls.Add(this.sprite_warning);
+			this.Controls.Add(this.import_forest);
+			this.Controls.Add(this.export_forest);
+			this.Controls.Add(this.import_area);
+			this.Controls.Add(this.export_area);
 			this.Controls.Add(this.saveexit_but);
 			this.Controls.Add(this.exit_but);
 			this.Controls.Add(this.animbox1);
@@ -2067,16 +2253,15 @@ namespace BW_tool
 			this.Controls.Add(this.unlock8box);
 			this.Controls.Add(this.label2);
 			this.Controls.Add(this.label1);
-			this.Controls.Add(this.formbox1);
 			this.Controls.Add(this.genderbox1);
 			this.Controls.Add(this.move1box);
 			this.Controls.Add(this.spbox1);
 			this.Name = "Entralink";
 			this.Text = "Entralink Forest";
-			((System.ComponentModel.ISupportInitialize)(this.formbox1)).EndInit();
 			((System.ComponentModel.ISupportInitialize)(this.slot)).EndInit();
 			this.groupBox1.ResumeLayout(false);
 			((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
+			this.groupBox2.ResumeLayout(false);
 			this.ResumeLayout(false);
 
 		}

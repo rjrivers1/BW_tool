@@ -95,5 +95,21 @@ namespace BW_tool
 		            MessageBox.Show("File Saved.", "Save file");
 	            }
 			}
+			public static void save_file(byte[] buffer, string filter)
+			{	//if (savegamename.Text.Length < 1) return;
+				if (buffer == null) return;
+	            SaveFileDialog saveFD = new SaveFileDialog();
+	            //saveFD.InitialDirectory = "c:\\";
+	            saveFD.Filter = filter;
+	            if (saveFD.ShowDialog() == DialogResult.OK)
+	            {
+		            System.IO.FileStream saveFile;
+		            saveFile = new FileStream(saveFD.FileName, FileMode.Create);            
+		            //Write file
+		            saveFile.Write(buffer, 0, buffer.Length);
+		            saveFile.Close();
+		            MessageBox.Show("File Saved.", "Save file");
+	            }
+			}
 	}
 }

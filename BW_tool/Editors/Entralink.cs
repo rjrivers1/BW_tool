@@ -18,7 +18,7 @@ namespace BW_tool
 	/// </summary>
 	public partial class Entralink : Form
 	{
-		FOREST forest;
+		public static FOREST forest;
 		List<RadioButton> checkboxlist = new List<RadioButton>();
 		public Entralink()
 		{
@@ -26,6 +26,7 @@ namespace BW_tool
 			// The InitializeComponent() call is required for Windows Forms designer support.
 			//
 			InitializeComponent();
+			sprite_warning.Text = "";
 
 			checkboxlist.Add(checkdeep);
 			checkboxlist.Add(check9c);
@@ -185,6 +186,7 @@ namespace BW_tool
         	}
 			
 			updateGrid();
+			updateslot();
 			
 		}
 	
@@ -193,7 +195,7 @@ namespace BW_tool
 			spbox1.SelectedIndex = forest.Species;
 			move1box.SelectedIndex = forest.Move;
 			genderbox1.SelectedIndex = forest.Gender;
-			formbox1.Value = forest.Form;
+			formbox1.SelectedIndex = forest.Form;
 			animbox1.SelectedIndex = (forest.Animation/2);
 		}
 
@@ -261,9 +263,16 @@ namespace BW_tool
 		{
 		    slot.Value = (int)dataGridView1.CurrentRow.Index;
 		}
+		int animation()
+		{
+			if (animbox1.SelectedIndex > 7)
+				return Entralink_DreamWorld.random_form_anim();
+			else
+				return (int)(animbox1.SelectedIndex*2);
+		}
 		void Add_pkmClick(object sender, EventArgs e)
 		{
-			forest.add_pkm(forest.create_pkm((int)spbox1.SelectedIndex, (int)move1box.SelectedIndex, (int)genderbox1.SelectedIndex, (int)formbox1.Value, (int)(animbox1.SelectedIndex*2)));
+			forest.add_pkm(forest.create_pkm((int)spbox1.SelectedIndex, (int)move1box.SelectedIndex, (int)genderbox1.SelectedIndex, (int)formbox1.SelectedIndex, animation()));
 			updateGrid();
 		}
 		void Del_pkmClick(object sender, EventArgs e)
@@ -273,8 +282,16 @@ namespace BW_tool
 		}
 		void Edit_pkmClick(object sender, EventArgs e)
 		{
-			forest.edit_pkm(forest.create_pkm((int)spbox1.SelectedIndex, (int)move1box.SelectedIndex, (int)genderbox1.SelectedIndex, (int)formbox1.Value, (int)(animbox1.SelectedIndex*2)));
-			updateGrid();
+			//If slot is empty, add pokemon instead
+			if (forest.is_pkm_empty() == true)
+			{
+				forest.add_pkm(forest.create_pkm((int)spbox1.SelectedIndex, (int)move1box.SelectedIndex, (int)genderbox1.SelectedIndex, (int)formbox1.SelectedIndex, animation()));
+				updateGrid();
+			}else
+			{
+				forest.edit_pkm(forest.create_pkm((int)spbox1.SelectedIndex, (int)move1box.SelectedIndex, (int)genderbox1.SelectedIndex, (int)formbox1.SelectedIndex, animation()));
+				updateGrid();
+			}
 		}
 		void Exit_butClick(object sender, EventArgs e)
 		{
@@ -288,6 +305,349 @@ namespace BW_tool
 				MainForm.save.setBlockCrypt(forest.Data, 61);
 			
 			this.Close();
+		}
+		void Export_areaClick(object sender, EventArgs e)
+		{
+			forest.dump_area();
+		}
+		void Import_areaClick(object sender, EventArgs e)
+		{
+			forest.import_area();
+			updatearea();
+		}
+		void Export_forestClick(object sender, EventArgs e)
+		{
+			forest.export_forest();
+			updatearea();
+		}
+		void Import_forestClick(object sender, EventArgs e)
+		{
+			forest.import_forest();
+			updatearea();
+		}
+		
+		public static int[] BW2_sprites =
+		{
+			505, 507, 510, 511, 513, 515, 519, 523, 525, 527,
+			529, 531, 533, 535, 538, 539, 542, 545, 546, 548,
+			550, 553, 556, 558, 559, 531, 564, 569, 572, 575,
+			578, 580, 582, 587, 588, 594, 596, 600, 605, 607,
+			610, 613, 616, 618, 619, 621, 622, 624, 626, 628,
+			630, 631, 632
+		};
+		
+		public static int[] BW_femaleonly =
+		{
+			029, 030, 031, 113, 115, 124, 238, 241, 242, 314,
+			380, 413, 416, 440, 478, 488, 548, 549, 629, 630
+		};
+		
+		public static int[] BW_maleonly =
+		{
+			032, 033, 034, 106, 107, 128, 236, 237, 313, 381,
+			414, 475, 538, 539, 627, 628, 641, 642, 645
+		};
+		
+		public static int[] BW_genderless =
+		{
+			081, 082, 100, 101, 120, 121, 132, 137, 144, 145,
+			146, 150, 151, 201, 233, 243, 244, 245, 249, 250,
+			251, 292, 337, 338, 343, 344, 374, 375, 376, 377,
+			378, 379, 382, 383, 384, 385, 386, 436, 437, 462,
+			474, 479, 480, 481, 482, 483, 484, 486, 487, 489,
+			490, 491, 492, 493, 494, 599, 600, 601, 615, 622,
+			623, 638, 639, 640, 643, 644, 646, 647, 648, 649
+		};
+		
+		public static int[] BW_forms =
+		{
+			201, 386, 412, 413, 422, 423, 479, 487, 492, 550,
+			585, 586, 648
+		};
+		
+		void Spbox1SelectedIndexChanged(object sender, EventArgs e)
+		{
+			//Handle species without sprites
+			int i = 0;
+			if (MainForm.save.B2W2 == true && spbox1.SelectedIndex > 493)
+			{
+				
+				for (i=0;i<53;i++)
+				{
+					if (spbox1.SelectedIndex == BW2_sprites[i])
+					{
+						sprite_warning.Text = "";
+						break;
+					}else
+						sprite_warning.Text = "Selected species does not have a sprite for BW2";
+				}
+			}
+			else if (spbox1.SelectedIndex > 493)
+			{
+				sprite_warning.Text = "Selected species does not have a sprite for BW";
+			}
+			else
+			{
+				sprite_warning.Text = "";
+			}
+			
+			//Handle genders
+			bool special_gender = false;
+			for(i=0;i<BW_femaleonly.Length;i++)
+			{
+				if(spbox1.SelectedIndex == BW_femaleonly[i])
+				{
+					//Only female
+					special_gender = true;
+					genderbox1.SelectedIndex = 1;
+					genderbox1.Enabled = false;
+				}
+			}
+			
+			for(i=0;i<BW_maleonly.Length;i++)
+			{
+				if(spbox1.SelectedIndex == BW_maleonly[i])
+				{
+					//Only male
+					special_gender = true;
+					genderbox1.SelectedIndex = 0;
+					genderbox1.Enabled = false;
+				}
+			}
+			
+			for(i=0;i<BW_genderless.Length;i++)
+			{
+				if(spbox1.SelectedIndex == BW_genderless[i])
+				{
+					//Only genderless
+					special_gender = true;
+					genderbox1.Items.AddRange(new object[] {
+						"Male",
+						"Female",
+						"Genderless"});
+					genderbox1.SelectedIndex = 2;
+					genderbox1.Enabled = false;
+				}
+			}
+			
+			if (special_gender == false)
+			{
+				//Re-enable list
+					genderbox1.Enabled = true;
+					genderbox1.Items.AddRange(new object[] {
+						"Male",
+						"Female"});
+			}
+			
+			//Handle forms
+			formbox1.Enabled = true;
+			formbox1.Items.Clear();
+			switch (spbox1.SelectedIndex)
+			{
+				case 201:
+					formbox1.Items.AddRange(new object[] {
+								"A",
+								"B",
+								"C",
+								"D",
+								"E",
+								"F",
+								"G",
+								"H",
+								"I",
+								"J",
+								"K",
+								"L",
+								"M",
+								"N",
+								"O",
+								"P",
+								"Q",
+								"R",
+								"S",
+								"T",
+								"U",
+								"V",
+								"W",
+								"X",
+								"Y",
+								"Z",
+								"!",
+								"?"});
+					if (forest.Form > 27)
+						formbox1.SelectedIndex = 0;
+					else
+						formbox1.SelectedIndex = forest.Form;
+					break;
+				case 386:
+
+					formbox1.Items.AddRange(new object[] {
+						"Normal",
+						"Attack",
+						"Defense",
+						"Speed"});
+					if (forest.Form > 4)
+						formbox1.SelectedIndex = 0;
+					else
+						formbox1.SelectedIndex = forest.Form;
+					break;
+				case 412:
+				case 413:
+					formbox1.Items.AddRange(new object[] {
+						"Plant",
+						"Sand",
+						"Trash"});
+					if (forest.Form > 3)
+						formbox1.SelectedIndex = 0;
+					else
+						formbox1.SelectedIndex = forest.Form;
+					break;
+				case 422:
+				case 423:
+					formbox1.Items.AddRange(new object[] {
+						"West Sea",
+						"East Sea"});
+					if (forest.Form > 2)
+						formbox1.SelectedIndex = 0;
+					else
+						formbox1.SelectedIndex = forest.Form;
+					break;
+				case 479:
+					formbox1.Items.AddRange(new object[] {
+						"Normal",
+						"Heat",
+						"Wash",
+						"Frost",
+						"Fan",
+						"Mow"});
+					if (forest.Form > 6)
+						formbox1.SelectedIndex = 0;
+					else
+						formbox1.SelectedIndex = forest.Form;
+					break;
+				case 487:
+					formbox1.Items.AddRange(new object[] {
+						"Altered",
+						"Origin"});
+					if (forest.Form > 2)
+						formbox1.SelectedIndex = 0;
+					else
+						formbox1.SelectedIndex = forest.Form;
+					break;
+				case 492:
+					formbox1.Items.AddRange(new object[] {
+						"Land",
+						"Sky"});
+					if (forest.Form > 2)
+						formbox1.SelectedIndex = 0;
+					else
+						formbox1.SelectedIndex = forest.Form;
+					break;
+				case 550:
+					formbox1.Items.AddRange(new object[] {
+						"Red",
+						"Blue"});
+					if (forest.Form > 2)
+						formbox1.SelectedIndex = 0;
+					else
+						formbox1.SelectedIndex = forest.Form;
+					break;
+				case 585:
+				case 586:
+					formbox1.Items.AddRange(new object[] {
+						"Winter",
+						"Spring",
+						"Summer",
+						"Autumn"});
+					if (forest.Form > 4)
+						formbox1.SelectedIndex = 0;
+					else
+						formbox1.SelectedIndex = forest.Form;
+					break;
+				case 648:
+					formbox1.Items.AddRange(new object[] {
+						"Aria",
+						"Pirouette"});
+					if (forest.Form > 2)
+						formbox1.SelectedIndex = 0;
+					else
+						formbox1.SelectedIndex = forest.Form;
+					break;
+				default:
+					formbox1.Enabled = false;
+					formbox1.Items.Add("");
+					formbox1.SelectedIndex = 0;
+					break;
+			}
+
+		}
+		public static UInt32 dream_pkm = 0;
+		void add_dw_pkm()
+		{
+			//Add dream pokemon!
+			if (dream_pkm != 0)
+			{
+				//If slot is empty, add pokemon instead
+				if (forest.is_pkm_empty() == true)
+				{
+					forest.add_pkm(dream_pkm);
+					updateGrid();
+				}else
+				{
+					forest.edit_pkm(dream_pkm);
+					updateGrid();
+				}
+			}
+			dream_pkm = 0;
+		}
+
+		void Pleasant_butClick(object sender, EventArgs e)
+		{
+			Form dreamworld = new Entralink_DreamWorld(0, "Pleasant Forest");
+			dreamworld.ShowDialog();
+			add_dw_pkm();
+		}
+		void Wind_butClick(object sender, EventArgs e)
+		{
+			Form dreamworld = new Entralink_DreamWorld(1, "Windswept Sky");
+			dreamworld.ShowDialog();
+			add_dw_pkm();
+		}
+		void Spark_butClick(object sender, EventArgs e)
+		{
+			Form dreamworld = new Entralink_DreamWorld(2, "Sparkling Sea");
+			dreamworld.ShowDialog();
+			add_dw_pkm();
+		}
+		void Spooky_butClick(object sender, EventArgs e)
+		{
+			Form dreamworld = new Entralink_DreamWorld(3, "Spooky Manor");
+			dreamworld.ShowDialog();
+			add_dw_pkm();
+		}
+		void Rugged_butClick(object sender, EventArgs e)
+		{
+			Form dreamworld = new Entralink_DreamWorld(4, "Rugged Mountain");
+			dreamworld.ShowDialog();
+			add_dw_pkm();
+		}
+		void Icy_butClick(object sender, EventArgs e)
+		{
+			Form dreamworld = new Entralink_DreamWorld(5, "Icy Cave");
+			dreamworld.ShowDialog();
+			add_dw_pkm();
+		}
+		void Dream_butClick(object sender, EventArgs e)
+		{
+			Form dreamworld = new Entralink_DreamWorld(6, "Dream Park");
+			dreamworld.ShowDialog();
+			add_dw_pkm();
+		}
+		void pkmcafe_butClick(object sender, EventArgs e)
+		{
+			Form dreamworld = new Entralink_DreamWorld(7, "Pokémon Café Forest");
+			dreamworld.ShowDialog();
+			add_dw_pkm();
 		}
 
 
@@ -339,6 +699,84 @@ namespace BW_tool
 	        	}else 
 	        		return -1;
 	        }
+	        
+	        public void dump_area()
+	        {
+	        	int tmp_slot = indexpkm;
+	        	
+	        	byte[] phl = new byte[4*20];
+	        	
+	        	indexpkm = 0;
+	        	
+	        	if(area > 0 && area < 4) //Area 9 ony holds 10 pokes
+	        	{
+	        		for (indexpkm=0;indexpkm<10;indexpkm++)
+	        		{
+	        			BitConverter.GetBytes(get_pkm()).CopyTo(phl, indexpkm*4);
+	        		}
+	        	}
+	        	else
+	        	{
+	        		for (indexpkm=0;indexpkm<20;indexpkm++)
+	        		{
+	        			BitConverter.GetBytes(get_pkm()).CopyTo(phl, indexpkm*4);
+	        		}
+	        	}
+	        	
+	        	indexpkm = tmp_slot;
+	        	
+	        	FileIO.save_file(phl, "Entree Forest Area data|*.phl|All Files (*.*)|*.*");
+	        }
+	        
+	        public void import_area()
+	        {
+
+	        	
+	        	byte[] phl = new byte[4*20];
+	        	string path = null;
+	        	FileIO.load_file(ref phl, ref path, "Entree Forest Area data|*.phl|All Files (*.*)|*.*");
+	        	
+	        	UInt32 temp_pkm = 0;
+	        	
+	        	indexpkm = 0;
+	        	
+	        	if(area > 0 && area < 4) //Area 9 ony holds 10 pokes
+	        	{
+	        		for (indexpkm=0;indexpkm<10;indexpkm++)
+	        		{
+	        			temp_pkm = BitConverter.ToUInt32(phl, indexpkm*4);
+	        			edit_pkm(temp_pkm);
+	        		}
+	        	}
+	        	else
+	        	{
+	        		for (indexpkm=0;indexpkm<20;indexpkm++)
+	        		{
+	        			temp_pkm = BitConverter.ToUInt32(phl, indexpkm*4);
+	        			edit_pkm(temp_pkm);
+	        		}
+	        	}
+	        	
+	        	indexpkm = 0;
+	        }
+	        
+	        public void export_forest()
+	        {
+	        	FileIO.save_file(Data, "Entralink Forest Decrypted Data|*.efdd|All Files (*.*)|*.*");
+	        }
+	        
+	        public void import_forest()
+	        {
+
+	        	
+	        	byte[] forest = new byte[2304];
+	        	string path = null;
+	        	FileIO.load_file(ref forest, ref path, "Entralink Forest Decrypted Data|*.efdd|All Files (*.*)|*.*");
+	        	
+	        	Data = forest;
+	        	
+	        	indexpkm = 0;
+	        }
 
 /*
 Pokemon Structure (4 bytes)
@@ -379,10 +817,14 @@ Bits
 	        	else
 	        		return false;
 	        }
+	        public UInt32 get_pkm() //Relies on current indexpkm
+	        {
+	        	return BitConverter.ToUInt32(Data, get_pkmoffset());
+	        }
 	        //Build a u32 pkm for entralink forest
 	        public UInt32 create_pkm(int sp, int mv, int gdr, int frm, int anim)
 	        {
-	        	return (UInt32) ( (sp) | (mv << 11) | (gdr << 21) | (frm << 23) | (anim << 27) );
+	        	return (UInt32) ( (sp&0x7FF) | ((mv&0x3FF) << 11) | ((gdr&0x3) << 21) | ((frm&0x1F) << 23) | ((anim&0xF) << 27) );
 	        }
 	        //Sets pkm data to current slot
 	        public void edit_pkm(UInt32 pkm)

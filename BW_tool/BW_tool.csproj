@@ -50,6 +50,10 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Editors\Entralink_DreamWorld.cs" />
+    <Compile Include="Editors\Entralink_DreamWorld.Designer.cs">
+      <DependentUpon>Entralink_DreamWorld.cs</DependentUpon>
+    </Compile>
     <Compile Include="Editors\KeySystem.cs" />
     <Compile Include="Editors\KeySystem.Designer.cs">
       <DependentUpon>KeySystem.cs</DependentUpon>
@@ -98,6 +102,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Editors\Entralink.resx">
       <DependentUpon>Entralink.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Editors\Entralink_DreamWorld.resx">
+      <DependentUpon>Entralink_DreamWorld.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Editors\Grotto.resx">
       <DependentUpon>Grotto.cs</DependentUpon>
