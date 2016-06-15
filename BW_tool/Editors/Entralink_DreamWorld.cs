@@ -27,6 +27,34 @@ namespace BW_tool
 			exclusive_label.Text = "";
 			world = DW;
 			setup_world();
+			if (DW < 8)
+			{
+				moveboxA.Visible = true;
+				moveboxC.Visible = true;
+				atkA.Visible = true;
+				atkB.Visible = true;
+				atkC.Visible = true;
+				
+				Move.Text = "Move";
+				
+				pgl_region_box.Visible = false;
+				region_lab.Visible = false;
+				move_lab.Visible = false;
+			}
+			else if (DW == 8)
+			{
+				moveboxA.Visible = false;
+				moveboxC.Visible = false;
+				atkA.Visible = false;
+				atkB.Visible = false;
+				atkC.Visible = false;
+				
+				Move.Text = "Info";
+				
+				pgl_region_box.Visible = true;
+				region_lab.Visible = true;
+				move_lab.Visible = true;
+			}
 			
 			//
 			// TODO: Add constructor code after the InitializeComponent() call.
@@ -320,17 +348,72 @@ namespace BW_tool
 						"Burmy"});
 					speciesbox.SelectedIndex = 0;
 					break;
+				case 8://PGL Promotions
+					speciesbox.Items.Clear();
+					speciesbox.Items.AddRange(new object[] {
+						"Vaporeon",
+						"Jolteon",
+						"Flareon",
+						"Espeon",
+						"Umbreon",
+						"Leafeon",
+						"Glaceon",
+						"Bulbasaur",
+						"Charmander",
+						"Squirtle",
+						"Croagunk",
+						"Turtwig",
+						"Chimchar",
+						"Piplup",
+						"Arceus",
+						"Treecko",
+						"Torchic",
+						"Mudkip",
+						"Togekiss",
+						"Mamoswine",
+						"Porygon",
+						"Rayquaza",
+						"Banette",
+						"Croagunk",
+						"Altaria",
+						"Blissey",
+						"Lucario",
+						"Gothorita",
+						"Pikachu",
+						"Jumpluff",
+						"Pansage",
+						"Pansear",
+						"Panpour",
+						"Turtwig",
+						"Chimchar",
+						"Piplup",
+						"Gothorita",
+						"Scizor",
+						"Garchomp",
+						"Dragonite",
+						"Tyranitar",
+						"Dragonite",
+						"Metagross"});
+					speciesbox.SelectedIndex = 0;
+					break;
 			}
 			atkA.Checked = true;
 			update_atk();
 		}
 		void Ok_butClick(object sender, EventArgs e)
 		{
-			//Handle forms
-			if (world == 2 && (speciesbox.SelectedIndex == 25 || speciesbox.SelectedIndex == 36 )) //Blue basculin, East Sea shellos
-				Entralink.dream_pkm = Entralink.forest.create_pkm(world_species[world][speciesbox.SelectedIndex], world_attacks[world][speciesbox.SelectedIndex][atk], gender, 1, random_form_anim());
-			else
-				Entralink.dream_pkm = Entralink.forest.create_pkm(world_species[world][speciesbox.SelectedIndex], world_attacks[world][speciesbox.SelectedIndex][atk], gender, 0, random_form_anim());
+			if (world < 8)
+			{
+				//Handle forms
+				if (world == 2 && (speciesbox.SelectedIndex == 25 || speciesbox.SelectedIndex == 36 )) //Blue basculin, East Sea shellos
+					Entralink.dream_pkm = Entralink.forest.create_pkm(world_species[world][speciesbox.SelectedIndex], world_attacks[world][speciesbox.SelectedIndex][atk], gender, 1, random_form_anim());
+				else
+					Entralink.dream_pkm = Entralink.forest.create_pkm(world_species[world][speciesbox.SelectedIndex], world_attacks[world][speciesbox.SelectedIndex][atk], gender, 0, random_form_anim());
+			}
+			else if (world == 8)
+			{
+				Entralink.dream_pkm = Entralink.forest.create_pkm(world_species[world][speciesbox.SelectedIndex], PGL_attacks[speciesbox.SelectedIndex], gender, 0, random_form_anim());
+			}
 			this.Close();
 		}
 		void Cancel_butClick(object sender, EventArgs e)
@@ -343,44 +426,71 @@ namespace BW_tool
 			update_atk();
 			update_gnd();
 			
-			int i=0;
 			bool exclusive = false;
-			if (MainForm.save.B2W2 == true)
+			if(world < 8)
 			{
-				for(i=0;i<world_BW1_exclusives[world].Length;i++)
+				int i=0;
+				if (MainForm.save.B2W2 == true)
 				{
-					if(world_BW1_exclusives[world][i] == world_species[world][speciesbox.SelectedIndex])
+					for(i=0;i<world_BW1_exclusives[world].Length;i++)
 					{
+						if(world_BW1_exclusives[world][i] == world_species[world][speciesbox.SelectedIndex])
+						{
+							exclusive = true;
+						}
+					}
+					if (exclusive == true)
+					{
+						exclusive_label.Text = "BW Only";
+						ok_but.Enabled = false;
+					}
+					                               
+				}else
+				{
+					for(i=0;i<world_BW2_exclusives[world].Length;i++)
+					{
+						if(world_BW2_exclusives[world][i] == world_species[world][speciesbox.SelectedIndex])
+						{
+							exclusive = true;
+						}
+					}
+					if (exclusive == true)
+					{
+						exclusive_label.Text = "B2W2 Only";
+						ok_but.Enabled = false;
+					}
+				}
+				
+			}else if (world == 8)
+			{
+				if (MainForm.save.B2W2 == true)
+				{
+					if (PGL_exclusives[speciesbox.SelectedIndex] == 0)
+					{
+						exclusive_label.Text = "BW Only";
+						ok_but.Enabled = false;
 						exclusive = true;
 					}
 				}
-				if (exclusive == true)
+				else
 				{
-					exclusive_label.Text = "BW Only";
-					ok_but.Enabled = false;
-				}
-				                               
-			}else
-			{
-				for(i=0;i<world_BW2_exclusives[world].Length;i++)
-				{
-					if(world_BW2_exclusives[world][i] == world_species[world][speciesbox.SelectedIndex])
+					if (PGL_exclusives[speciesbox.SelectedIndex] == 1)
 					{
+						exclusive_label.Text = "B2W2 Only";
+						ok_but.Enabled = false;
 						exclusive = true;
 					}
 				}
-				if (exclusive == true)
-				{
-					exclusive_label.Text = "B2W2 Only";
-					ok_but.Enabled = false;
-				}
+				
 			}
-				if (exclusive == false)
-				{
-					exclusive_label.Text = "";
-					ok_but.Enabled = true;
-				}
 			
+			if (exclusive == false)
+			{
+				exclusive_label.Text = "";
+				ok_but.Enabled = true;
+			}
+			
+			pgl_region_box.SelectedIndex = speciesbox.SelectedIndex;
 		}
 
 		
@@ -393,7 +503,8 @@ namespace BW_tool
 			new int[]{56, 66, 81, 109, 111, 218, 231, 246, 324, 328, 331, 412, 449, 451, 631, 632, 556, 558, 240, 216, 296, 322, 327, 359, 374, 453, 236, 371, 553, 447},
 			new int[]{27, 74, 95, 100, 104, 173, 213, 293, 299, 304, 337, 338, 343, 363, 408, 459, 529, 621, 50, 206, 525, 583, 600, 215, 361, 410, 220, 443, 610},
 			new int[]{46, 204, 265, 273, 287, 290, 311, 312, 316, 352, 401, 420, 455, 531, 538, 539, 559, 48, 88, 415, 15, 23, 175, 190, 285, 533, 315, 335, 336, 113, 127, 133, 143, 214},
-			new int[]{061, 133, 235, 412} //Pokemon Cafe forest
+			new int[]{061, 133, 235, 412}, //Pokemon Cafe forest
+			new int[]{134, 135, 136, 196, 197, 470, 471, 1, 4, 7, 453, 387, 390, 393, 493, 252, 255, 258, 468, 473, 137, 384, 354, 453, 334, 242, 448, 575, 25, 189, 511, 513, 515, 387, 390, 393, 575, 212, 445, 149, 248, 149, 376, 376}
 		};
 		
 		int[][][] world_attacks = new int[][][]
@@ -407,6 +518,8 @@ namespace BW_tool
 			new int[][]{ new int[]{78, 440, 235}, new int[]{120, 390, 356}, new int[]{40, 450, 173}, new int[]{74, 331, 492}, new int[]{281, 400, 389}, new int[]{141, 203, 400}, new int[]{86, 435, 324}, new int[]{86, 435, 324}, new int[]{139, 151, 202}, new int[]{185, 285, 513}, new int[]{522, 283, 253}, new int[]{73, 505, 331}, new int[]{44, 476, 380}, new int[]{270, 227, 281}, new int[]{20, 8, 276}, new int[]{249, 9, 530}, new int[]{67, 252, 409}, new int[]{50, 226, 285}, new int[]{139, 114, 425}, new int[]{16, 366, 314}, new int[]{31, 314, 210}, new int[]{40, 251, 399}, new int[]{118, 381, 253}, new int[]{10, 252, 7}, new int[]{78, 331, 264}, new int[]{67, 183, 409}, new int[]{74, 79, 129}, new int[]{98, 458, 67}, new int[]{44, 34, 401}, new int[]{45, 68, 270}, new int[]{11, 370, 382}, new int[]{28, 204, 129}, new int[]{133, 7, 278}, new int[]{30, 175, 264} },			
 			new int[][]{ new int[]{240, 114, 352}, new int[]{ 270, 204, 129}, new int[]{ 166, 445, 214}, new int[]{ 182, 450, 173} } //Pokemon Cafe forest
 		};
+		
+		int[] PGL_attacks = new int[] {0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 217, 0, 0, 0, 538, 398, 206, 0, 418, 243, 29, 206, 437, 257, 56, 254, 252, 297, 286, 211, 0, 9, 69, 245, 38};
 		
 		/* Method deprecated, it seems there's no gender restriction outside pokemon being male/female only or genderless
 		int[][] world_gender = new int[][]
@@ -446,6 +559,8 @@ namespace BW_tool
 			new int[]{0} //Pokemon Cafe forest
 		};
 		
+		int[] PGL_exclusives = new int[] {0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 0, 1, 1, 1, 1, 1, 1, 1, 2, 2, 2, 2, 2, 2};
+		
 		public static int random_form_anim()
 		{
 			Random rnd = new Random(Guid.NewGuid().GetHashCode());
@@ -462,16 +577,24 @@ namespace BW_tool
 	    private int atk = 0;
 	    private void update_atk()
 	    {
-	    	if (atkA.Checked == true)
-	    		atk = 0;
-	    	else if (atkB.Checked == true)
-	    		atk = 1;
-	    	else if (atkC.Checked == true)
-	    		atk = 2;
 	    	
-	    	moveboxA.SelectedIndex = world_attacks[world][speciesbox.SelectedIndex][0];
-	    	movebox.SelectedIndex = world_attacks[world][speciesbox.SelectedIndex][1];
-	    	moveboxC.SelectedIndex = world_attacks[world][speciesbox.SelectedIndex][2];
+	    	if (world < 8)
+	    	{
+		    	if (atkA.Checked == true)
+		    		atk = 0;
+		    	else if (atkB.Checked == true)
+		    		atk = 1;
+		    	else if (atkC.Checked == true)
+		    		atk = 2;
+		    	
+		    	moveboxA.SelectedIndex = world_attacks[world][speciesbox.SelectedIndex][0];
+		    	movebox.SelectedIndex = world_attacks[world][speciesbox.SelectedIndex][1];
+		    	moveboxC.SelectedIndex = world_attacks[world][speciesbox.SelectedIndex][2];
+	    	}else if (world == 8)
+	    	{
+	    		movebox.SelectedIndex = PGL_attacks[speciesbox.SelectedIndex];
+	    	}
+
 	    }
 		void AtkACheckedChanged(object sender, EventArgs e)
 		{
@@ -489,7 +612,7 @@ namespace BW_tool
 		private int gender = 0;
 	    private void update_gnd()
 	    {
-			//Handle genders
+			//Handle genders		
 			bool special_gender = false;
 			int i=0;
 			for(i=0;i<Entralink.BW_femaleonly.Length;i++)
@@ -533,13 +656,38 @@ namespace BW_tool
 			
 			if (special_gender == false)
 			{
-				//Male/female
-					if (gender == 2)
-						gnd_male.Checked = true;
+					//Male/female
+					if (gender == 2 || (world == 8) )
+				    {
+						if (world == 8 && speciesbox.SelectedIndex == 20) //Banette is the only female pokemon distributed via PGL
+						{
+							gnd_female.Checked = true;
+							gnd_male.Enabled = false;
+							gnd_female.Enabled = true;
+						}else{
+							if (world == 8)
+								gnd_female.Enabled = false;
+							gnd_male.Checked = true;
+							gnd_male.Enabled = true;
+						}
+				    }
 					if (gnd_male.Checked == false && gnd_female.Checked == false && gnd_none.Checked == false)
-						gnd_male.Checked = true;
-					gnd_male.Enabled = true;
-					gnd_female.Enabled = true;
+					{
+						if (world == 8 && speciesbox.SelectedIndex == 20) //Banette is the only female pokemon distributed via PGL
+						{
+							gnd_female.Checked = true;
+							gnd_male.Enabled = false;
+						}else{
+							if (world == 8)
+								gnd_female.Enabled = false;
+							gnd_male.Checked = true;
+							gnd_male.Enabled = true;
+						}
+					}
+					if (world != 8)
+						gnd_male.Enabled = true;
+					if (world != 8)
+						gnd_female.Enabled = true;
 					gnd_none.Enabled = false;
 			}
 	    	

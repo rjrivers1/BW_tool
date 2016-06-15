@@ -87,6 +87,7 @@ namespace BW_tool
 		private System.Windows.Forms.Button spark_but;
 		private System.Windows.Forms.Button wind_but;
 		private System.Windows.Forms.Button pleasant_but;
+		private System.Windows.Forms.Button pgl_but;
 		
 		/// <summary>
 		/// Disposes resources used by the form.
@@ -180,6 +181,7 @@ namespace BW_tool
 			this.spark_but = new System.Windows.Forms.Button();
 			this.wind_but = new System.Windows.Forms.Button();
 			this.pleasant_but = new System.Windows.Forms.Button();
+			this.pgl_but = new System.Windows.Forms.Button();
 			((System.ComponentModel.ISupportInitialize)(this.slot)).BeginInit();
 			this.groupBox1.SuspendLayout();
 			((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
@@ -2031,14 +2033,14 @@ namespace BW_tool
 			// 
 			this.animbox1.FormattingEnabled = true;
 			this.animbox1.Items.AddRange(new object[] {
-			"Randomly turning around",
-			"Randomly walking",
-			"Randomly walking",
-			"Walking up/down",
-			"Walking left/right",
-			"Walking left/right and randomly looking up/down",
-			"Turning around clockwise",
-			"Turning around counterclockwise",
+			"00- Randomly turning around",
+			"02- Randomly walking",
+			"04- Randomly walking",
+			"06- Walking up/down",
+			"08- Walking left/right",
+			"10- Walking left/right and randomly looking up/down",
+			"12- Turning around clockwise",
+			"14- Turning around counterclockwise",
 			"--- Randomize ---"});
 			this.animbox1.Location = new System.Drawing.Point(762, 60);
 			this.animbox1.Name = "animbox1";
@@ -2136,7 +2138,7 @@ namespace BW_tool
 			this.groupBox2.Controls.Add(this.pleasant_but);
 			this.groupBox2.Location = new System.Drawing.Point(864, 187);
 			this.groupBox2.Name = "groupBox2";
-			this.groupBox2.Size = new System.Drawing.Size(141, 256);
+			this.groupBox2.Size = new System.Drawing.Size(141, 250);
 			this.groupBox2.TabIndex = 207;
 			this.groupBox2.TabStop = false;
 			this.groupBox2.Text = "Dream World";
@@ -2221,11 +2223,22 @@ namespace BW_tool
 			this.pleasant_but.UseVisualStyleBackColor = true;
 			this.pleasant_but.Click += new System.EventHandler(this.Pleasant_butClick);
 			// 
+			// pgl_but
+			// 
+			this.pgl_but.Location = new System.Drawing.Point(870, 438);
+			this.pgl_but.Name = "pgl_but";
+			this.pgl_but.Size = new System.Drawing.Size(129, 23);
+			this.pgl_but.TabIndex = 208;
+			this.pgl_but.Text = "PGL Promotions";
+			this.pgl_but.UseVisualStyleBackColor = true;
+			this.pgl_but.Click += new System.EventHandler(this.Pgl_butClick);
+			// 
 			// Entralink
 			// 
 			this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
 			this.ClientSize = new System.Drawing.Size(1014, 552);
+			this.Controls.Add(this.pgl_but);
 			this.Controls.Add(this.groupBox2);
 			this.Controls.Add(this.formbox1);
 			this.Controls.Add(this.sprite_warning);

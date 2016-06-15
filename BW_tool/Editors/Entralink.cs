@@ -250,9 +250,52 @@ namespace BW_tool
 					{
 						dataGridView1.Rows[i].Cells[0].Value = TEXT.pkmlist[forest.Species];
 						dataGridView1.Rows[i].Cells[1].Value = TEXT.movelist[forest.Move];
-						dataGridView1.Rows[i].Cells[2].Value = forest.Gender;
+						switch(forest.Gender)
+						{
+							case 0:
+								dataGridView1.Rows[i].Cells[2].Value = "Male";
+								break;
+							case 1:
+								dataGridView1.Rows[i].Cells[2].Value = "Female";
+								break;
+							case 2:
+								dataGridView1.Rows[i].Cells[2].Value = "Genderless";
+								break;
+						}
 						dataGridView1.Rows[i].Cells[3].Value = forest.Form;
-						dataGridView1.Rows[i].Cells[4].Value = forest.Animation;
+						//dataGridView1.Rows[i].Cells[4].Value = forest.Animation;
+						switch(forest.Animation)
+						{
+							case 0:
+								dataGridView1.Rows[i].Cells[4].Value = "0"+forest.Animation.ToString()+"- "+"Randomly turning around";
+
+								break;
+							case 2:
+								dataGridView1.Rows[i].Cells[4].Value = "0"+forest.Animation.ToString()+"- "+"Randomly walking";
+								break;
+							case 4:
+								dataGridView1.Rows[i].Cells[4].Value = "0"+forest.Animation.ToString()+"- "+"Randomly walking";
+								break;
+							case 6:
+								dataGridView1.Rows[i].Cells[4].Value = "0"+forest.Animation.ToString()+"- "+"Walking up/down";
+								break;
+							case 8:
+								dataGridView1.Rows[i].Cells[4].Value = "0"+forest.Animation.ToString()+"- "+"Walking left/right";
+								break;
+							case 10:
+								dataGridView1.Rows[i].Cells[4].Value = forest.Animation.ToString()+"- "+"Walking left/right and randomly looking up/down";
+								break;
+							case 12:
+								dataGridView1.Rows[i].Cells[4].Value = forest.Animation.ToString()+"- "+"Turning around clockwise";
+								break;
+							case 14:
+								dataGridView1.Rows[i].Cells[4].Value = forest.Animation.ToString()+"- "+"Turning around counterclockwise";
+								break;
+							default:
+								dataGridView1.Rows[i].Cells[4].Value = forest.Animation.ToString()+"- "+"Invalid (odd)";
+								break;
+						}
+
 					}
 
 				}
@@ -265,10 +308,13 @@ namespace BW_tool
 		}
 		int animation()
 		{
+			//MessageBox.Show(animbox1.SelectedIndex.ToString());
 			if (animbox1.SelectedIndex > 7)
 				return Entralink_DreamWorld.random_form_anim();
-			else
+			else{
+				//MessageBox.Show((animbox1.SelectedIndex*2).ToString());
 				return (int)(animbox1.SelectedIndex*2);
+			}
 		}
 		void Add_pkmClick(object sender, EventArgs e)
 		{
@@ -421,6 +467,7 @@ namespace BW_tool
 				{
 					//Only genderless
 					special_gender = true;
+					genderbox1.Items.Clear();
 					genderbox1.Items.AddRange(new object[] {
 						"Male",
 						"Female",
@@ -434,6 +481,7 @@ namespace BW_tool
 			{
 				//Re-enable list
 					genderbox1.Enabled = true;
+					genderbox1.Items.Clear();
 					genderbox1.Items.AddRange(new object[] {
 						"Male",
 						"Female"});
@@ -649,6 +697,12 @@ namespace BW_tool
 			dreamworld.ShowDialog();
 			add_dw_pkm();
 		}
+		void Pgl_butClick(object sender, EventArgs e)
+		{
+			Form dreamworld = new Entralink_DreamWorld(8, "PGL Promotions");
+			dreamworld.ShowDialog();
+			add_dw_pkm();
+		}
 
 
 	public class FOREST
@@ -806,7 +860,7 @@ Bits
 				get { return (int)((BitConverter.ToInt32(Data, get_pkmoffset()) & 0xF800000) >> 23); }
 	            set { form = value; } }
 	        public int Animation {
-				get { return (int)((BitConverter.ToInt32(Data, get_pkmoffset()) & 0xF0000000) >> 27); }
+				get { return (int)((BitConverter.ToInt32(Data, get_pkmoffset()) & 0xF0000000) >> 28); }
 	            set { animation = value; } }
 
 	        //Just return if there's a valid pkm in current slot
@@ -824,7 +878,7 @@ Bits
 	        //Build a u32 pkm for entralink forest
 	        public UInt32 create_pkm(int sp, int mv, int gdr, int frm, int anim)
 	        {
-	        	return (UInt32) ( (sp&0x7FF) | ((mv&0x3FF) << 11) | ((gdr&0x3) << 21) | ((frm&0x1F) << 23) | ((anim&0xF) << 27) );
+	        	return unchecked((UInt32) ( (sp&0x7FF) | ((mv&0x3FF) << 11) | ((gdr&0x3) << 21) | ((frm&0x1F) << 23) | ((anim&0xF) << 28) ));
 	        }
 	        //Sets pkm data to current slot
 	        public void edit_pkm(UInt32 pkm)
