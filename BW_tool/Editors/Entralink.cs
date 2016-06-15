@@ -635,6 +635,11 @@ namespace BW_tool
 			//Add dream pokemon!
 			if (dream_pkm != 0)
 			{
+				
+				//Arceus warning
+				if ((dream_pkm & 0x7FF) == 493 && forest.Area != 1)
+					MessageBox.Show("Warning! PGL Arceus was a special event and is supposed to reside at area 9 center!\n\nI don't know if any other PGL Pokémon was distributed at special areas, I only know that Mamoswine and Porygon were download alongside other Dream World Pokémon, so Arceus might be the only special case. Any information on the topic is welcome.");
+				
 				//If slot is empty, add pokemon instead
 				if (forest.is_pkm_empty() == true)
 				{

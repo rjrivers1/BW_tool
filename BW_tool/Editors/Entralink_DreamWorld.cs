@@ -412,7 +412,12 @@ namespace BW_tool
 			}
 			else if (world == 8)
 			{
-				Entralink.dream_pkm = Entralink.forest.create_pkm(world_species[world][speciesbox.SelectedIndex], PGL_attacks[speciesbox.SelectedIndex], gender, 0, random_form_anim());
+				int anim = 0;
+				//Random animation disabled and set to 0, as I've seen several PGL pokemon with animation 0 (Arceus, porygon, banette, croagunk, togekiss and lucario) and also a gothorita in a white 2 savegame
+				//anim = random_form_anim();
+				if (world_species[world][speciesbox.SelectedIndex] == 473)
+					anim = 4; //But Mamoswine has, for some reason, animation 04, being the only known exception (would need more legit saves with the events) 
+				Entralink.dream_pkm = Entralink.forest.create_pkm(world_species[world][speciesbox.SelectedIndex], PGL_attacks[speciesbox.SelectedIndex], gender, 0, anim);
 			}
 			this.Close();
 		}
