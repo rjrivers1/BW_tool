@@ -24,15 +24,22 @@ namespace BW_tool
 			// The InitializeComponent() call is required for Windows Forms designer support.
 			//
 			InitializeComponent();
+			red_panel.Visible = false;
 			medals =  new MEDAL(MainForm.save.getBlock(68));
 			indexbox.SelectedIndex = 0;
+			
+			update_date();
+			/*
 			day.Value = medals.Day;
 			month.Value = medals.Month;
 			year.Value = medals.Year;
+			*/
 			flag1box.Checked = medals.Flag1;
 			flag2box.Checked = medals.Flag2;
 			flag3box.Checked = medals.Flag3;
 			flag4box.Checked = medals.Flag4;
+			
+			//MessageBox.Show(medal_date.Value.Year.ToString());
 			
 			//
 			// TODO: Add constructor code after the InitializeComponent() call.
@@ -81,20 +88,27 @@ namespace BW_tool
 			{
 				medals.Index = (int)indexbox.SelectedIndex - 5;
 			}
+			
+			update_date();
+			
+			/*
 			day.Value = medals.Day;
 			month.Value = medals.Month;
 			year.Value = medals.Year;
+			*/
 			flag1box.Checked = medals.Flag1;
 			flag2box.Checked = medals.Flag2;
 			flag3box.Checked = medals.Flag3;
 			flag4box.Checked = medals.Flag4;
 		}
+		
 		void DayValueChanged(object sender, EventArgs e)
 		{
-			medals.Day = (int)day.Value;
+			//medals.Day = (int)day.Value;
 		}
 		void MonthValueChanged(object sender, EventArgs e)
 		{
+		/*
 			medals.Month = (int)month.Value;
 			switch((int)month.Value)
 			{
@@ -121,9 +135,11 @@ namespace BW_tool
 					break;
 				
 			}
+		*/
 		}
 		void YearValueChanged(object sender, EventArgs e)
 		{
+		/*
 			medals.Year = (int)year.Value;
 			if(month.Value == 2)
 			{
@@ -132,6 +148,7 @@ namespace BW_tool
 					else
 						day.Maximum = 28;
 			}
+			*/
 		}
 		void Exit_butClick(object sender, EventArgs e)
 		{
@@ -157,6 +174,45 @@ namespace BW_tool
 		void Flag4boxCheckedChanged(object sender, EventArgs e)
 		{
 			medals.Flag4 = flag4box.Checked;
+		}
+		
+		void update_date()
+		{
+			if (medals.Year != 0 && medals.Month != 0 && medals.Day != 0)
+			{
+				red_panel.Visible = false;
+				medal_date.Value = new DateTime(2000+medals.Year, medals.Month, medals.Day);
+				obtained.Checked = true;
+			}
+			else
+			{
+				red_panel.Visible = true;
+				obtained.Checked = false;
+			}
+		}
+		void Medal_dateValueChanged(object sender, EventArgs e)
+		{
+			medals.Year = medal_date.Value.Year-2000;
+			medals.Month = medal_date.Value.Month;
+			medals.Day = medal_date.Value.Day;
+			
+			update_date();
+
+		}
+		void Delete_butClick(object sender, EventArgs e)
+		{
+			medals.Year = 0;
+			medals.Month = 0;
+			medals.Day = 0;
+			medals.Flag1 = false;
+			medals.Flag2 = false;
+			medals.Flag3 = false;
+			medals.Flag4 = false;
+			update_date();
+			flag1box.Checked = medals.Flag1;
+			flag2box.Checked = medals.Flag2;
+			flag3box.Checked = medals.Flag3;
+			flag4box.Checked = medals.Flag4;
 		}
 	public class MEDAL
 	    {

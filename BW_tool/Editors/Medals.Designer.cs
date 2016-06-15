@@ -27,6 +27,10 @@ namespace BW_tool
 		private System.Windows.Forms.CheckBox flag2box;
 		private System.Windows.Forms.CheckBox flag3box;
 		private System.Windows.Forms.CheckBox flag4box;
+		private System.Windows.Forms.DateTimePicker medal_date;
+		private System.Windows.Forms.CheckBox obtained;
+		private System.Windows.Forms.Panel red_panel;
+		private System.Windows.Forms.Button delete_but;
 		
 		/// <summary>
 		/// Disposes resources used by the form.
@@ -60,6 +64,10 @@ namespace BW_tool
 			this.flag2box = new System.Windows.Forms.CheckBox();
 			this.flag3box = new System.Windows.Forms.CheckBox();
 			this.flag4box = new System.Windows.Forms.CheckBox();
+			this.medal_date = new System.Windows.Forms.DateTimePicker();
+			this.obtained = new System.Windows.Forms.CheckBox();
+			this.red_panel = new System.Windows.Forms.Panel();
+			this.delete_but = new System.Windows.Forms.Button();
 			((System.ComponentModel.ISupportInitialize)(this.day)).BeginInit();
 			((System.ComponentModel.ISupportInitialize)(this.month)).BeginInit();
 			((System.ComponentModel.ISupportInitialize)(this.year)).BeginInit();
@@ -68,7 +76,7 @@ namespace BW_tool
 			// day
 			// 
 			this.day.Location = new System.Drawing.Point(49, 39);
-			this.day.Maximum = new decimal(new int[]{
+			this.day.Maximum = new decimal(new int[] {
 			31,
 			0,
 			0,
@@ -81,7 +89,7 @@ namespace BW_tool
 			// month
 			// 
 			this.month.Location = new System.Drawing.Point(140, 39);
-			this.month.Maximum = new decimal(new int[]{
+			this.month.Maximum = new decimal(new int[] {
 			12,
 			0,
 			0,
@@ -94,7 +102,7 @@ namespace BW_tool
 			// year
 			// 
 			this.year.Location = new System.Drawing.Point(229, 39);
-			this.year.Maximum = new decimal(new int[]{
+			this.year.Maximum = new decimal(new int[] {
 			127,
 			0,
 			0,
@@ -459,11 +467,51 @@ namespace BW_tool
 			this.flag4box.UseVisualStyleBackColor = true;
 			this.flag4box.CheckedChanged += new System.EventHandler(this.Flag4boxCheckedChanged);
 			// 
+			// medal_date
+			// 
+			this.medal_date.Location = new System.Drawing.Point(12, 39);
+			this.medal_date.Name = "medal_date";
+			this.medal_date.RightToLeft = System.Windows.Forms.RightToLeft.No;
+			this.medal_date.Size = new System.Drawing.Size(263, 20);
+			this.medal_date.TabIndex = 14;
+			this.medal_date.ValueChanged += new System.EventHandler(this.Medal_dateValueChanged);
+			// 
+			// obtained
+			// 
+			this.obtained.AutoCheck = false;
+			this.obtained.Location = new System.Drawing.Point(12, 148);
+			this.obtained.Name = "obtained";
+			this.obtained.Size = new System.Drawing.Size(110, 23);
+			this.obtained.TabIndex = 15;
+			this.obtained.Text = "Obtained";
+			this.obtained.UseVisualStyleBackColor = true;
+			// 
+			// red_panel
+			// 
+			this.red_panel.Location = new System.Drawing.Point(12, 40);
+			this.red_panel.Name = "red_panel";
+			this.red_panel.Size = new System.Drawing.Size(232, 18);
+			this.red_panel.TabIndex = 16;
+			// 
+			// delete_but
+			// 
+			this.delete_but.Location = new System.Drawing.Point(12, 177);
+			this.delete_but.Name = "delete_but";
+			this.delete_but.Size = new System.Drawing.Size(83, 20);
+			this.delete_but.TabIndex = 17;
+			this.delete_but.Text = "Delete Medal";
+			this.delete_but.UseVisualStyleBackColor = true;
+			this.delete_but.Click += new System.EventHandler(this.Delete_butClick);
+			// 
 			// Medals
 			// 
 			this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
 			this.ClientSize = new System.Drawing.Size(289, 258);
+			this.Controls.Add(this.delete_but);
+			this.Controls.Add(this.red_panel);
+			this.Controls.Add(this.obtained);
+			this.Controls.Add(this.medal_date);
 			this.Controls.Add(this.flag4box);
 			this.Controls.Add(this.flag3box);
 			this.Controls.Add(this.flag2box);

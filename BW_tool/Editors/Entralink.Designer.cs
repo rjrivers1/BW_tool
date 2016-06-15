@@ -1206,7 +1206,7 @@ namespace BW_tool
 			"647 - Keldeo",
 			"648 - Meloetta",
 			"649 - Genesect"});
-			this.spbox1.Location = new System.Drawing.Point(266, 59);
+			this.spbox1.Location = new System.Drawing.Point(266, 43);
 			this.spbox1.Name = "spbox1";
 			this.spbox1.Size = new System.Drawing.Size(141, 21);
 			this.spbox1.TabIndex = 190;
@@ -1775,7 +1775,7 @@ namespace BW_tool
 			"V-create",
 			"Fusion Flare",
 			"Fusion Bolt"});
-			this.move1box.Location = new System.Drawing.Point(413, 59);
+			this.move1box.Location = new System.Drawing.Point(413, 43);
 			this.move1box.Name = "move1box";
 			this.move1box.Size = new System.Drawing.Size(139, 21);
 			this.move1box.TabIndex = 53;
@@ -1787,7 +1787,7 @@ namespace BW_tool
 			"Male",
 			"Female",
 			"Genderless"});
-			this.genderbox1.Location = new System.Drawing.Point(558, 59);
+			this.genderbox1.Location = new System.Drawing.Point(558, 43);
 			this.genderbox1.Name = "genderbox1";
 			this.genderbox1.Size = new System.Drawing.Size(94, 21);
 			this.genderbox1.TabIndex = 54;
@@ -1819,7 +1819,7 @@ namespace BW_tool
 			// 
 			// label3
 			// 
-			this.label3.Location = new System.Drawing.Point(266, 44);
+			this.label3.Location = new System.Drawing.Point(266, 28);
 			this.label3.Name = "label3";
 			this.label3.Size = new System.Drawing.Size(121, 12);
 			this.label3.TabIndex = 67;
@@ -1828,7 +1828,7 @@ namespace BW_tool
 			// 
 			// label4
 			// 
-			this.label4.Location = new System.Drawing.Point(413, 44);
+			this.label4.Location = new System.Drawing.Point(413, 28);
 			this.label4.Name = "label4";
 			this.label4.Size = new System.Drawing.Size(121, 12);
 			this.label4.TabIndex = 68;
@@ -1837,7 +1837,7 @@ namespace BW_tool
 			// 
 			// label5
 			// 
-			this.label5.Location = new System.Drawing.Point(569, 44);
+			this.label5.Location = new System.Drawing.Point(569, 28);
 			this.label5.Name = "label5";
 			this.label5.Size = new System.Drawing.Size(66, 12);
 			this.label5.TabIndex = 69;
@@ -1846,7 +1846,7 @@ namespace BW_tool
 			// 
 			// label6
 			// 
-			this.label6.Location = new System.Drawing.Point(682, 44);
+			this.label6.Location = new System.Drawing.Point(682, 28);
 			this.label6.Name = "label6";
 			this.label6.Size = new System.Drawing.Size(41, 12);
 			this.label6.TabIndex = 70;
@@ -1855,7 +1855,7 @@ namespace BW_tool
 			// 
 			// label7
 			// 
-			this.label7.Location = new System.Drawing.Point(865, 43);
+			this.label7.Location = new System.Drawing.Point(865, 27);
 			this.label7.Name = "label7";
 			this.label7.Size = new System.Drawing.Size(55, 13);
 			this.label7.TabIndex = 71;
@@ -1864,7 +1864,7 @@ namespace BW_tool
 			// 
 			// slot
 			// 
-			this.slot.Location = new System.Drawing.Point(216, 59);
+			this.slot.Location = new System.Drawing.Point(216, 43);
 			this.slot.Maximum = new decimal(new int[] {
 			19,
 			0,
@@ -1943,7 +1943,7 @@ namespace BW_tool
 			this.Gender,
 			this.Form,
 			this.Anim});
-			this.dataGridView1.Location = new System.Drawing.Point(216, 85);
+			this.dataGridView1.Location = new System.Drawing.Point(216, 69);
 			this.dataGridView1.MultiSelect = false;
 			this.dataGridView1.Name = "dataGridView1";
 			this.dataGridView1.ReadOnly = true;
@@ -1986,7 +1986,7 @@ namespace BW_tool
 			// 
 			// del_pkm
 			// 
-			this.del_pkm.Location = new System.Drawing.Point(865, 145);
+			this.del_pkm.Location = new System.Drawing.Point(865, 129);
 			this.del_pkm.Name = "del_pkm";
 			this.del_pkm.Size = new System.Drawing.Size(60, 23);
 			this.del_pkm.TabIndex = 193;
@@ -1996,7 +1996,7 @@ namespace BW_tool
 			// 
 			// add_pkm
 			// 
-			this.add_pkm.Location = new System.Drawing.Point(865, 116);
+			this.add_pkm.Location = new System.Drawing.Point(865, 100);
 			this.add_pkm.Name = "add_pkm";
 			this.add_pkm.Size = new System.Drawing.Size(60, 23);
 			this.add_pkm.TabIndex = 194;
@@ -2006,7 +2006,7 @@ namespace BW_tool
 			// 
 			// edit_pkm
 			// 
-			this.edit_pkm.Location = new System.Drawing.Point(865, 87);
+			this.edit_pkm.Location = new System.Drawing.Point(865, 71);
 			this.edit_pkm.Name = "edit_pkm";
 			this.edit_pkm.Size = new System.Drawing.Size(60, 23);
 			this.edit_pkm.TabIndex = 195;
@@ -2016,14 +2016,14 @@ namespace BW_tool
 			// 
 			// hiderows
 			// 
-			this.hiderows.Location = new System.Drawing.Point(216, 327);
+			this.hiderows.Location = new System.Drawing.Point(216, 311);
 			this.hiderows.Name = "hiderows";
 			this.hiderows.Size = new System.Drawing.Size(643, 221);
 			this.hiderows.TabIndex = 196;
 			// 
 			// label8
 			// 
-			this.label8.Location = new System.Drawing.Point(215, 43);
+			this.label8.Location = new System.Drawing.Point(215, 27);
 			this.label8.Name = "label8";
 			this.label8.Size = new System.Drawing.Size(44, 12);
 			this.label8.TabIndex = 197;
@@ -2042,7 +2042,7 @@ namespace BW_tool
 			"12- Turning around clockwise",
 			"14- Turning around counterclockwise",
 			"--- Randomize ---"});
-			this.animbox1.Location = new System.Drawing.Point(762, 60);
+			this.animbox1.Location = new System.Drawing.Point(762, 44);
 			this.animbox1.Name = "animbox1";
 			this.animbox1.Size = new System.Drawing.Size(243, 21);
 			this.animbox1.TabIndex = 198;
@@ -2110,7 +2110,7 @@ namespace BW_tool
 			// sprite_warning
 			// 
 			this.sprite_warning.ForeColor = System.Drawing.Color.Red;
-			this.sprite_warning.Location = new System.Drawing.Point(266, 21);
+			this.sprite_warning.Location = new System.Drawing.Point(266, 5);
 			this.sprite_warning.Name = "sprite_warning";
 			this.sprite_warning.Size = new System.Drawing.Size(244, 23);
 			this.sprite_warning.TabIndex = 205;
@@ -2121,7 +2121,7 @@ namespace BW_tool
 			this.formbox1.FormattingEnabled = true;
 			this.formbox1.Items.AddRange(new object[] {
 			""});
-			this.formbox1.Location = new System.Drawing.Point(658, 60);
+			this.formbox1.Location = new System.Drawing.Point(658, 44);
 			this.formbox1.Name = "formbox1";
 			this.formbox1.Size = new System.Drawing.Size(98, 21);
 			this.formbox1.TabIndex = 206;
@@ -2136,7 +2136,7 @@ namespace BW_tool
 			this.groupBox2.Controls.Add(this.spark_but);
 			this.groupBox2.Controls.Add(this.wind_but);
 			this.groupBox2.Controls.Add(this.pleasant_but);
-			this.groupBox2.Location = new System.Drawing.Point(864, 187);
+			this.groupBox2.Location = new System.Drawing.Point(864, 171);
 			this.groupBox2.Name = "groupBox2";
 			this.groupBox2.Size = new System.Drawing.Size(141, 250);
 			this.groupBox2.TabIndex = 207;
@@ -2225,7 +2225,7 @@ namespace BW_tool
 			// 
 			// pgl_but
 			// 
-			this.pgl_but.Location = new System.Drawing.Point(870, 438);
+			this.pgl_but.Location = new System.Drawing.Point(870, 427);
 			this.pgl_but.Name = "pgl_but";
 			this.pgl_but.Size = new System.Drawing.Size(129, 23);
 			this.pgl_but.TabIndex = 208;
