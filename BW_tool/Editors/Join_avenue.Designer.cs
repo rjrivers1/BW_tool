@@ -117,6 +117,32 @@ namespace BW_tool
 		private System.Windows.Forms.ComboBox shop_country;
 		private System.Windows.Forms.TextBox shop_name;
 		private System.Windows.Forms.GroupBox groupBox1;
+		private System.Windows.Forms.TextBox shop_debug;
+		private System.Windows.Forms.Button visitor_import;
+		private System.Windows.Forms.Button visitor_export;
+		private System.Windows.Forms.CheckBox visitor_ishuman;
+		private System.Windows.Forms.Label label39;
+		private System.Windows.Forms.NumericUpDown visitor_recruit;
+		private System.Windows.Forms.Label label40;
+		private System.Windows.Forms.ComboBox visitor_gender;
+		private System.Windows.Forms.Label label41;
+		private System.Windows.Forms.DateTimePicker visitor_date;
+		private System.Windows.Forms.ComboBox visitor_subregion;
+		private System.Windows.Forms.Label label42;
+		private System.Windows.Forms.NumericUpDown visitor_sprite;
+		private System.Windows.Forms.Label label43;
+		private System.Windows.Forms.TextBox visitor_shout;
+		private System.Windows.Forms.Label label44;
+		private System.Windows.Forms.Button visitor_apply;
+		private System.Windows.Forms.Label label45;
+		private System.Windows.Forms.TextBox visitor_farewell;
+		private System.Windows.Forms.TextBox visitor_greeting;
+		private System.Windows.Forms.Label label46;
+		private System.Windows.Forms.Label label47;
+		private System.Windows.Forms.Label label48;
+		private System.Windows.Forms.Label label49;
+		private System.Windows.Forms.ComboBox visitor_country;
+		private System.Windows.Forms.TextBox visitor_name;
 		
 		/// <summary>
 		/// Disposes resources used by the form.
@@ -158,6 +184,7 @@ namespace BW_tool
 			this.visitor = new System.Windows.Forms.NumericUpDown();
 			this.tabControl1 = new System.Windows.Forms.TabControl();
 			this.tabPage1 = new System.Windows.Forms.TabPage();
+			this.shop_debug = new System.Windows.Forms.TextBox();
 			this.shop_exp = new System.Windows.Forms.NumericUpDown();
 			this.label34 = new System.Windows.Forms.Label();
 			this.shop_inventory = new System.Windows.Forms.CheckBox();
@@ -191,6 +218,31 @@ namespace BW_tool
 			this.shop_country = new System.Windows.Forms.ComboBox();
 			this.shop_name = new System.Windows.Forms.TextBox();
 			this.tabPage2 = new System.Windows.Forms.TabPage();
+			this.visitor_import = new System.Windows.Forms.Button();
+			this.visitor_export = new System.Windows.Forms.Button();
+			this.visitor_ishuman = new System.Windows.Forms.CheckBox();
+			this.label39 = new System.Windows.Forms.Label();
+			this.visitor_recruit = new System.Windows.Forms.NumericUpDown();
+			this.label40 = new System.Windows.Forms.Label();
+			this.visitor_gender = new System.Windows.Forms.ComboBox();
+			this.label41 = new System.Windows.Forms.Label();
+			this.visitor_date = new System.Windows.Forms.DateTimePicker();
+			this.visitor_subregion = new System.Windows.Forms.ComboBox();
+			this.label42 = new System.Windows.Forms.Label();
+			this.visitor_sprite = new System.Windows.Forms.NumericUpDown();
+			this.label43 = new System.Windows.Forms.Label();
+			this.visitor_shout = new System.Windows.Forms.TextBox();
+			this.label44 = new System.Windows.Forms.Label();
+			this.visitor_apply = new System.Windows.Forms.Button();
+			this.label45 = new System.Windows.Forms.Label();
+			this.visitor_farewell = new System.Windows.Forms.TextBox();
+			this.visitor_greeting = new System.Windows.Forms.TextBox();
+			this.label46 = new System.Windows.Forms.Label();
+			this.label47 = new System.Windows.Forms.Label();
+			this.label48 = new System.Windows.Forms.Label();
+			this.label49 = new System.Windows.Forms.Label();
+			this.visitor_country = new System.Windows.Forms.ComboBox();
+			this.visitor_name = new System.Windows.Forms.TextBox();
 			this.tabPage3 = new System.Windows.Forms.TabPage();
 			this.npc_apply = new System.Windows.Forms.Button();
 			this.label12 = new System.Windows.Forms.Label();
@@ -252,6 +304,8 @@ namespace BW_tool
 			((System.ComponentModel.ISupportInitialize)(this.shop_recruit)).BeginInit();
 			((System.ComponentModel.ISupportInitialize)(this.shop_sprite)).BeginInit();
 			this.tabPage2.SuspendLayout();
+			((System.ComponentModel.ISupportInitialize)(this.visitor_recruit)).BeginInit();
+			((System.ComponentModel.ISupportInitialize)(this.visitor_sprite)).BeginInit();
 			this.tabPage3.SuspendLayout();
 			this.tabPage4.SuspendLayout();
 			((System.ComponentModel.ISupportInitialize)(this.helper_sprite)).BeginInit();
@@ -407,7 +461,7 @@ namespace BW_tool
 			// 
 			// visitor
 			// 
-			this.visitor.Location = new System.Drawing.Point(55, 7);
+			this.visitor.Location = new System.Drawing.Point(77, 15);
 			this.visitor.Maximum = new decimal(new int[] {
 			7,
 			0,
@@ -416,6 +470,7 @@ namespace BW_tool
 			this.visitor.Name = "visitor";
 			this.visitor.Size = new System.Drawing.Size(53, 20);
 			this.visitor.TabIndex = 32;
+			this.visitor.ValueChanged += new System.EventHandler(this.VisitorValueChanged);
 			// 
 			// tabControl1
 			// 
@@ -431,6 +486,7 @@ namespace BW_tool
 			// 
 			// tabPage1
 			// 
+			this.tabPage1.Controls.Add(this.shop_debug);
 			this.tabPage1.Controls.Add(this.shop_exp);
 			this.tabPage1.Controls.Add(this.label34);
 			this.tabPage1.Controls.Add(this.shop_inventory);
@@ -471,6 +527,14 @@ namespace BW_tool
 			this.tabPage1.TabIndex = 0;
 			this.tabPage1.Text = "Shop";
 			this.tabPage1.UseVisualStyleBackColor = true;
+			// 
+			// shop_debug
+			// 
+			this.shop_debug.Location = new System.Drawing.Point(77, 173);
+			this.shop_debug.Name = "shop_debug";
+			this.shop_debug.Size = new System.Drawing.Size(61, 20);
+			this.shop_debug.TabIndex = 114;
+			this.shop_debug.Visible = false;
 			// 
 			// shop_exp
 			// 
@@ -635,7 +699,7 @@ namespace BW_tool
 			this.shop_date.Location = new System.Drawing.Point(293, 119);
 			this.shop_date.MinDate = new System.DateTime(2000, 1, 1, 0, 0, 0, 0);
 			this.shop_date.Name = "shop_date";
-			this.shop_date.Size = new System.Drawing.Size(200, 20);
+			this.shop_date.Size = new System.Drawing.Size(191, 20);
 			this.shop_date.TabIndex = 97;
 			// 
 			// shop_subregion
@@ -1011,6 +1075,31 @@ namespace BW_tool
 			// 
 			// tabPage2
 			// 
+			this.tabPage2.Controls.Add(this.visitor_import);
+			this.tabPage2.Controls.Add(this.visitor_export);
+			this.tabPage2.Controls.Add(this.visitor_ishuman);
+			this.tabPage2.Controls.Add(this.label39);
+			this.tabPage2.Controls.Add(this.visitor_recruit);
+			this.tabPage2.Controls.Add(this.label40);
+			this.tabPage2.Controls.Add(this.visitor_gender);
+			this.tabPage2.Controls.Add(this.label41);
+			this.tabPage2.Controls.Add(this.visitor_date);
+			this.tabPage2.Controls.Add(this.visitor_subregion);
+			this.tabPage2.Controls.Add(this.label42);
+			this.tabPage2.Controls.Add(this.visitor_sprite);
+			this.tabPage2.Controls.Add(this.label43);
+			this.tabPage2.Controls.Add(this.visitor_shout);
+			this.tabPage2.Controls.Add(this.label44);
+			this.tabPage2.Controls.Add(this.visitor_apply);
+			this.tabPage2.Controls.Add(this.label45);
+			this.tabPage2.Controls.Add(this.visitor_farewell);
+			this.tabPage2.Controls.Add(this.visitor_greeting);
+			this.tabPage2.Controls.Add(this.label46);
+			this.tabPage2.Controls.Add(this.label47);
+			this.tabPage2.Controls.Add(this.label48);
+			this.tabPage2.Controls.Add(this.label49);
+			this.tabPage2.Controls.Add(this.visitor_country);
+			this.tabPage2.Controls.Add(this.visitor_name);
 			this.tabPage2.Controls.Add(this.visitor);
 			this.tabPage2.Location = new System.Drawing.Point(4, 22);
 			this.tabPage2.Name = "tabPage2";
@@ -1019,6 +1108,460 @@ namespace BW_tool
 			this.tabPage2.TabIndex = 1;
 			this.tabPage2.Text = "Visitor";
 			this.tabPage2.UseVisualStyleBackColor = true;
+			// 
+			// visitor_import
+			// 
+			this.visitor_import.Location = new System.Drawing.Point(293, 215);
+			this.visitor_import.Name = "visitor_import";
+			this.visitor_import.Size = new System.Drawing.Size(75, 23);
+			this.visitor_import.TabIndex = 150;
+			this.visitor_import.Text = "Import";
+			this.visitor_import.UseVisualStyleBackColor = true;
+			this.visitor_import.Click += new System.EventHandler(this.Visitor_importClick);
+			// 
+			// visitor_export
+			// 
+			this.visitor_export.Location = new System.Drawing.Point(374, 215);
+			this.visitor_export.Name = "visitor_export";
+			this.visitor_export.Size = new System.Drawing.Size(75, 23);
+			this.visitor_export.TabIndex = 149;
+			this.visitor_export.Text = "Export";
+			this.visitor_export.UseVisualStyleBackColor = true;
+			this.visitor_export.Click += new System.EventHandler(this.Visitor_exportClick);
+			// 
+			// visitor_ishuman
+			// 
+			this.visitor_ishuman.Location = new System.Drawing.Point(77, 172);
+			this.visitor_ishuman.Name = "visitor_ishuman";
+			this.visitor_ishuman.Size = new System.Drawing.Size(104, 24);
+			this.visitor_ishuman.TabIndex = 138;
+			this.visitor_ishuman.Text = "Is human";
+			this.visitor_ishuman.UseVisualStyleBackColor = true;
+			// 
+			// label39
+			// 
+			this.label39.Location = new System.Drawing.Point(222, 147);
+			this.label39.Name = "label39";
+			this.label39.Size = new System.Drawing.Size(65, 23);
+			this.label39.TabIndex = 137;
+			this.label39.Text = "Recruit Lvl";
+			// 
+			// visitor_recruit
+			// 
+			this.visitor_recruit.Location = new System.Drawing.Point(293, 145);
+			this.visitor_recruit.Maximum = new decimal(new int[] {
+			255,
+			0,
+			0,
+			0});
+			this.visitor_recruit.Name = "visitor_recruit";
+			this.visitor_recruit.Size = new System.Drawing.Size(47, 20);
+			this.visitor_recruit.TabIndex = 136;
+			// 
+			// label40
+			// 
+			this.label40.Location = new System.Drawing.Point(6, 148);
+			this.label40.Name = "label40";
+			this.label40.Size = new System.Drawing.Size(57, 23);
+			this.label40.TabIndex = 135;
+			this.label40.Text = "Gender";
+			// 
+			// visitor_gender
+			// 
+			this.visitor_gender.FormattingEnabled = true;
+			this.visitor_gender.Items.AddRange(new object[] {
+			"Male",
+			"Female"});
+			this.visitor_gender.Location = new System.Drawing.Point(77, 145);
+			this.visitor_gender.Name = "visitor_gender";
+			this.visitor_gender.Size = new System.Drawing.Size(135, 21);
+			this.visitor_gender.TabIndex = 134;
+			// 
+			// label41
+			// 
+			this.label41.Location = new System.Drawing.Point(222, 122);
+			this.label41.Name = "label41";
+			this.label41.Size = new System.Drawing.Size(57, 23);
+			this.label41.TabIndex = 133;
+			this.label41.Text = "Met Date";
+			// 
+			// visitor_date
+			// 
+			this.visitor_date.Location = new System.Drawing.Point(293, 119);
+			this.visitor_date.MinDate = new System.DateTime(2000, 1, 1, 0, 0, 0, 0);
+			this.visitor_date.Name = "visitor_date";
+			this.visitor_date.Size = new System.Drawing.Size(191, 20);
+			this.visitor_date.TabIndex = 132;
+			// 
+			// visitor_subregion
+			// 
+			this.visitor_subregion.FormattingEnabled = true;
+			this.visitor_subregion.Items.AddRange(new object[] {
+			"0 None"});
+			this.visitor_subregion.Location = new System.Drawing.Point(293, 68);
+			this.visitor_subregion.Name = "visitor_subregion";
+			this.visitor_subregion.Size = new System.Drawing.Size(191, 21);
+			this.visitor_subregion.TabIndex = 131;
+			// 
+			// label42
+			// 
+			this.label42.Location = new System.Drawing.Point(222, 97);
+			this.label42.Name = "label42";
+			this.label42.Size = new System.Drawing.Size(57, 23);
+			this.label42.TabIndex = 130;
+			this.label42.Text = "Sprite";
+			// 
+			// visitor_sprite
+			// 
+			this.visitor_sprite.Location = new System.Drawing.Point(293, 95);
+			this.visitor_sprite.Maximum = new decimal(new int[] {
+			255,
+			0,
+			0,
+			0});
+			this.visitor_sprite.Name = "visitor_sprite";
+			this.visitor_sprite.Size = new System.Drawing.Size(47, 20);
+			this.visitor_sprite.TabIndex = 129;
+			// 
+			// label43
+			// 
+			this.label43.Location = new System.Drawing.Point(222, 71);
+			this.label43.Name = "label43";
+			this.label43.Size = new System.Drawing.Size(57, 23);
+			this.label43.TabIndex = 128;
+			this.label43.Text = "Subregion";
+			// 
+			// visitor_shout
+			// 
+			this.visitor_shout.Location = new System.Drawing.Point(77, 67);
+			this.visitor_shout.MaxLength = 14;
+			this.visitor_shout.Name = "visitor_shout";
+			this.visitor_shout.Size = new System.Drawing.Size(135, 20);
+			this.visitor_shout.TabIndex = 127;
+			// 
+			// label44
+			// 
+			this.label44.Location = new System.Drawing.Point(6, 70);
+			this.label44.Name = "label44";
+			this.label44.Size = new System.Drawing.Size(57, 23);
+			this.label44.TabIndex = 126;
+			this.label44.Text = "Shout";
+			// 
+			// visitor_apply
+			// 
+			this.visitor_apply.Location = new System.Drawing.Point(77, 215);
+			this.visitor_apply.Name = "visitor_apply";
+			this.visitor_apply.Size = new System.Drawing.Size(67, 23);
+			this.visitor_apply.TabIndex = 125;
+			this.visitor_apply.Text = "Apply";
+			this.visitor_apply.UseVisualStyleBackColor = true;
+			// 
+			// label45
+			// 
+			this.label45.Location = new System.Drawing.Point(6, 17);
+			this.label45.Name = "label45";
+			this.label45.Size = new System.Drawing.Size(57, 23);
+			this.label45.TabIndex = 124;
+			this.label45.Text = "Slot";
+			// 
+			// visitor_farewell
+			// 
+			this.visitor_farewell.Location = new System.Drawing.Point(77, 119);
+			this.visitor_farewell.MaxLength = 14;
+			this.visitor_farewell.Name = "visitor_farewell";
+			this.visitor_farewell.Size = new System.Drawing.Size(135, 20);
+			this.visitor_farewell.TabIndex = 123;
+			// 
+			// visitor_greeting
+			// 
+			this.visitor_greeting.Location = new System.Drawing.Point(77, 93);
+			this.visitor_greeting.MaxLength = 14;
+			this.visitor_greeting.Name = "visitor_greeting";
+			this.visitor_greeting.Size = new System.Drawing.Size(135, 20);
+			this.visitor_greeting.TabIndex = 122;
+			// 
+			// label46
+			// 
+			this.label46.Location = new System.Drawing.Point(6, 122);
+			this.label46.Name = "label46";
+			this.label46.Size = new System.Drawing.Size(57, 23);
+			this.label46.TabIndex = 121;
+			this.label46.Text = "Farewell";
+			// 
+			// label47
+			// 
+			this.label47.Location = new System.Drawing.Point(6, 96);
+			this.label47.Name = "label47";
+			this.label47.Size = new System.Drawing.Size(57, 23);
+			this.label47.TabIndex = 120;
+			this.label47.Text = "Greeting";
+			// 
+			// label48
+			// 
+			this.label48.Location = new System.Drawing.Point(222, 44);
+			this.label48.Name = "label48";
+			this.label48.Size = new System.Drawing.Size(57, 23);
+			this.label48.TabIndex = 119;
+			this.label48.Text = "Country";
+			// 
+			// label49
+			// 
+			this.label49.Location = new System.Drawing.Point(6, 44);
+			this.label49.Name = "label49";
+			this.label49.Size = new System.Drawing.Size(57, 23);
+			this.label49.TabIndex = 118;
+			this.label49.Text = "Name";
+			// 
+			// visitor_country
+			// 
+			this.visitor_country.FormattingEnabled = true;
+			this.visitor_country.Items.AddRange(new object[] {
+			"0 None",
+			"1 Afghanistan",
+			"2 Albania",
+			"3 Algeria",
+			"4 American Samoa",
+			"5 Andorra",
+			"6 Angola",
+			"7 Anguilla",
+			"8 Antigua and Barbuda",
+			"9 Argentina",
+			"10 Armenia",
+			"11 Aruba",
+			"12 Australia",
+			"13 Austria",
+			"14 Azerbaijan",
+			"15 Bahamas",
+			"16 Bahrain",
+			"17 Bangladesh",
+			"18 Barbados",
+			"19 Belarus",
+			"20 Belgium",
+			"21 Belize",
+			"22 Benin",
+			"23 Bermuda",
+			"24 Bhutan",
+			"25 Bolivia",
+			"26 Bosnia and Herzegovina",
+			"27 Botswana",
+			"28 Brazil",
+			"29 British Virgin Islands",
+			"30 Brunei Darussalam",
+			"31 Bulgaria",
+			"32 Burkina Faso",
+			"33 Burundi",
+			"34 Cambodia",
+			"35 Cameroon",
+			"36 Canada",
+			"37 Cape Verde",
+			"38 Cayman Islands",
+			"39 Central African Republic",
+			"40 Chad",
+			"41 Channel Islands",
+			"42 Chile",
+			"43 China",
+			"44 Christmas Island",
+			"45 Colombia",
+			"46 Comoros",
+			"47 Congo",
+			"48 Cook Islands",
+			"49 Costa Rica",
+			"50 Cote d\'Ivoire",
+			"51 Croatia",
+			"52 Cuba",
+			"53 Cyprus",
+			"54 Czech Republic",
+			"55 North Korea",
+			"56 Democratic Republic of the Congo",
+			"57 Timor-Leste",
+			"58 Denmark",
+			"59 Djibouti",
+			"60 Dominica",
+			"61 Dominican Republic",
+			"62 Ecuador",
+			"63 Egypt",
+			"64 El Salvador",
+			"65 Equatorial Guinea",
+			"66 Eritrea",
+			"67 Estonia",
+			"68 Ethiopia",
+			"69 Falkland Islands",
+			"70 Faroe Islands",
+			"71 Fiji",
+			"72 Finland",
+			"73 France",
+			"74 French Guiana",
+			"75 French Polynesia",
+			"76 Gabon",
+			"77 Gambia",
+			"78 Georgia",
+			"79 Germany",
+			"80 Ghana",
+			"81 Gibraltar",
+			"82 Greece",
+			"83 Greenland",
+			"84 Grenada",
+			"85 Guadeloupe",
+			"86 Guam",
+			"87 Guatemala",
+			"88 Guinea",
+			"89 Guinea-Bissau",
+			"90 Guyana",
+			"91 Haiti",
+			"92 Honduras",
+			"93 Hungary",
+			"94 Iceland",
+			"95 India",
+			"96 Indonesia",
+			"97 Iran",
+			"98 Iraq",
+			"99 Ireland",
+			"100 Isle of Man",
+			"101 Israel",
+			"102 Italy",
+			"103 Jamaica",
+			"104 Jan Mayen Island",
+			"105 Japan",
+			"106 Jordan",
+			"107 Kashmir",
+			"108 Kazakhstan",
+			"109 Kenya",
+			"110 Kiribati",
+			"111 Kuwait",
+			"112 Kyrgyzstan",
+			"113 Laos",
+			"114 Latvia",
+			"115 Lebanon",
+			"116 Lesotho",
+			"117 Liberia",
+			"118 Libya",
+			"119 Liechtenstein",
+			"120 Lithuania",
+			"121 Luxembourg",
+			"122 Macedonia (FYROM)",
+			"123 Madagascar",
+			"124 Malawi",
+			"125 Malaysia",
+			"126 Maldives",
+			"127 Mali",
+			"128 Malta",
+			"129 Marshall Islands",
+			"130 Martinique",
+			"131 Mauritania",
+			"132 Mauritius",
+			"133 Mayotte",
+			"134 Mexico",
+			"135 Micronesia",
+			"136 Monaco",
+			"137 Mongolia",
+			"138 Montenegro",
+			"139 Morocco",
+			"140 Mozambique",
+			"141 Myanmar",
+			"142 Namibia",
+			"143 Nauru",
+			"144 Nepal",
+			"145 Netherlands",
+			"146 Netherlands Antilles",
+			"147 New Caledonia",
+			"148 New Zealand",
+			"149 Nicaragua",
+			"150 Niger",
+			"151 Nigeria",
+			"152 Niue",
+			"153 Norfolk Island",
+			"154 Northern Mariana Islands",
+			"155 Norway",
+			"156 Oman",
+			"157 Pakistan",
+			"158 Palau",
+			"159 Palestine",
+			"160 Panama",
+			"161 Papua New Guinea",
+			"162 Paraguay",
+			"163 Peru",
+			"164 Philippines",
+			"165 Pitcairn Islands",
+			"166 Poland",
+			"167 Portugal",
+			"168 Puerto Rico",
+			"169 Qatar",
+			"170 South Korea",
+			"171 Moldova",
+			"172 Reunion",
+			"173 Romania",
+			"174 Russian Federation",
+			"175 Rwanda",
+			"176 Saint Helena",
+			"177 Saint Kitts and Nevis",
+			"178 Saint Lucia",
+			"179 Saint Vincent and the Grenadines",
+			"180 Saint Pierre and Miquelon",
+			"181 Samoa",
+			"182 San Marino",
+			"183 Sao Tome and Principe",
+			"184 Saudi Arabia",
+			"185 Senegal",
+			"186 Serbia",
+			"187 Seychelles",
+			"188 Sierra Leone",
+			"189 Singapore",
+			"190 Slovakia",
+			"191 Slovenia",
+			"192 Solomon Islands",
+			"193 Somalia",
+			"194 South Africa",
+			"195 Spain",
+			"196 Sri Lanka",
+			"197 Sudan",
+			"198 Suriname",
+			"199 Swaziland",
+			"200 Sweden",
+			"201 Switzerland",
+			"202 Syria",
+			"203 Taiwan",
+			"204 Tajikistan",
+			"205 Thailand",
+			"206 Togo",
+			"207 Tokelau",
+			"208 Tonga",
+			"209 Trinidad and Tobago",
+			"210 Tunisia",
+			"211 Turkey",
+			"212 Turkmenistan",
+			"213 Turks and Caicos Islands",
+			"214 Tuvalu",
+			"215 Uganda",
+			"216 Ukraine",
+			"217 United Arab Emirates",
+			"218 United Kingdom",
+			"219 Tanzania",
+			"220 United States of America",
+			"221 United States Virgin Islands",
+			"222 Uruguay",
+			"223 Uzbekistan",
+			"224 Vanuatu",
+			"225 Holy See (Vatican City State)",
+			"226 Venezuela",
+			"227 Vietnam",
+			"228 Wallis and Futuna",
+			"229 Western Sahara",
+			"230 Yemen",
+			"231 Zambia",
+			"232 Zimbabwe"});
+			this.visitor_country.Location = new System.Drawing.Point(293, 41);
+			this.visitor_country.Name = "visitor_country";
+			this.visitor_country.Size = new System.Drawing.Size(191, 21);
+			this.visitor_country.TabIndex = 117;
+			this.visitor_country.SelectedIndexChanged += new System.EventHandler(this.Visitor_countrySelectedIndexChanged);
+			// 
+			// visitor_name
+			// 
+			this.visitor_name.Location = new System.Drawing.Point(77, 41);
+			this.visitor_name.MaxLength = 14;
+			this.visitor_name.Name = "visitor_name";
+			this.visitor_name.Size = new System.Drawing.Size(135, 20);
+			this.visitor_name.TabIndex = 116;
 			// 
 			// tabPage3
 			// 
@@ -2227,6 +2770,9 @@ namespace BW_tool
 			((System.ComponentModel.ISupportInitialize)(this.shop_recruit)).EndInit();
 			((System.ComponentModel.ISupportInitialize)(this.shop_sprite)).EndInit();
 			this.tabPage2.ResumeLayout(false);
+			this.tabPage2.PerformLayout();
+			((System.ComponentModel.ISupportInitialize)(this.visitor_recruit)).EndInit();
+			((System.ComponentModel.ISupportInitialize)(this.visitor_sprite)).EndInit();
 			this.tabPage3.ResumeLayout(false);
 			this.tabPage3.PerformLayout();
 			this.tabPage4.ResumeLayout(false);

@@ -75,10 +75,12 @@ namespace BW_tool
 			name.Text = ja.name;
 			
 			load_shop();
+			load_visitor();
 			load_npc();
 			load_helper();
 			
 			shop.Value = 0;
+			visitor.Value = 0;
 			npc.Value = 0;
 			helper.SelectedIndex = 0;
 		}
@@ -231,6 +233,7 @@ namespace BW_tool
 		void Helper_applyClick(object sender, EventArgs e)
 		{
 			set_helper();
+			load_helper();
 		}
 		int helper_value = 0;
 		void HelperSelectedIndexChanged(object sender, EventArgs e)
@@ -242,7 +245,10 @@ namespace BW_tool
 		//SHOP
 		void Shop_countrySelectedIndexChanged(object sender, EventArgs e)
 		{
-			
+			shop_handleCountry();
+		}
+		void shop_handleCountry()
+		{
 			shop_subregion.SelectedIndex = 0;
 			shop_subregion.Items.Clear();
 			object[] a;
@@ -353,6 +359,13 @@ namespace BW_tool
 			shop_gender.SelectedIndex = ja.shop[(int)shop.Value].gender;
 			
 			shop_country.SelectedIndex = ja.shop[(int)shop.Value].country;
+			shop_handleCountry();
+			int i = 0;
+			for (i=0; i<country_subbed.Length; i++)
+			{
+				if (ja.shop[(int)shop.Value].country == country_subbed[i])
+					shop_subregion.SelectedIndex = ja.shop[(int)shop.Value].subregion;	
+			}
 			shop_subregion.SelectedIndex = ja.shop[(int)shop.Value].subregion;
 			shop_sprite.Value = ja.shop[(int)shop.Value].sprite;
 			shop_date.Value = ja.shop[(int)shop.Value].met;
@@ -364,6 +377,8 @@ namespace BW_tool
 			shop_exp.Value = ja.shop[(int)shop.Value].shop_exp;
 			shop_ishuman.Checked = ja.shop[(int)shop.Value].isplayer;
 			shop_inventory.Checked = ja.shop[(int)shop.Value].inventory;
+			
+			shop_debug.Text = ja.shop[(int)shop.Value].ShopBytes().ToString("X");
 			
 		}
 		void set_shop()
@@ -387,6 +402,8 @@ namespace BW_tool
 			ja.shop[(int)shop.Value].shop_exp = (int)shop_exp.Value;
 			ja.shop[(int)shop.Value].isplayer = shop_ishuman.Checked;
 			ja.shop[(int)shop.Value].inventory = shop_inventory.Checked;
+			
+			ja.shop[(int)shop.Value].set_ShopBytes();
 		}
 		void Shop_applyClick(object sender, EventArgs e)
 		{
@@ -395,6 +412,191 @@ namespace BW_tool
 		void ShopValueChanged(object sender, EventArgs e)
 		{
 			load_shop();
+		}
+		
+		//VISITOR
+		void Visitor_countrySelectedIndexChanged(object sender, EventArgs e)
+		{
+			visitor_handleCountry();
+		}
+		void visitor_handleCountry()
+		{
+			
+			visitor_subregion.SelectedIndex = 0;
+			visitor_subregion.Items.Clear();
+			object[] a;
+			switch (visitor_country.SelectedIndex)
+			{
+				case 9:
+					a= new object[helper_subregion_argentina.Items.Count];
+					helper_subregion_argentina.Items.CopyTo(a,0);
+					visitor_subregion.Items.AddRange(a);
+					break;
+				case 12:
+					a = new object[helper_subregion_australia.Items.Count];
+					helper_subregion_australia.Items.CopyTo(a,0);
+					visitor_subregion.Items.AddRange(a);
+					break;
+				case 28:
+					a = new object[helper_subregion_brazil.Items.Count];
+					helper_subregion_brazil.Items.CopyTo(a,0);
+					visitor_subregion.Items.AddRange(a);
+					break;
+				case 36:
+					a = new object[helper_subregion_canada.Items.Count];
+					helper_subregion_canada.Items.CopyTo(a,0);
+					visitor_subregion.Items.AddRange(a);
+					break;
+				case 43:
+					a = new object[helper_subregion_china.Items.Count];
+					helper_subregion_china.Items.CopyTo(a,0);
+					visitor_subregion.Items.AddRange(a);
+					break;
+				case 72:
+					a = new object[helper_subregion_finland.Items.Count];
+					helper_subregion_finland.Items.CopyTo(a,0);
+					visitor_subregion.Items.AddRange(a);
+					break;
+				case 73:
+					a = new object[helper_subregion_france.Items.Count];
+					helper_subregion_france.Items.CopyTo(a,0);
+					visitor_subregion.Items.AddRange(a);
+					break;
+				case 79:
+					a = new object[helper_subregion_germany.Items.Count];
+					helper_subregion_germany.Items.CopyTo(a,0);
+					visitor_subregion.Items.AddRange(a);
+					break;
+				case 95:
+					a = new object[helper_subregion_india.Items.Count];
+					helper_subregion_india.Items.CopyTo(a,0);
+					visitor_subregion.Items.AddRange(a);
+					break;
+				case 102:
+					a = new object[helper_subregion_italy.Items.Count];
+					helper_subregion_italy.Items.CopyTo(a,0);
+					visitor_subregion.Items.AddRange(a);
+					break;
+				case 105:
+					a = new object[helper_subregion_japan.Items.Count];
+					helper_subregion_japan.Items.CopyTo(a,0);
+					visitor_subregion.Items.AddRange(a);
+					break;
+				case 155:
+					a = new object[helper_subregion_norway.Items.Count];
+					helper_subregion_norway.Items.CopyTo(a,0);
+					visitor_subregion.Items.AddRange(a);
+					break;
+				case 166:
+					a = new object[helper_subregion_poland.Items.Count];
+					helper_subregion_poland.Items.CopyTo(a,0);
+					visitor_subregion.Items.AddRange(a);
+					break;
+				case 174:
+					a = new object[helper_subregion_russia.Items.Count];
+					helper_subregion_russia.Items.CopyTo(a,0);
+					visitor_subregion.Items.AddRange(a);
+					break;
+				case 195:
+					a = new object[helper_subregion_spain.Items.Count];
+					helper_subregion_spain.Items.CopyTo(a,0);
+					visitor_subregion.Items.AddRange(a);
+					break;
+				case 200:
+					a = new object[helper_subregion_sweeden.Items.Count];
+					helper_subregion_sweeden.Items.CopyTo(a,0);
+					visitor_subregion.Items.AddRange(a);
+					break;
+				case 218:
+					a = new object[helper_subregion_england.Items.Count];
+					helper_subregion_england.Items.CopyTo(a,0);
+					visitor_subregion.Items.AddRange(a);
+					break;
+				case 220:
+					a = new object[helper_subregion_USA.Items.Count];
+					helper_subregion_USA.Items.CopyTo(a,0);
+					visitor_subregion.Items.AddRange(a);
+					break;
+				default:
+					visitor_subregion.Items.Add("0 None");
+					break;
+			}
+		}
+		int[] country_subbed = new int[]
+		{
+			009, 012, 028, 036, 043, 072, 073, 079, 095, 102,
+			105, 155, 166, 174, 195, 200, 218, 220
+		};
+		void load_visitor()
+		{
+			
+			visitor_name.Text = ja.visitor[(int)visitor.Value].name;
+			visitor_shout.Text = ja.visitor[(int)visitor.Value].shout;
+			visitor_greeting.Text = ja.visitor[(int)visitor.Value].greeting;
+			visitor_farewell.Text = ja.visitor[(int)visitor.Value].farewell;
+			visitor_gender.SelectedIndex = ja.visitor[(int)visitor.Value].gender;
+			
+			visitor_country.SelectedIndex = ja.visitor[(int)visitor.Value].country;
+			visitor_handleCountry();
+			int i = 0;
+			for (i=0; i<country_subbed.Length; i++)
+			{
+				if (ja.visitor[(int)visitor.Value].country == country_subbed[i]){
+					visitor_subregion.SelectedIndex = ja.visitor[(int)visitor.Value].subregion;	
+					break;
+				}
+			}
+			visitor_sprite.Value = ja.visitor[(int)visitor.Value].sprite;
+			visitor_date.Value = ja.visitor[(int)visitor.Value].met;
+			visitor_recruit.Value = ja.visitor[(int)visitor.Value].recruitlvl;
+
+			visitor_ishuman.Checked = ja.visitor[(int)visitor.Value].isplayer;		
+		}
+		void set_visitor()
+		{
+			ja.visitor[(int)visitor.Value].name = visitor_name.Text;
+			ja.visitor[(int)visitor.Value].shout = visitor_shout.Text;
+			ja.visitor[(int)visitor.Value].greeting = visitor_greeting.Text;
+			ja.visitor[(int)visitor.Value].farewell = visitor_farewell.Text;
+			ja.visitor[(int)visitor.Value].gender = visitor_gender.SelectedIndex;
+			
+
+			ja.visitor[(int)visitor.Value].country = visitor_country.SelectedIndex;
+			ja.visitor[(int)visitor.Value].subregion = visitor_subregion.SelectedIndex;
+			ja.visitor[(int)visitor.Value].sprite = (int)visitor_sprite.Value;
+			ja.visitor[(int)visitor.Value].met = visitor_date.Value;
+			ja.visitor[(int)visitor.Value].recruitlvl = (int)visitor_recruit.Value;
+
+			ja.visitor[(int)visitor.Value].isplayer = visitor_ishuman.Checked;
+		}
+		void Visitor_applyClick(object sender, EventArgs e)
+		{
+			set_visitor();
+		}
+		void VisitorValueChanged(object sender, EventArgs e)
+		{
+			load_visitor();
+		}
+		void Visitor_importClick(object sender, EventArgs e)
+		{
+			AV_OCCUPANT import = new AV_OCCUPANT();
+			string path = null;
+			int filesize = FileIO.load_file(ref import.Data, ref path, "Poke JoinAvenue Visitor|*.pjv|All Files (*.*)|*.*");
+			if( filesize == 0xC4)
+			{
+				ja.set_visitor(import, (int)visitor.Value);
+				ja.load_people();
+				load_visitor();
+			}
+			else
+			{
+				MessageBox.Show("Invalid file.");
+			}
+
+		}
+		void Visitor_exportClick(object sender, EventArgs e)
+		{
+			FileIO.save_file(ja.visitor[(int)visitor.Value].Data, "Poke JoinAvenue Visitor|*.pjv|All Files (*.*)|*.*");
 		}
 
 	public class AVENUE
@@ -420,7 +622,7 @@ namespace BW_tool
 	        
 	        
 	        //Variables
-	        public AV_VISITOR[] visitor = new AV_VISITOR[8];
+	        public AV_OCCUPANT[] visitor = new AV_OCCUPANT[8];
 	        public AV_OCCUPANT[] shop = new AV_OCCUPANT[8];
 	        public AV_NPC[] npc = new AV_NPC[12];
 	        public AV_HELPER[] helper = new AV_HELPER[4];
@@ -429,12 +631,12 @@ namespace BW_tool
 	        int VISITOR_SIZE = 0xC4;
 	        int VISITOR_OFFSET = 0x08;
 	        int VISITOR_TOTAL = 8-1;
-	        public AV_VISITOR get_visitor (int index)
+	        public AV_OCCUPANT get_visitor (int index)
 	        {
 	        	if (index > VISITOR_TOTAL) index = VISITOR_TOTAL;
-	        	return new AV_VISITOR(getData(VISITOR_OFFSET+(VISITOR_SIZE*index), VISITOR_SIZE));
+	        	return new AV_OCCUPANT(getData(VISITOR_OFFSET+(VISITOR_SIZE*index), VISITOR_SIZE));
 	        }
-	        public void set_visitor(AV_VISITOR visitant, int index)
+	        public void set_visitor(AV_OCCUPANT visitant, int index)
 	        {
 	        	if (index > VISITOR_TOTAL) index = VISITOR_TOTAL;
 	        	setData(visitant.Data, VISITOR_OFFSET+(VISITOR_SIZE*index));
@@ -1106,7 +1308,8 @@ START OFFSET: 23C00
 	            	Data[0xA5] = (byte) value.Day;
 	            }
 	        }
-	        public int av_rank
+	        
+	        public int av_occupant_rank //Rank of player's own avenue, visitors use it. Disabled since not used in gui
 	        {
 	            get
 	            {
@@ -1165,73 +1368,80 @@ START OFFSET: 23C00
 	            }
 	        }
 	        
+	        //Note: 0xB4 = FF when there's no shop
+	        
+	        public UInt16 ShopBytes()
+	        {
+	        	return BitConverter.ToUInt16(getData(0xB4, 2), 0);
+	        }
+	        public void set_ShopBytes()
+	        {
+	        	UInt16 bytes = (UInt16)(1 + Shop_version*0x50 + Shop_type*0xA + Shop_level);
+	        	setData(BitConverter.GetBytes(bytes), 0xB4);
+	        }
+	        
+	        private int Shop_version;
 	        public int shop_version //0 black, 1 white, 2 black2, 3 white3
 	        {
 	            get
 	            {
-	            	return Data[0xB4]/0x50;
+	            	return ShopBytes()/0x50;
 	            }
 	            set
 	            {
-	            	if(value > 0x3)
-	            		Data[0xB4] = (byte)(3*0x50 + shop_type*0xA + shop_level);
+	            	if(value > 3){
+	            		Shop_version = 3;
+	            	}
 	            	else
-	            		Data[0xB4] = (byte)(value*0x50 + shop_type*0xA + shop_level);
+	            	{
+	            		Shop_version = value;
+	            	}
 	            }
 	        }
+	        private int Shop_level;
 	        public int shop_level // 0-9 (1-10)
 	        {
 	            get
 	            {
-	            	MessageBox.Show(Data[0xB4].ToString("X")+"-"+(((Data[0xB4] % 0x50) -1) % 0xA).ToString());
-	            	return ((Data[0xB4] % 0x50) -1) % 0xA;
+	            	if (ShopBytes()%0x50 == 0) //Last shop, level 10, remainder of negative number not correctly behaving...
+	            		return 9;
+	            	else
+	            		return (((ShopBytes() % 0x50) -1) % 0xA);
 	            }
 	            set
 	            {
 	            	if(value > 0x9)
-	            		Data[0xB4] = (byte)(shop_version*0x50 + shop_type*0xA + 0x9);
+	            		Shop_level = 0x9;
 	            	else
-	            		Data[0xB4] = (byte)(shop_version*0x50 + shop_type*0xA + value);
+	            		Shop_level = value;
 	            }
 	        }
+	        private int Shop_type;
 	        public int shop_type // 0=raffle, 1=salon, 2 = market, 3=florist, 4 = dojo, 5=nurse, 6=antique, 7=cafe
 	        {
 	            get
 	            {
-	            	return (Data[0xB4] % 0x50) / 0xA;
+
+	            	if (shop_level == 9)
+	            	{ //Level 10 gives problems... just consider it a level 9 shop for type return
+	            		//MessageBox.Show((ShopBytes() % 0x50).ToString() + "  -"+((ShopBytes() % 0x50)/0xA).ToString());
+	            		return (((ShopBytes()-1) % 0x50) / 0xA);
+	            	}else
+	            	{
+	            		return ((ShopBytes() % 0x50) / 0xA);
+	            	}
+	            	//
+			        // return ((ShopBytes() % 0x50) / 0xA);
 	            }
 	            set
 	            {
 	            	if(value > 0x7)
-	            		Data[0xB4] = (byte)(shop_version*0x50 + 0x7*0xA + shop_level);
+	            		Shop_type = 0x7;
 	            	else
-	            		Data[0xB4] = (byte)(shop_version*0x50 + value*0xA + shop_level);
+	            		Shop_type = value;
 	            }
 	        }
 	        
-	        //Helper functions from pkhex
-	        internal static string TrimFromFFFF(string input)
-	        {
-	            int index = input.IndexOf((char)0xFFFF);
-	            return index < 0 ? input : input.Substring(0, index);
-	        }
-		}
-
-		public class AV_VISITOR
-	    {
-	        public byte[] Data;
-	        public AV_VISITOR(byte[] data = null)
-	        {
-	            Data = data ?? new byte[0xC4];
-	        }
-	        public byte[] getData(int Offset, int Length)
-	        {
-	            return Data.Skip(Offset).Take(Length).ToArray();
-	        }
-	        public void setData(byte[] input, int Offset)
-	        {
-	            input.CopyTo(Data, Offset);
-	        }
 	        //Helper functions from pkhex
 	        internal static string TrimFromFFFF(string input)
 	        {
