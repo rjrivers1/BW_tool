@@ -66,6 +66,7 @@ namespace BW_tool
 					medal_but.Enabled = true;
 					forest_but.Enabled = true;
 					key_but.Enabled = true;
+					join_but.Enabled = true;
 				}
 				else if (save.BW)
 				{
@@ -80,6 +81,7 @@ namespace BW_tool
 					medal_but.Enabled = false;
 					forest_but.Enabled = true;
 					key_but.Enabled = false;
+					join_but.Enabled = false;
 				}
 				else versiontext.Text = "Invalid file";
 
@@ -96,6 +98,7 @@ namespace BW_tool
 				medal_but.Enabled = false;
 				forest_but.Enabled = false;
 				key_but.Enabled = false;
+				join_but.Enabled = false;
 			}
 		}
 		void Save_butClick(object sender, EventArgs e)
@@ -145,6 +148,11 @@ namespace BW_tool
 		{
 			Form keys = new KeySystem();
 			keys.ShowDialog();
+		}
+		void Join_butClick(object sender, EventArgs e)
+		{
+			Form join = new Join_avenue();
+			join.ShowDialog();
 		}
 	}
 }

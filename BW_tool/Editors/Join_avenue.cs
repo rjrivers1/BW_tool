@@ -1,0 +1,1243 @@
+﻿/*
+ * Created by SharpDevelop.
+ * User: LAURA
+ * Date: 16/06/2016
+ * Time: 21:04
+ * 
+ * To change this template use Tools | Options | Coding | Edit Standard Headers.
+ */
+using System;
+using System.Drawing;
+using System.Windows.Forms;
+using System.Linq;
+using System.Text;
+
+using System.Collections.Generic;
+
+namespace BW_tool
+{
+	/// <summary>
+	/// Description of Join_avenue.
+	/// </summary>
+	public partial class Join_avenue : Form
+	{
+		AVENUE ja;
+		int avenue_block = 67;		
+		public Join_avenue()
+		{
+			//
+			// The InitializeComponent() call is required for Windows Forms designer support.
+			//
+			
+			InitializeComponent();
+
+			ja =  new AVENUE(MainForm.save.getBlock(avenue_block));
+			load_data();
+			
+			
+			//
+			// TODO: Add constructor code after the InitializeComponent() call.
+			//
+		}
+		
+		void load_npc()
+		{
+			npc_name.Text = ja.npc[(int)npc.Value].name;
+			npc_gender.SelectedIndex = ja.npc[(int)npc.Value].gender;
+			npc_text1.Text = ja.npc[(int)npc.Value].text1;
+			npc_text1.Text = ja.npc[(int)npc.Value].text2;
+			npc_spoken.Checked = ja.npc[(int)npc.Value].spoken;
+		}
+		void set_npc()
+		{
+			ja.npc[(int)npc.Value].name = npc_name.Text;
+			ja.npc[(int)npc.Value].gender = npc_gender.SelectedIndex;
+			ja.npc[(int)npc.Value].text1 = npc_text1.Text;
+			ja.npc[(int)npc.Value].text2 = npc_text1.Text;
+			ja.npc[(int)npc.Value].spoken = npc_spoken.Checked;
+		}
+		void Npc_applyClick(object sender, EventArgs e)
+		{
+			set_npc();
+		}
+		void NpcValueChanged(object sender, EventArgs e)
+		{
+			load_npc();
+		}
+		
+		void load_data()
+		{
+			rank.Value = ja.rank;
+			color.SelectedIndex = ja.color;
+			favorite.Text = ja.fav_phrase;
+			Impressed.Text = ja.imp_phrase;
+			title.Text = ja.title;
+			name.Text = ja.name;
+			
+			load_shop();
+			load_npc();
+			load_helper();
+			
+			shop.Value = 0;
+			npc.Value = 0;
+			helper.SelectedIndex = 0;
+		}
+		void set_data()
+		{
+			ja.rank = (int)rank.Value;
+			ja.color = color.SelectedIndex;
+			ja.fav_phrase = favorite.Text;
+			ja.imp_phrase = Impressed.Text;
+			ja.title = title.Text;
+			ja.name = name.Text;
+			
+			ja.set_people();
+		}
+		void Exit_butClick(object sender, EventArgs e)
+		{
+			this.Close();
+		}
+		void Saveexit_butClick(object sender, EventArgs e)
+		{
+			MainForm.save.setBlock(ja.Data, avenue_block);
+			this.Close();
+		}
+		void Helper_countrySelectedIndexChanged(object sender, EventArgs e)
+		{
+			
+			helper_subregion.SelectedIndex = 0;
+			helper_subregion.Items.Clear();
+			object[] a;
+			switch (helper_country.SelectedIndex)
+			{
+				case 9:
+					a= new object[helper_subregion_argentina.Items.Count];
+					helper_subregion_argentina.Items.CopyTo(a,0);
+					helper_subregion.Items.AddRange(a);
+					break;
+				case 12:
+					a = new object[helper_subregion_australia.Items.Count];
+					helper_subregion_australia.Items.CopyTo(a,0);
+					helper_subregion.Items.AddRange(a);
+					break;
+				case 28:
+					a = new object[helper_subregion_brazil.Items.Count];
+					helper_subregion_brazil.Items.CopyTo(a,0);
+					helper_subregion.Items.AddRange(a);
+					break;
+				case 36:
+					a = new object[helper_subregion_canada.Items.Count];
+					helper_subregion_canada.Items.CopyTo(a,0);
+					helper_subregion.Items.AddRange(a);
+					break;
+				case 43:
+					a = new object[helper_subregion_china.Items.Count];
+					helper_subregion_china.Items.CopyTo(a,0);
+					helper_subregion.Items.AddRange(a);
+					break;
+				case 72:
+					a = new object[helper_subregion_finland.Items.Count];
+					helper_subregion_finland.Items.CopyTo(a,0);
+					helper_subregion.Items.AddRange(a);
+					break;
+				case 73:
+					a = new object[helper_subregion_france.Items.Count];
+					helper_subregion_france.Items.CopyTo(a,0);
+					helper_subregion.Items.AddRange(a);
+					break;
+				case 79:
+					a = new object[helper_subregion_germany.Items.Count];
+					helper_subregion_germany.Items.CopyTo(a,0);
+					helper_subregion.Items.AddRange(a);
+					break;
+				case 95:
+					a = new object[helper_subregion_india.Items.Count];
+					helper_subregion_india.Items.CopyTo(a,0);
+					helper_subregion.Items.AddRange(a);
+					break;
+				case 102:
+					a = new object[helper_subregion_italy.Items.Count];
+					helper_subregion_italy.Items.CopyTo(a,0);
+					helper_subregion.Items.AddRange(a);
+					break;
+				case 105:
+					a = new object[helper_subregion_japan.Items.Count];
+					helper_subregion_japan.Items.CopyTo(a,0);
+					helper_subregion.Items.AddRange(a);
+					break;
+				case 155:
+					a = new object[helper_subregion_norway.Items.Count];
+					helper_subregion_norway.Items.CopyTo(a,0);
+					helper_subregion.Items.AddRange(a);
+					break;
+				case 166:
+					a = new object[helper_subregion_poland.Items.Count];
+					helper_subregion_poland.Items.CopyTo(a,0);
+					helper_subregion.Items.AddRange(a);
+					break;
+				case 174:
+					a = new object[helper_subregion_russia.Items.Count];
+					helper_subregion_russia.Items.CopyTo(a,0);
+					helper_subregion.Items.AddRange(a);
+					break;
+				case 195:
+					a = new object[helper_subregion_spain.Items.Count];
+					helper_subregion_spain.Items.CopyTo(a,0);
+					helper_subregion.Items.AddRange(a);
+					break;
+				case 200:
+					a = new object[helper_subregion_sweeden.Items.Count];
+					helper_subregion_sweeden.Items.CopyTo(a,0);
+					helper_subregion.Items.AddRange(a);
+					break;
+				case 218:
+					a = new object[helper_subregion_england.Items.Count];
+					helper_subregion_england.Items.CopyTo(a,0);
+					helper_subregion.Items.AddRange(a);
+					break;
+				case 220:
+					a = new object[helper_subregion_USA.Items.Count];
+					helper_subregion_USA.Items.CopyTo(a,0);
+					helper_subregion.Items.AddRange(a);
+					break;
+				default:
+					helper_subregion.Items.Add("0 None");
+					break;
+			}
+		}
+		void load_helper()
+		{
+			
+			helper_name.Text = ja.helper[helper_value].name;
+			helper_met.Text = ja.helper[helper_value].text0;
+			helper_greet1.Text = ja.helper[helper_value].text1;
+			helper_greet2.Text = ja.helper[helper_value].text2;
+			helper_sprite.Value = ja.helper[helper_value].sprite;
+			helper_country.SelectedIndex = ja.helper[helper_value].country;
+			helper_subregion.SelectedIndex = ja.helper[helper_value].subregion;
+			helper_date.Value = ja.helper[helper_value].met;
+		}
+		void set_helper()
+		{
+			ja.helper[helper_value].name = helper_name.Text;
+			ja.helper[helper_value].text0 = helper_met.Text;
+			ja.helper[helper_value].text1 = helper_greet1.Text;
+			ja.helper[helper_value].text2 = helper_greet2.Text;
+			ja.helper[helper_value].sprite = (int)helper_sprite.Value;
+			ja.helper[helper_value].country = helper_country.SelectedIndex;
+			ja.helper[helper_value].subregion = helper_subregion.SelectedIndex;
+			ja.helper[helper_value].met = helper_date.Value;
+		}
+		void Helper_applyClick(object sender, EventArgs e)
+		{
+			set_helper();
+		}
+		int helper_value = 0;
+		void HelperSelectedIndexChanged(object sender, EventArgs e)
+		{
+			helper_value = helper.SelectedIndex;
+			load_helper();
+		}
+		
+		//SHOP
+		void Shop_countrySelectedIndexChanged(object sender, EventArgs e)
+		{
+			
+			shop_subregion.SelectedIndex = 0;
+			shop_subregion.Items.Clear();
+			object[] a;
+			switch (shop_country.SelectedIndex)
+			{
+				case 9:
+					a= new object[helper_subregion_argentina.Items.Count];
+					helper_subregion_argentina.Items.CopyTo(a,0);
+					shop_subregion.Items.AddRange(a);
+					break;
+				case 12:
+					a = new object[helper_subregion_australia.Items.Count];
+					helper_subregion_australia.Items.CopyTo(a,0);
+					shop_subregion.Items.AddRange(a);
+					break;
+				case 28:
+					a = new object[helper_subregion_brazil.Items.Count];
+					helper_subregion_brazil.Items.CopyTo(a,0);
+					shop_subregion.Items.AddRange(a);
+					break;
+				case 36:
+					a = new object[helper_subregion_canada.Items.Count];
+					helper_subregion_canada.Items.CopyTo(a,0);
+					shop_subregion.Items.AddRange(a);
+					break;
+				case 43:
+					a = new object[helper_subregion_china.Items.Count];
+					helper_subregion_china.Items.CopyTo(a,0);
+					shop_subregion.Items.AddRange(a);
+					break;
+				case 72:
+					a = new object[helper_subregion_finland.Items.Count];
+					helper_subregion_finland.Items.CopyTo(a,0);
+					shop_subregion.Items.AddRange(a);
+					break;
+				case 73:
+					a = new object[helper_subregion_france.Items.Count];
+					helper_subregion_france.Items.CopyTo(a,0);
+					shop_subregion.Items.AddRange(a);
+					break;
+				case 79:
+					a = new object[helper_subregion_germany.Items.Count];
+					helper_subregion_germany.Items.CopyTo(a,0);
+					shop_subregion.Items.AddRange(a);
+					break;
+				case 95:
+					a = new object[helper_subregion_india.Items.Count];
+					helper_subregion_india.Items.CopyTo(a,0);
+					shop_subregion.Items.AddRange(a);
+					break;
+				case 102:
+					a = new object[helper_subregion_italy.Items.Count];
+					helper_subregion_italy.Items.CopyTo(a,0);
+					shop_subregion.Items.AddRange(a);
+					break;
+				case 105:
+					a = new object[helper_subregion_japan.Items.Count];
+					helper_subregion_japan.Items.CopyTo(a,0);
+					shop_subregion.Items.AddRange(a);
+					break;
+				case 155:
+					a = new object[helper_subregion_norway.Items.Count];
+					helper_subregion_norway.Items.CopyTo(a,0);
+					shop_subregion.Items.AddRange(a);
+					break;
+				case 166:
+					a = new object[helper_subregion_poland.Items.Count];
+					helper_subregion_poland.Items.CopyTo(a,0);
+					shop_subregion.Items.AddRange(a);
+					break;
+				case 174:
+					a = new object[helper_subregion_russia.Items.Count];
+					helper_subregion_russia.Items.CopyTo(a,0);
+					shop_subregion.Items.AddRange(a);
+					break;
+				case 195:
+					a = new object[helper_subregion_spain.Items.Count];
+					helper_subregion_spain.Items.CopyTo(a,0);
+					shop_subregion.Items.AddRange(a);
+					break;
+				case 200:
+					a = new object[helper_subregion_sweeden.Items.Count];
+					helper_subregion_sweeden.Items.CopyTo(a,0);
+					shop_subregion.Items.AddRange(a);
+					break;
+				case 218:
+					a = new object[helper_subregion_england.Items.Count];
+					helper_subregion_england.Items.CopyTo(a,0);
+					shop_subregion.Items.AddRange(a);
+					break;
+				case 220:
+					a = new object[helper_subregion_USA.Items.Count];
+					helper_subregion_USA.Items.CopyTo(a,0);
+					shop_subregion.Items.AddRange(a);
+					break;
+				default:
+					shop_subregion.Items.Add("0 None");
+					break;
+			}
+		}
+		void load_shop()
+		{
+			
+			shop_name.Text = ja.shop[(int)shop.Value].name;
+			shop_shout.Text = ja.shop[(int)shop.Value].shout;
+			shop_greeting.Text = ja.shop[(int)shop.Value].greeting;
+			shop_farewell.Text = ja.shop[(int)shop.Value].farewell;
+			shop_gender.SelectedIndex = ja.shop[(int)shop.Value].gender;
+			
+			shop_country.SelectedIndex = ja.shop[(int)shop.Value].country;
+			shop_subregion.SelectedIndex = ja.shop[(int)shop.Value].subregion;
+			shop_sprite.Value = ja.shop[(int)shop.Value].sprite;
+			shop_date.Value = ja.shop[(int)shop.Value].met;
+			shop_recruit.Value = ja.shop[(int)shop.Value].recruitlvl;
+			
+			shop_type.SelectedIndex = ja.shop[(int)shop.Value].shop_version;
+			shop_rank.SelectedIndex = ja.shop[(int)shop.Value].shop_level;
+			shop_store.SelectedIndex = ja.shop[(int)shop.Value].shop_type;
+			shop_exp.Value = ja.shop[(int)shop.Value].shop_exp;
+			shop_ishuman.Checked = ja.shop[(int)shop.Value].isplayer;
+			shop_inventory.Checked = ja.shop[(int)shop.Value].inventory;
+			
+		}
+		void set_shop()
+		{
+			ja.shop[(int)shop.Value].name = shop_name.Text;
+			ja.shop[(int)shop.Value].shout = shop_shout.Text;
+			ja.shop[(int)shop.Value].greeting = shop_greeting.Text;
+			ja.shop[(int)shop.Value].farewell = shop_farewell.Text;
+			ja.shop[(int)shop.Value].gender = shop_gender.SelectedIndex;
+			
+
+			ja.shop[(int)shop.Value].country = shop_country.SelectedIndex;
+			ja.shop[(int)shop.Value].subregion = shop_subregion.SelectedIndex;
+			ja.shop[(int)shop.Value].sprite = (int)shop_sprite.Value;
+			ja.shop[(int)shop.Value].met = shop_date.Value;
+			ja.shop[(int)shop.Value].recruitlvl = (int)shop_recruit.Value;
+
+			ja.shop[(int)shop.Value].shop_version = shop_type.SelectedIndex;
+			ja.shop[(int)shop.Value].shop_level = shop_rank.SelectedIndex;
+			ja.shop[(int)shop.Value].shop_type = shop_store.SelectedIndex;
+			ja.shop[(int)shop.Value].shop_exp = (int)shop_exp.Value;
+			ja.shop[(int)shop.Value].isplayer = shop_ishuman.Checked;
+			ja.shop[(int)shop.Value].inventory = shop_inventory.Checked;
+		}
+		void Shop_applyClick(object sender, EventArgs e)
+		{
+			set_shop();
+		}
+		void ShopValueChanged(object sender, EventArgs e)
+		{
+			load_shop();
+		}
+
+	public class AVENUE
+	    {
+			internal int Size = MainForm.save.getBlockLength(67);//Block 67
+	
+	        public byte[] Data;
+	        public AVENUE(byte[] data = null)
+	        {
+	            Data = data ?? new byte[Size];
+	            
+	            load_people();
+	            
+	        }
+	        public byte[] getData(int Offset, int Length)
+	        {
+	            return Data.Skip(Offset).Take(Length).ToArray();
+	        }
+	        public void setData(byte[] input, int Offset)
+	        {
+	            input.CopyTo(Data, Offset);
+	        }
+	        
+	        
+	        //Variables
+	        public AV_VISITOR[] visitor = new AV_VISITOR[8];
+	        public AV_OCCUPANT[] shop = new AV_OCCUPANT[8];
+	        public AV_NPC[] npc = new AV_NPC[12];
+	        public AV_HELPER[] helper = new AV_HELPER[4];
+	        
+	        //Visitors
+	        int VISITOR_SIZE = 0xC4;
+	        int VISITOR_OFFSET = 0x08;
+	        int VISITOR_TOTAL = 8-1;
+	        public AV_VISITOR get_visitor (int index)
+	        {
+	        	if (index > VISITOR_TOTAL) index = VISITOR_TOTAL;
+	        	return new AV_VISITOR(getData(VISITOR_OFFSET+(VISITOR_SIZE*index), VISITOR_SIZE));
+	        }
+	        public void set_visitor(AV_VISITOR visitant, int index)
+	        {
+	        	if (index > VISITOR_TOTAL) index = VISITOR_TOTAL;
+	        	setData(visitant.Data, VISITOR_OFFSET+(VISITOR_SIZE*index));
+	        }
+	        
+	        //NPC Fans
+	        int NPC_SIZE = 0x60;
+	        int NPC_OFFSET = 0x62C;
+	        int NPC_TOTAL = 12-1;
+	        public AV_NPC get_npc (int index)
+	        {
+	        	if (index > NPC_TOTAL) index = NPC_TOTAL;
+	        	return new AV_NPC(getData(NPC_OFFSET+(NPC_SIZE*index), NPC_SIZE));
+	        }
+	        public void set_npc(AV_NPC npc, int index)
+	        {
+	        	if (index > NPC_TOTAL) index = NPC_TOTAL;
+	        	setData(npc.Data, NPC_OFFSET+(NPC_SIZE*index));
+	        }
+	        
+	        //Occupants
+	        int OCCUPANT_SIZE = 0xC4;
+	        int OCCUPANT_OFFSET = 0xAAC;
+	        int OCCUPANT_TOTAL = 8-1;
+	        public AV_OCCUPANT get_occupant(int index)
+	        {
+	        	if (index > OCCUPANT_TOTAL) index = OCCUPANT_TOTAL;
+	        	return new AV_OCCUPANT(getData(OCCUPANT_OFFSET+(OCCUPANT_SIZE*index), OCCUPANT_SIZE));
+	        }
+	        public void set_occupant(AV_OCCUPANT occupant, int index)
+	        {
+	        	if (index > OCCUPANT_TOTAL) index = OCCUPANT_TOTAL;
+	        	setData(occupant.Data, OCCUPANT_OFFSET+(OCCUPANT_SIZE*index));
+	        }
+	        
+	        //Helpers
+	        int HELPER_SIZE = 0x58;
+	        int HELPER_OFFSET = 0x10CC;
+	        int HELPER_TOTAL = 4-1;
+	        public AV_HELPER get_helper(int index)
+	        {
+	        	if (index > HELPER_TOTAL) index = HELPER_TOTAL;
+	        	return new AV_HELPER(getData(HELPER_OFFSET+(HELPER_SIZE*index), HELPER_SIZE));
+	        }
+	        public void set_helper(AV_HELPER helper, int index)
+	        {
+	        	if (index > HELPER_TOTAL) index = HELPER_TOTAL;
+	        	setData(helper.Data, HELPER_OFFSET+(HELPER_SIZE*index));
+	        }
+	        
+	        public void load_people()
+	        {
+	        	int i=0;
+	            for (i=0;i<8;i++)
+	            {
+	            	visitor[i]=get_visitor(i);
+	            	shop[i]=get_occupant(i);
+	            }
+	            for (i=0;i<12;i++)
+	            {
+	            	npc[i]=get_npc(i);
+	            }
+	            for (i=0;i<4;i++)
+	            {
+	            	helper[i]=get_helper(i);
+	            }
+	        }
+	        public void set_people()
+	        {
+
+	        	int i=0;
+	            for (i=0;i<8;i++)
+	            {
+	            	set_visitor(visitor[i], i);
+	            	set_occupant(shop[i], i);
+	            }
+	            for (i=0;i<12;i++)
+	            {
+	            	set_npc(npc[i], i);
+	            }
+	            for (i=0;i<4;i++)
+	            {
+	            	set_helper(helper[i], i);
+	            }
+	        }
+	        
+	        public int rank
+	        {
+	        	get { return (int)BitConverter.ToUInt16(getData(0x13CC, 2), 0); }
+	        	set { setData(BitConverter.GetBytes((UInt16)value), 0x13CC); }
+	        }
+	        //00 Orange 01 Purple 02 Blue 03 Green
+	        public int color
+	        {
+	        	get { return (int)BitConverter.ToUInt16(getData(0x13CE, 2), 0); }
+	        	set { setData(BitConverter.GetBytes((UInt16)value), 0x13CE); }
+	        }
+	        
+	        
+	        //Helper functions from pkhex
+	        internal static string TrimFromFFFF(string input)
+	        {
+	            int index = input.IndexOf((char)0xFFFF);
+	            return index < 0 ? input : input.Substring(0, index);
+	        }
+	        public string fav_phrase
+	        {
+	            get
+	            {
+	                return TrimFromFFFF(Encoding.Unicode.GetString(Data, 0x12AC, 0x10))
+	                    .Replace("\uE08F", "\u2640") // nidoran
+	                    .Replace("\uE08E", "\u2642") // nidoran
+	                    .Replace("\u2019", "\u0027"); // farfetch'd
+	            }
+	            set
+	            {
+	                if (value.Length > 0x10/2)
+	                    value = value.Substring(0, 0x10/2); // Hard cap
+	                string TempNick = value // Replace Special Characters and add Terminator
+	                    .Replace("\u2640", "\uE08F") // nidoran
+	                    .Replace("\u2642", "\uE08E") // nidoran
+	                    .Replace("\u0027", "\u2019") // farfetch'd
+	                    .PadRight(value.Length + 1, (char)0xFFFF); // Null Terminator
+	                Encoding.Unicode.GetBytes(TempNick).CopyTo(Data, 0x12AC);
+	            }
+	        }
+	        public string imp_phrase
+	        {
+	            get
+	            {
+	                return TrimFromFFFF(Encoding.Unicode.GetString(Data, 0x12BC, 0x10))
+	                    .Replace("\uE08F", "\u2640") // nidoran
+	                    .Replace("\uE08E", "\u2642") // nidoran
+	                    .Replace("\u2019", "\u0027"); // farfetch'd
+	            }
+	            set
+	            {
+	                if (value.Length > 0x10/2)
+	                	value = value.Substring(0, 0x10/2); // Hard cap
+	                string TempNick = value // Replace Special Characters and add Terminator
+	                    .Replace("\u2640", "\uE08F") // nidoran
+	                    .Replace("\u2642", "\uE08E") // nidoran
+	                    .Replace("\u0027", "\u2019") // farfetch'd
+	                    .PadRight(value.Length + 1, (char)0xFFFF); // Null Terminator
+	                Encoding.Unicode.GetBytes(TempNick).CopyTo(Data, 0x12BC);
+	            }
+	        }
+	        public string name
+	        {
+	            get
+	            {
+	                return TrimFromFFFF(Encoding.Unicode.GetString(Data, 0x12F4, 0x1A))
+	                    .Replace("\uE08F", "\u2640") // nidoran
+	                    .Replace("\uE08E", "\u2642") // nidoran
+	                    .Replace("\u2019", "\u0027"); // farfetch'd
+	            }
+	            set
+	            {
+	                if (value.Length > 0x1A/2)
+	                    value = value.Substring(0, 0x1A/2); // Hard cap
+	                string TempNick = value // Replace Special Characters and add Terminator
+	                    .Replace("\u2640", "\uE08F") // nidoran
+	                    .Replace("\u2642", "\uE08E") // nidoran
+	                    .Replace("\u0027", "\u2019") // farfetch'd
+	                    .PadRight(value.Length + 1, (char)0xFFFF); // Null Terminator
+	                Encoding.Unicode.GetBytes(TempNick).CopyTo(Data, 0x12F4);
+	            }
+	        }
+	        public string title
+	        {
+	            get
+	            {
+	                return TrimFromFFFF(Encoding.Unicode.GetString(Data, 0x131E, 0x10))
+	                    .Replace("\uE08F", "\u2640") // nidoran
+	                    .Replace("\uE08E", "\u2642") // nidoran
+	                    .Replace("\u2019", "\u0027"); // farfetch'd
+	            }
+	            set
+	            {
+	                if (value.Length > 0x10/2)
+	                    value = value.Substring(0, 0x10/2); // Hard cap
+	                string TempNick = value // Replace Special Characters and add Terminator
+	                    .Replace("\u2640", "\uE08F") // nidoran
+	                    .Replace("\u2642", "\uE08E") // nidoran
+	                    .Replace("\u0027", "\u2019") // farfetch'd
+	                    .PadRight(value.Length + 1, (char)0xFFFF); // Null Terminator
+	                Encoding.Unicode.GetBytes(TempNick).CopyTo(Data, 0x131E);
+	            }
+	        }
+/*TO DO:
+START OFFSET: 23C00
+
+0x24E8C-0x24E9B - Player Trivia (set by avenue NPCs, see next post)
+0x24E9C-0x24EA7 - Player Activities (recent happenings to player ^)
+0x24EA8-0x24EAB - 00000000 (nothing, unused)
+0x24EAC - Your Favorite Phrase (0x10)
+0x24EBC - Your Impressed Phrase (0x10)
+0x24EF4 - Join Avenue's Name (11 characters + terminator, 0x18)
+0x24F1E - Your Title (0x10)
+*/	        
+		}
+	
+		public class AV_NPC
+	    {
+	        public byte[] Data;
+	        public AV_NPC(byte[] data = null)
+	        {
+	            Data = data ?? new byte[0x60];
+	        }
+	        public byte[] getData(int Offset, int Length)
+	        {
+	            return Data.Skip(Offset).Take(Length).ToArray();
+	        }
+	        public void setData(byte[] input, int Offset)
+	        {
+	            input.CopyTo(Data, Offset);
+	        }
+	        public string name
+	        {
+	            get
+	            {
+	                return TrimFromFFFF(Encoding.Unicode.GetString(Data, 0, 0xE))
+	                    .Replace("\uE08F", "\u2640") // nidoran
+	                    .Replace("\uE08E", "\u2642") // nidoran
+	                    .Replace("\u2019", "\u0027"); // farfetch'd
+	            }
+	            set
+	            {
+	                if (value.Length > 0xE/2)
+	                    value = value.Substring(0, 0xE/2); // Hard cap
+	                string TempNick = value // Replace Special Characters and add Terminator
+	                    .Replace("\u2640", "\uE08F") // nidoran
+	                    .Replace("\u2642", "\uE08E") // nidoran
+	                    .Replace("\u0027", "\u2019") // farfetch'd
+	                    .PadRight(value.Length + 1, (char)0xFFFF); // Null Terminator
+	                Encoding.Unicode.GetBytes(TempNick).CopyTo(Data, 0);
+	            }
+	        }
+	        public int gender
+	        {
+	            get
+	            {
+	            	if (Data[0x22] == 0x10)
+	            		return 1;
+	            	else
+	            		return 0;
+	            }
+	            set
+	            {
+	            	if (value == 1)
+	            		Data[0x22] = 0x10;
+	            	else
+	            		Data[0x22] = 0;
+	            }
+	        }
+	        public string text1
+	        {
+	            get
+	            {
+	                return TrimFromFFFF(Encoding.Unicode.GetString(Data, 0x2C, 0xE))
+	                    .Replace("\uE08F", "\u2640") // nidoran
+	                    .Replace("\uE08E", "\u2642") // nidoran
+	                    .Replace("\u2019", "\u0027"); // farfetch'd
+	            }
+	            set
+	            {
+	                if (value.Length > 0xE/2)
+	                    value = value.Substring(0, 0xE/2); // Hard cap
+	                string TempNick = value // Replace Special Characters and add Terminator
+	                    .Replace("\u2640", "\uE08F") // nidoran
+	                    .Replace("\u2642", "\uE08E") // nidoran
+	                    .Replace("\u0027", "\u2019") // farfetch'd
+	                    .PadRight(value.Length + 1, (char)0xFFFF); // Null Terminator
+	                Encoding.Unicode.GetBytes(TempNick).CopyTo(Data, 0x2C);
+	            }
+	        }
+	        public string text2
+	        {
+	            get
+	            {
+	                return TrimFromFFFF(Encoding.Unicode.GetString(Data, 0x3C, 0xE))
+	                    .Replace("\uE08F", "\u2640") // nidoran
+	                    .Replace("\uE08E", "\u2642") // nidoran
+	                    .Replace("\u2019", "\u0027"); // farfetch'd
+	            }
+	            set
+	            {
+	                if (value.Length > 0xE/2)
+	                    value = value.Substring(0, 0xE/2); // Hard cap
+	                string TempNick = value // Replace Special Characters and add Terminator
+	                    .Replace("\u2640", "\uE08F") // nidoran
+	                    .Replace("\u2642", "\uE08E") // nidoran
+	                    .Replace("\u0027", "\u2019") // farfetch'd
+	                    .PadRight(value.Length + 1, (char)0xFFFF); // Null Terminator
+	                Encoding.Unicode.GetBytes(TempNick).CopyTo(Data, 0x3C);
+	            }
+	        }
+	        public bool spoken
+	        {
+	            get
+	            {
+	            	if (Data[0x4F] == 1)
+	            		return true;
+	            	else
+	            		return false;
+	            }
+	            set
+	            {
+	            	if (value == true)
+	            		Data[0x4F] = 1;
+	            	else
+	            		Data[0x4F] = 0;
+	            }
+	        }
+	        //Helper functions from pkhex
+	        internal static string TrimFromFFFF(string input)
+	        {
+	            int index = input.IndexOf((char)0xFFFF);
+	            return index < 0 ? input : input.Substring(0, index);
+	        }
+		}
+		public class AV_HELPER
+	    {
+	        public byte[] Data;
+	        public AV_HELPER(byte[] data = null)
+	        {
+	            Data = data ?? new byte[0x58];
+	        }
+	        public byte[] getData(int Offset, int Length)
+	        {
+	            return Data.Skip(Offset).Take(Length).ToArray();
+	        }
+	        public void setData(byte[] input, int Offset)
+	        {
+	            input.CopyTo(Data, Offset);
+	        }
+	        
+	        public string name
+	        {
+	            get
+	            {
+	                return TrimFromFFFF(Encoding.Unicode.GetString(Data, 0, 0xE))
+	                    .Replace("\uE08F", "\u2640") // nidoran
+	                    .Replace("\uE08E", "\u2642") // nidoran
+	                    .Replace("\u2019", "\u0027"); // farfetch'd
+	            }
+	            set
+	            {
+	                if (value.Length > 0xE/2)
+	                    value = value.Substring(0, 0xE/2); // Hard cap
+	                string TempNick = value // Replace Special Characters and add Terminator
+	                    .Replace("\u2640", "\uE08F") // nidoran
+	                    .Replace("\u2642", "\uE08E") // nidoran
+	                    .Replace("\u0027", "\u2019") // farfetch'd
+	                    .PadRight(value.Length + 1, (char)0xFFFF); // Null Terminator
+	                Encoding.Unicode.GetBytes(TempNick).CopyTo(Data, 0);
+	            }
+	        }
+	        public string text0
+	        {
+	            get
+	            {
+	                return TrimFromFFFF(Encoding.Unicode.GetString(Data, 0x10, 0xE))
+	                    .Replace("\uE08F", "\u2640") // nidoran
+	                    .Replace("\uE08E", "\u2642") // nidoran
+	                    .Replace("\u2019", "\u0027"); // farfetch'd
+	            }
+	            set
+	            {
+	                if (value.Length > 0xE/2)
+	                    value = value.Substring(0, 0xE/2); // Hard cap
+	                string TempNick = value // Replace Special Characters and add Terminator
+	                    .Replace("\u2640", "\uE08F") // nidoran
+	                    .Replace("\u2642", "\uE08E") // nidoran
+	                    .Replace("\u0027", "\u2019") // farfetch'd
+	                    .PadRight(value.Length + 1, (char)0xFFFF); // Null Terminator
+	                Encoding.Unicode.GetBytes(TempNick).CopyTo(Data, 0x10);
+	            }
+	        }
+	        public string text1
+	        {
+	            get
+	            {
+	                return TrimFromFFFF(Encoding.Unicode.GetString(Data, 0x34, 0xE))
+	                    .Replace("\uE08F", "\u2640") // nidoran
+	                    .Replace("\uE08E", "\u2642") // nidoran
+	                    .Replace("\u2019", "\u0027"); // farfetch'd
+	            }
+	            set
+	            {
+	                if (value.Length > 0xE/2)
+	                    value = value.Substring(0, 0xE/2); // Hard cap
+	                string TempNick = value // Replace Special Characters and add Terminator
+	                    .Replace("\u2640", "\uE08F") // nidoran
+	                    .Replace("\u2642", "\uE08E") // nidoran
+	                    .Replace("\u0027", "\u2019") // farfetch'd
+	                    .PadRight(value.Length + 1, (char)0xFFFF); // Null Terminator
+	                Encoding.Unicode.GetBytes(TempNick).CopyTo(Data, 0x34);
+	            }
+	        }
+	        public string text2
+	        {
+	            get
+	            {
+	                return TrimFromFFFF(Encoding.Unicode.GetString(Data, 0x44, 0xE))
+	                    .Replace("\uE08F", "\u2640") // nidoran
+	                    .Replace("\uE08E", "\u2642") // nidoran
+	                    .Replace("\u2019", "\u0027"); // farfetch'd
+	            }
+	            set
+	            {
+	                if (value.Length > 0xE/2)
+	                    value = value.Substring(0, 0xE/2); // Hard cap
+	                string TempNick = value // Replace Special Characters and add Terminator
+	                    .Replace("\u2640", "\uE08F") // nidoran
+	                    .Replace("\u2642", "\uE08E") // nidoran
+	                    .Replace("\u0027", "\u2019") // farfetch'd
+	                    .PadRight(value.Length + 1, (char)0xFFFF); // Null Terminator
+	                Encoding.Unicode.GetBytes(TempNick).CopyTo(Data, 0x44);
+	            }
+	        }
+	        public int sprite
+	        {
+	            get
+	            {
+	            	return Data[0x2A];
+	            }
+	            set
+	            {
+	            	Data[0x2A] = ( value > 0xFF ? (byte)0xFF : (byte) value);
+	            }
+	        }
+	        public int country
+	        {
+	            get
+	            {
+	            	return Data[0xE];
+	            }
+	            set
+	            {
+	            	Data[0xE] = ( value > 0xFF ? (byte)0xFF : (byte) value);
+	            }
+	        }
+	        public int subregion
+	        {
+	            get
+	            {
+	            	return Data[0xF];
+	            }
+	            set
+	            {
+	            	Data[0xF] = ( value > 0xFF ? (byte)0xFF : (byte) value);
+	            }
+	        }
+	        public DateTime met
+	        {
+	            get
+	            {
+	            	if (Data[0x30] != 0 && Data[0x31] != 0 && Data[0x32] != 0)
+	            		return new DateTime(2000+Data[0x30], Data[0x31], Data[0x32]);
+	            	else
+	            		return new DateTime(2000, 1, 1);
+	            }
+	            set
+	            {
+	            	Data[0x30] = (byte) (value.Year-2000);
+	            	Data[0x31] = (byte) value.Month;
+	            	Data[0x32] = (byte) value.Day;
+	            }
+	        }
+	        //Helper functions from pkhex
+	        internal static string TrimFromFFFF(string input)
+	        {
+	            int index = input.IndexOf((char)0xFFFF);
+	            return index < 0 ? input : input.Substring(0, index);
+	        }
+		}
+		public class AV_OCCUPANT
+	    {
+	        public byte[] Data;
+	        public AV_OCCUPANT(byte[] data = null)
+	        {
+	            Data = data ?? new byte[0xC4];
+	        }
+	        public byte[] getData(int Offset, int Length)
+	        {
+	            return Data.Skip(Offset).Take(Length).ToArray();
+	        }
+	        public void setData(byte[] input, int Offset)
+	        {
+	            input.CopyTo(Data, Offset);
+	        }
+	        
+	        public string name
+	        {
+	            get
+	            {
+	                return TrimFromFFFF(Encoding.Unicode.GetString(Data, 0, 0xE))
+	                    .Replace("\uE08F", "\u2640") // nidoran
+	                    .Replace("\uE08E", "\u2642") // nidoran
+	                    .Replace("\u2019", "\u0027"); // farfetch'd
+	            }
+	            set
+	            {
+	                if (value.Length > 0xE/2)
+	                    value = value.Substring(0, 0xE/2); // Hard cap
+	                string TempNick = value // Replace Special Characters and add Terminator
+	                    .Replace("\u2640", "\uE08F") // nidoran
+	                    .Replace("\u2642", "\uE08E") // nidoran
+	                    .Replace("\u0027", "\u2019") // farfetch'd
+	                    .PadRight(value.Length + 1, (char)0xFFFF); // Null Terminator
+	                Encoding.Unicode.GetBytes(TempNick).CopyTo(Data, 0);
+	            }
+	        }
+	        public int country
+	        {
+	            get
+	            {
+	            	return Data[0xE];
+	            }
+	            set
+	            {
+	            	Data[0xE] = ( value > 0xFF ? (byte)0xFF : (byte) value);
+	            }
+	        }
+	        public int subregion
+	        {
+	            get
+	            {
+	            	return Data[0xF];
+	            }
+	            set
+	            {
+	            	Data[0xF] = ( value > 0xFF ? (byte)0xFF : (byte) value);
+	            }
+	        }
+	        public string shout
+	        {
+	            get
+	            {
+	                return TrimFromFFFF(Encoding.Unicode.GetString(Data, 0x10, 0xE))
+	                    .Replace("\uE08F", "\u2640") // nidoran
+	                    .Replace("\uE08E", "\u2642") // nidoran
+	                    .Replace("\u2019", "\u0027"); // farfetch'd
+	            }
+	            set
+	            {
+	                if (value.Length > 0xE/2)
+	                    value = value.Substring(0, 0xE/2); // Hard cap
+	                string TempNick = value // Replace Special Characters and add Terminator
+	                    .Replace("\u2640", "\uE08F") // nidoran
+	                    .Replace("\u2642", "\uE08E") // nidoran
+	                    .Replace("\u0027", "\u2019") // farfetch'd
+	                    .PadRight(value.Length + 1, (char)0xFFFF); // Null Terminator
+	                Encoding.Unicode.GetBytes(TempNick).CopyTo(Data, 0x10);
+	            }
+	        }
+	        public int gender
+	        {
+	            get
+	            {
+	            	if (Data[0x22] == 0x10)
+	            		return 1;
+	            	else
+	            		return 0;
+	            }
+	            set
+	            {
+	            	if (value == 1)
+	            		Data[0x22] = 0x10;
+	            	else
+	            		Data[0x22] = 0;
+	            }
+	        }
+	        public int sprite
+	        {
+	            get
+	            {
+	            	return Data[0x2A];
+	            }
+	            set
+	            {
+	            	Data[0x2A] = ( value > 0xFF ? (byte)0xFF : (byte) value);
+	            }
+	        }
+	        public int recruitlvl
+	        {
+	            get
+	            {
+	            	return Data[0x2C];
+	            }
+	            set
+	            {
+	            	Data[0x2C] = ( value > 0xFF ? (byte)0xFF : (byte) value);
+	            }
+	        }
+	        public string greeting
+	        {
+	            get
+	            {
+	                return TrimFromFFFF(Encoding.Unicode.GetString(Data, 0x80, 0xE))
+	                    .Replace("\uE08F", "\u2640") // nidoran
+	                    .Replace("\uE08E", "\u2642") // nidoran
+	                    .Replace("\u2019", "\u0027"); // farfetch'd
+	            }
+	            set
+	            {
+	                if (value.Length > 0xE/2)
+	                    value = value.Substring(0, 0xE/2); // Hard cap
+	                string TempNick = value // Replace Special Characters and add Terminator
+	                    .Replace("\u2640", "\uE08F") // nidoran
+	                    .Replace("\u2642", "\uE08E") // nidoran
+	                    .Replace("\u0027", "\u2019") // farfetch'd
+	                    .PadRight(value.Length + 1, (char)0xFFFF); // Null Terminator
+	                Encoding.Unicode.GetBytes(TempNick).CopyTo(Data, 0x80);
+	            }
+	        }
+	        public string farewell
+	        {
+	            get
+	            {
+	                return TrimFromFFFF(Encoding.Unicode.GetString(Data, 0x90, 0xE))
+	                    .Replace("\uE08F", "\u2640") // nidoran
+	                    .Replace("\uE08E", "\u2642") // nidoran
+	                    .Replace("\u2019", "\u0027"); // farfetch'd
+	            }
+	            set
+	            {
+	                if (value.Length > 0xE/2)
+	                    value = value.Substring(0, 0xE/2); // Hard cap
+	                string TempNick = value // Replace Special Characters and add Terminator
+	                    .Replace("\u2640", "\uE08F") // nidoran
+	                    .Replace("\u2642", "\uE08E") // nidoran
+	                    .Replace("\u0027", "\u2019") // farfetch'd
+	                    .PadRight(value.Length + 1, (char)0xFFFF); // Null Terminator
+	                Encoding.Unicode.GetBytes(TempNick).CopyTo(Data, 0x90);
+	            }
+	        }
+	        public bool isplayer
+	        {
+	            get
+	            {
+	            	if (Data[0xA0] == 1)
+	            		return true;
+	            	else
+	            		return false;
+	            }
+	            set
+	            {
+	            	if (value == true)
+	            		Data[0xA0] = (byte) 1;
+	            	else
+	            		Data[0xA0] = (byte) 0;
+	            }
+	        }
+	        public DateTime met
+	        {
+	            get
+	            {
+	            	if (Data[0xA3] != 0 && Data[0xA4] != 0 && Data[0xA5] != 0)
+	            		return new DateTime(2000+Data[0xA3], Data[0xA4], Data[0xA5]);
+	            	else
+	            		return new DateTime(2000, 1, 1);
+	            }
+	            set
+	            {
+	            	Data[0xA3] = (byte) (value.Year-2000);
+	            	Data[0xA4] = (byte) value.Month;
+	            	Data[0xA5] = (byte) value.Day;
+	            }
+	        }
+	        public int av_rank
+	        {
+	            get
+	            {
+	            	return Data[0xAB];
+	            }
+	            set
+	            {
+	            	Data[0xAB] = ( value > 0xFF ? (byte)0xFF : (byte) value);
+	            }
+	        }
+	        
+	        public int shop_rank
+	        {
+	            get
+	            {
+	            	return Data[0xAD];
+	            }
+	            set
+	            {
+	            	Data[0xAD] = ( value > 10 ? (byte) 10 : (byte) value);
+	            }
+	        }
+	        
+	        public int shop_exp
+	        {
+	            get
+	            {
+	            	return BitConverter.ToUInt16(getData(0xAD, 2), 0);
+	            }
+	            set
+	            {
+	            	UInt16 exp = 0;
+	            	if (value > 0xFFFF)
+	            		exp = (UInt16)0xFFFF;
+	            	else
+	            		exp = (UInt16) value;
+	            	setData(BitConverter.GetBytes(exp), 0xAD);
+	            }
+	        }
+	        
+	        public bool inventory
+	        {
+	            get
+	            {
+	            	if (Data[0xB0] == 1)
+	            		return true;
+	            	else
+	            		return false;
+	            }
+	            set
+	            {
+	            	if (value == true)
+	            		Data[0xB0] = (byte) 1;
+	            	else
+	            		Data[0xB0] = (byte) 0;
+	            }
+	        }
+	        
+	        public int shop_version //0 black, 1 white, 2 black2, 3 white3
+	        {
+	            get
+	            {
+	            	return Data[0xB4]/0x50;
+	            }
+	            set
+	            {
+	            	if(value > 0x3)
+	            		Data[0xB4] = (byte)(3*0x50 + shop_type*0xA + shop_level);
+	            	else
+	            		Data[0xB4] = (byte)(value*0x50 + shop_type*0xA + shop_level);
+	            }
+	        }
+	        public int shop_level // 0-9 (1-10)
+	        {
+	            get
+	            {
+	            	MessageBox.Show(Data[0xB4].ToString("X")+"-"+(((Data[0xB4] % 0x50) -1) % 0xA).ToString());
+	            	return ((Data[0xB4] % 0x50) -1) % 0xA;
+	            }
+	            set
+	            {
+	            	if(value > 0x9)
+	            		Data[0xB4] = (byte)(shop_version*0x50 + shop_type*0xA + 0x9);
+	            	else
+	            		Data[0xB4] = (byte)(shop_version*0x50 + shop_type*0xA + value);
+	            }
+	        }
+	        public int shop_type // 0=raffle, 1=salon, 2 = market, 3=florist, 4 = dojo, 5=nurse, 6=antique, 7=cafe
+	        {
+	            get
+	            {
+	            	return (Data[0xB4] % 0x50) / 0xA;
+	            }
+	            set
+	            {
+	            	if(value > 0x7)
+	            		Data[0xB4] = (byte)(shop_version*0x50 + 0x7*0xA + shop_level);
+	            	else
+	            		Data[0xB4] = (byte)(shop_version*0x50 + value*0xA + shop_level);
+	            }
+	        }
+	        
+	        //Helper functions from pkhex
+	        internal static string TrimFromFFFF(string input)
+	        {
+	            int index = input.IndexOf((char)0xFFFF);
+	            return index < 0 ? input : input.Substring(0, index);
+	        }
+		}
+
+		public class AV_VISITOR
+	    {
+	        public byte[] Data;
+	        public AV_VISITOR(byte[] data = null)
+	        {
+	            Data = data ?? new byte[0xC4];
+	        }
+	        public byte[] getData(int Offset, int Length)
+	        {
+	            return Data.Skip(Offset).Take(Length).ToArray();
+	        }
+	        public void setData(byte[] input, int Offset)
+	        {
+	            input.CopyTo(Data, Offset);
+	        }
+	        //Helper functions from pkhex
+	        internal static string TrimFromFFFF(string input)
+	        {
+	            int index = input.IndexOf((char)0xFFFF);
+	            return index < 0 ? input : input.Substring(0, index);
+	        }
+		}
+	}
+}

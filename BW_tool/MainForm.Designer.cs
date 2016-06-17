@@ -26,6 +26,7 @@ namespace BW_tool
 		private System.Windows.Forms.Button medal_but;
 		private System.Windows.Forms.Button forest_but;
 		private System.Windows.Forms.Button key_but;
+		private System.Windows.Forms.Button join_but;
 		
 		/// <summary>
 		/// Disposes resources used by the form.
@@ -60,6 +61,7 @@ namespace BW_tool
 			this.medal_but = new System.Windows.Forms.Button();
 			this.forest_but = new System.Windows.Forms.Button();
 			this.key_but = new System.Windows.Forms.Button();
+			this.join_but = new System.Windows.Forms.Button();
 			this.SuspendLayout();
 			// 
 			// loadsave_but
@@ -186,11 +188,23 @@ namespace BW_tool
 			this.key_but.UseVisualStyleBackColor = true;
 			this.key_but.Click += new System.EventHandler(this.Key_butClick);
 			// 
+			// join_but
+			// 
+			this.join_but.Enabled = false;
+			this.join_but.Location = new System.Drawing.Point(12, 136);
+			this.join_but.Name = "join_but";
+			this.join_but.Size = new System.Drawing.Size(140, 23);
+			this.join_but.TabIndex = 12;
+			this.join_but.Text = "Join Avenue";
+			this.join_but.UseVisualStyleBackColor = true;
+			this.join_but.Click += new System.EventHandler(this.Join_butClick);
+			// 
 			// MainForm
 			// 
 			this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
 			this.ClientSize = new System.Drawing.Size(503, 192);
+			this.Controls.Add(this.join_but);
 			this.Controls.Add(this.key_but);
 			this.Controls.Add(this.forest_but);
 			this.Controls.Add(this.medal_but);
