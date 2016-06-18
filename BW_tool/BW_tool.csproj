@@ -79,6 +79,10 @@
     <Compile Include="Editors\Medals.Designer.cs">
       <DependentUpon>Medals.cs</DependentUpon>
     </Compile>
+    <Compile Include="Editors\TrainerInfo.cs" />
+    <Compile Include="Editors\TrainerInfo.Designer.cs">
+      <DependentUpon>TrainerInfo.cs</DependentUpon>
+    </Compile>
     <Compile Include="Editors\TrainerRec.cs" />
     <Compile Include="Editors\TrainerRec.Designer.cs">
       <DependentUpon>TrainerRec.cs</DependentUpon>
@@ -121,6 +125,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Editors\Medals.resx">
       <DependentUpon>Medals.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Editors\TrainerInfo.resx">
+      <DependentUpon>TrainerInfo.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Editors\TrainerRec.resx">
       <DependentUpon>TrainerRec.cs</DependentUpon>

@@ -27,6 +27,7 @@ namespace BW_tool
 		private System.Windows.Forms.Button forest_but;
 		private System.Windows.Forms.Button key_but;
 		private System.Windows.Forms.Button join_but;
+		private System.Windows.Forms.Button trainer_but;
 		
 		/// <summary>
 		/// Disposes resources used by the form.
@@ -62,6 +63,7 @@ namespace BW_tool
 			this.forest_but = new System.Windows.Forms.Button();
 			this.key_but = new System.Windows.Forms.Button();
 			this.join_but = new System.Windows.Forms.Button();
+			this.trainer_but = new System.Windows.Forms.Button();
 			this.SuspendLayout();
 			// 
 			// loadsave_but
@@ -158,7 +160,7 @@ namespace BW_tool
 			// medal_but
 			// 
 			this.medal_but.Enabled = false;
-			this.medal_but.Location = new System.Drawing.Point(158, 107);
+			this.medal_but.Location = new System.Drawing.Point(12, 165);
 			this.medal_but.Name = "medal_but";
 			this.medal_but.Size = new System.Drawing.Size(140, 23);
 			this.medal_but.TabIndex = 9;
@@ -199,11 +201,23 @@ namespace BW_tool
 			this.join_but.UseVisualStyleBackColor = true;
 			this.join_but.Click += new System.EventHandler(this.Join_butClick);
 			// 
+			// trainer_but
+			// 
+			this.trainer_but.Enabled = false;
+			this.trainer_but.Location = new System.Drawing.Point(158, 107);
+			this.trainer_but.Name = "trainer_but";
+			this.trainer_but.Size = new System.Drawing.Size(140, 23);
+			this.trainer_but.TabIndex = 13;
+			this.trainer_but.Text = "Trainer Info";
+			this.trainer_but.UseVisualStyleBackColor = true;
+			this.trainer_but.Click += new System.EventHandler(this.Trainer_butClick);
+			// 
 			// MainForm
 			// 
 			this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
 			this.ClientSize = new System.Drawing.Size(503, 192);
+			this.Controls.Add(this.trainer_but);
 			this.Controls.Add(this.join_but);
 			this.Controls.Add(this.key_but);
 			this.Controls.Add(this.forest_but);

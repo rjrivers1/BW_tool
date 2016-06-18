@@ -67,6 +67,7 @@ namespace BW_tool
 					forest_but.Enabled = true;
 					key_but.Enabled = true;
 					join_but.Enabled = true;
+					trainer_but.Enabled = true;
 				}
 				else if (save.BW)
 				{
@@ -82,6 +83,7 @@ namespace BW_tool
 					forest_but.Enabled = true;
 					key_but.Enabled = false;
 					join_but.Enabled = false;
+					trainer_but.Enabled = true;
 				}
 				else versiontext.Text = "Invalid file";
 
@@ -99,6 +101,7 @@ namespace BW_tool
 				forest_but.Enabled = false;
 				key_but.Enabled = false;
 				join_but.Enabled = false;
+				trainer_but.Enabled = false;
 			}
 		}
 		void Save_butClick(object sender, EventArgs e)
@@ -153,6 +156,11 @@ namespace BW_tool
 		{
 			Form join = new Join_avenue();
 			join.ShowDialog();
+		}
+		void Trainer_butClick(object sender, EventArgs e)
+		{
+			Form trainer = new TrainerInfo();
+			trainer.ShowDialog();
 		}
 	}
 }
