@@ -28,6 +28,7 @@ namespace BW_tool
 		private System.Windows.Forms.Button key_but;
 		private System.Windows.Forms.Button join_but;
 		private System.Windows.Forms.Button trainer_but;
+		private System.Windows.Forms.Button about;
 		
 		/// <summary>
 		/// Disposes resources used by the form.
@@ -64,6 +65,7 @@ namespace BW_tool
 			this.key_but = new System.Windows.Forms.Button();
 			this.join_but = new System.Windows.Forms.Button();
 			this.trainer_but = new System.Windows.Forms.Button();
+			this.about = new System.Windows.Forms.Button();
 			this.SuspendLayout();
 			// 
 			// loadsave_but
@@ -212,12 +214,23 @@ namespace BW_tool
 			this.trainer_but.UseVisualStyleBackColor = true;
 			this.trainer_but.Click += new System.EventHandler(this.Trainer_butClick);
 			// 
+			// about
+			// 
+			this.about.Location = new System.Drawing.Point(479, 166);
+			this.about.Name = "about";
+			this.about.Size = new System.Drawing.Size(17, 22);
+			this.about.TabIndex = 14;
+			this.about.Text = "?";
+			this.about.UseVisualStyleBackColor = true;
+			this.about.Click += new System.EventHandler(this.AboutClick);
+			// 
 			// MainForm
 			// 
 			this.AllowDrop = true;
 			this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
 			this.ClientSize = new System.Drawing.Size(503, 192);
+			this.Controls.Add(this.about);
 			this.Controls.Add(this.trainer_but);
 			this.Controls.Add(this.join_but);
 			this.Controls.Add(this.key_but);
@@ -233,7 +246,7 @@ namespace BW_tool
 			this.Controls.Add(this.savegamename);
 			this.Controls.Add(this.loadsave_but);
 			this.Name = "MainForm";
-			this.Text = "Gen V save tool";
+			this.Text = "Gen V Save Tool by suloku";
 			this.DragDrop += new System.Windows.Forms.DragEventHandler(this.MainScreenDragDrop);
 			this.DragEnter += new System.Windows.Forms.DragEventHandler(this.MainScreenDragEnter);
 			this.ResumeLayout(false);

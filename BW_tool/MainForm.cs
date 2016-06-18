@@ -175,5 +175,9 @@ namespace BW_tool
 			Form trainer = new TrainerInfo();
 			trainer.ShowDialog();
 		}
+		void AboutClick(object sender, EventArgs e)
+		{
+			MessageBox.Show("Pokémon Generation 5 save tool by suloku '16\n\nThanks to many people that I'm probably missing out now, but those who shall not be missed are BlackShark for many research and information and kaphotics for reference on pkhex source code and research at project pokemon forums.");
+		}
 	}
 }
