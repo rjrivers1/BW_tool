@@ -62,21 +62,30 @@ namespace BW_tool
 			}
 			public static int load_file(ref byte[] buffer, ref string path, string filter)
 	        {
-	            OpenFileDialog openFD = new OpenFileDialog();
-	            //openFD.InitialDirectory = "c:\\";
-	            openFD.Filter = filter;
-	            if (openFD.ShowDialog() == DialogResult.OK)
-	            {
-	                #region filename
-	                path = openFD.FileName;
-	                //MessageBox.Show(path.ToString());
-	                #endregion
-	                _read_data(ref buffer, path);
-	                //MessageBox.Show(buffer.Length.ToString());
-	                return buffer.Length;
-	            }else{
-	            	return -1;
-	            }
+				
+				if (path == null)
+				{
+		            OpenFileDialog openFD = new OpenFileDialog();
+		            //openFD.InitialDirectory = "c:\\";
+		            openFD.Filter = filter;
+		            if (openFD.ShowDialog() == DialogResult.OK)
+		            {
+		                #region filename
+	                	path = openFD.FileName;
+		                //MessageBox.Show(path.ToString());
+		                #endregion
+		                _read_data(ref buffer, path);
+		                //MessageBox.Show(buffer.Length.ToString());
+		                return buffer.Length;
+		            }else{
+		            	return -1;
+		            }
+				}
+				else
+				{
+					_read_data(ref buffer, path);
+					return buffer.Length;
+				}
 	            
 	        }
 			public static void save_data(byte[] buffer)

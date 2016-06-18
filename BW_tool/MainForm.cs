@@ -38,12 +38,25 @@ namespace BW_tool
 		public byte[] savebuffer;
 		public static SAV5 save;
 
-
+		void MainScreenDragEnter(object sender, DragEventArgs e)
+		{
+			e.Effect = DragDropEffects.All;
+		}
+		void MainScreenDragDrop(object sender, DragEventArgs e)
+		{
+			string[] files = (string[])e.Data.GetData(DataFormats.FileDrop, false);
+			load_savegame(files[0]);
+		}
 		void Loadsave_butClick(object sender, EventArgs e)
 		{
-			versiontext.Text = "";
-			string path = null;
+			load_savegame(null);
+		}
+		void load_savegame(string filepath)
+		{
+			string path = filepath;
 			int filesize = FileIO.load_file(ref savebuffer, ref path, dsfilter);
+			versiontext.Text = "";
+
 			if( filesize == SAV5.SIZERAW || filesize == SAV5.SIZERAW+122 )
 			{
 				//Convert DSV to SAV

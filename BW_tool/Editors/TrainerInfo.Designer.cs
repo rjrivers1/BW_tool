@@ -17,7 +17,7 @@ namespace BW_tool
 		private System.Windows.Forms.Label label1;
 		private System.Windows.Forms.Label label2;
 		private System.Windows.Forms.Label label3;
-		private System.Windows.Forms.Label label4;
+		private System.Windows.Forms.Label rival_label;
 		private System.Windows.Forms.Label label5;
 		private System.Windows.Forms.Label label6;
 		private System.Windows.Forms.Label label7;
@@ -43,20 +43,20 @@ namespace BW_tool
 		private System.Windows.Forms.Button Saveexit_but;
 		private System.Windows.Forms.CheckBox badge1;
 		private System.Windows.Forms.DateTimePicker badge1_date;
-		private System.Windows.Forms.DateTimePicker dateTimePicker1;
-		private System.Windows.Forms.CheckBox checkBox1;
-		private System.Windows.Forms.DateTimePicker dateTimePicker2;
-		private System.Windows.Forms.CheckBox checkBox2;
-		private System.Windows.Forms.DateTimePicker dateTimePicker3;
-		private System.Windows.Forms.CheckBox checkBox3;
-		private System.Windows.Forms.DateTimePicker dateTimePicker4;
-		private System.Windows.Forms.CheckBox checkBox4;
-		private System.Windows.Forms.DateTimePicker dateTimePicker5;
-		private System.Windows.Forms.CheckBox checkBox5;
-		private System.Windows.Forms.DateTimePicker dateTimePicker6;
-		private System.Windows.Forms.CheckBox checkBox6;
-		private System.Windows.Forms.DateTimePicker dateTimePicker7;
-		private System.Windows.Forms.CheckBox checkBox7;
+		private System.Windows.Forms.DateTimePicker badge2_date;
+		private System.Windows.Forms.CheckBox badge2;
+		private System.Windows.Forms.DateTimePicker badge3_date;
+		private System.Windows.Forms.CheckBox badge3;
+		private System.Windows.Forms.DateTimePicker badge4_date;
+		private System.Windows.Forms.CheckBox badge4;
+		private System.Windows.Forms.DateTimePicker badge5_date;
+		private System.Windows.Forms.CheckBox badge5;
+		private System.Windows.Forms.DateTimePicker badge6_date;
+		private System.Windows.Forms.CheckBox badge6;
+		private System.Windows.Forms.DateTimePicker badge7_date;
+		private System.Windows.Forms.CheckBox badge7;
+		private System.Windows.Forms.DateTimePicker badge8_date;
+		private System.Windows.Forms.CheckBox badge8;
 		
 		/// <summary>
 		/// Disposes resources used by the form.
@@ -82,7 +82,7 @@ namespace BW_tool
 			this.label1 = new System.Windows.Forms.Label();
 			this.label2 = new System.Windows.Forms.Label();
 			this.label3 = new System.Windows.Forms.Label();
-			this.label4 = new System.Windows.Forms.Label();
+			this.rival_label = new System.Windows.Forms.Label();
 			this.label5 = new System.Windows.Forms.Label();
 			this.label6 = new System.Windows.Forms.Label();
 			this.label7 = new System.Windows.Forms.Label();
@@ -108,20 +108,20 @@ namespace BW_tool
 			this.Saveexit_but = new System.Windows.Forms.Button();
 			this.badge1 = new System.Windows.Forms.CheckBox();
 			this.badge1_date = new System.Windows.Forms.DateTimePicker();
-			this.dateTimePicker1 = new System.Windows.Forms.DateTimePicker();
-			this.checkBox1 = new System.Windows.Forms.CheckBox();
-			this.dateTimePicker2 = new System.Windows.Forms.DateTimePicker();
-			this.checkBox2 = new System.Windows.Forms.CheckBox();
-			this.dateTimePicker3 = new System.Windows.Forms.DateTimePicker();
-			this.checkBox3 = new System.Windows.Forms.CheckBox();
-			this.dateTimePicker4 = new System.Windows.Forms.DateTimePicker();
-			this.checkBox4 = new System.Windows.Forms.CheckBox();
-			this.dateTimePicker5 = new System.Windows.Forms.DateTimePicker();
-			this.checkBox5 = new System.Windows.Forms.CheckBox();
-			this.dateTimePicker6 = new System.Windows.Forms.DateTimePicker();
-			this.checkBox6 = new System.Windows.Forms.CheckBox();
-			this.dateTimePicker7 = new System.Windows.Forms.DateTimePicker();
-			this.checkBox7 = new System.Windows.Forms.CheckBox();
+			this.badge2_date = new System.Windows.Forms.DateTimePicker();
+			this.badge2 = new System.Windows.Forms.CheckBox();
+			this.badge3_date = new System.Windows.Forms.DateTimePicker();
+			this.badge3 = new System.Windows.Forms.CheckBox();
+			this.badge4_date = new System.Windows.Forms.DateTimePicker();
+			this.badge4 = new System.Windows.Forms.CheckBox();
+			this.badge5_date = new System.Windows.Forms.DateTimePicker();
+			this.badge5 = new System.Windows.Forms.CheckBox();
+			this.badge6_date = new System.Windows.Forms.DateTimePicker();
+			this.badge6 = new System.Windows.Forms.CheckBox();
+			this.badge7_date = new System.Windows.Forms.DateTimePicker();
+			this.badge7 = new System.Windows.Forms.CheckBox();
+			this.badge8_date = new System.Windows.Forms.DateTimePicker();
+			this.badge8 = new System.Windows.Forms.CheckBox();
 			this.groupBox1.SuspendLayout();
 			((System.ComponentModel.ISupportInitialize)(this.seconds)).BeginInit();
 			((System.ComponentModel.ISupportInitialize)(this.minutes)).BeginInit();
@@ -156,13 +156,13 @@ namespace BW_tool
 			this.label3.TabIndex = 2;
 			this.label3.Text = "SID";
 			// 
-			// label4
+			// rival_label
 			// 
-			this.label4.Location = new System.Drawing.Point(14, 268);
-			this.label4.Name = "label4";
-			this.label4.Size = new System.Drawing.Size(51, 23);
-			this.label4.TabIndex = 3;
-			this.label4.Text = "Rival";
+			this.rival_label.Location = new System.Drawing.Point(14, 268);
+			this.rival_label.Name = "rival_label";
+			this.rival_label.Size = new System.Drawing.Size(51, 23);
+			this.rival_label.TabIndex = 3;
+			this.rival_label.Text = "Rival";
 			// 
 			// label5
 			// 
@@ -441,137 +441,137 @@ namespace BW_tool
 			this.badge1_date.Size = new System.Drawing.Size(200, 20);
 			this.badge1_date.TabIndex = 21;
 			// 
-			// dateTimePicker1
+			// badge2_date
 			// 
-			this.dateTimePicker1.Location = new System.Drawing.Point(317, 153);
-			this.dateTimePicker1.Name = "dateTimePicker1";
-			this.dateTimePicker1.Size = new System.Drawing.Size(200, 20);
-			this.dateTimePicker1.TabIndex = 23;
+			this.badge2_date.Location = new System.Drawing.Point(317, 153);
+			this.badge2_date.Name = "badge2_date";
+			this.badge2_date.Size = new System.Drawing.Size(200, 20);
+			this.badge2_date.TabIndex = 23;
 			// 
-			// checkBox1
+			// badge2
 			// 
-			this.checkBox1.Location = new System.Drawing.Point(250, 152);
-			this.checkBox1.Name = "checkBox1";
-			this.checkBox1.Size = new System.Drawing.Size(125, 29);
-			this.checkBox1.TabIndex = 22;
-			this.checkBox1.Text = "Badge 1";
-			this.checkBox1.UseVisualStyleBackColor = true;
+			this.badge2.Location = new System.Drawing.Point(250, 152);
+			this.badge2.Name = "badge2";
+			this.badge2.Size = new System.Drawing.Size(125, 29);
+			this.badge2.TabIndex = 22;
+			this.badge2.Text = "Badge 2";
+			this.badge2.UseVisualStyleBackColor = true;
 			// 
-			// dateTimePicker2
+			// badge3_date
 			// 
-			this.dateTimePicker2.Location = new System.Drawing.Point(317, 179);
-			this.dateTimePicker2.Name = "dateTimePicker2";
-			this.dateTimePicker2.Size = new System.Drawing.Size(200, 20);
-			this.dateTimePicker2.TabIndex = 25;
+			this.badge3_date.Location = new System.Drawing.Point(317, 179);
+			this.badge3_date.Name = "badge3_date";
+			this.badge3_date.Size = new System.Drawing.Size(200, 20);
+			this.badge3_date.TabIndex = 25;
 			// 
-			// checkBox2
+			// badge3
 			// 
-			this.checkBox2.Location = new System.Drawing.Point(250, 178);
-			this.checkBox2.Name = "checkBox2";
-			this.checkBox2.Size = new System.Drawing.Size(125, 29);
-			this.checkBox2.TabIndex = 24;
-			this.checkBox2.Text = "Badge 1";
-			this.checkBox2.UseVisualStyleBackColor = true;
+			this.badge3.Location = new System.Drawing.Point(250, 178);
+			this.badge3.Name = "badge3";
+			this.badge3.Size = new System.Drawing.Size(125, 29);
+			this.badge3.TabIndex = 24;
+			this.badge3.Text = "Badge 3";
+			this.badge3.UseVisualStyleBackColor = true;
 			// 
-			// dateTimePicker3
+			// badge4_date
 			// 
-			this.dateTimePicker3.Location = new System.Drawing.Point(317, 205);
-			this.dateTimePicker3.Name = "dateTimePicker3";
-			this.dateTimePicker3.Size = new System.Drawing.Size(200, 20);
-			this.dateTimePicker3.TabIndex = 27;
+			this.badge4_date.Location = new System.Drawing.Point(317, 205);
+			this.badge4_date.Name = "badge4_date";
+			this.badge4_date.Size = new System.Drawing.Size(200, 20);
+			this.badge4_date.TabIndex = 27;
 			// 
-			// checkBox3
+			// badge4
 			// 
-			this.checkBox3.Location = new System.Drawing.Point(250, 204);
-			this.checkBox3.Name = "checkBox3";
-			this.checkBox3.Size = new System.Drawing.Size(125, 29);
-			this.checkBox3.TabIndex = 26;
-			this.checkBox3.Text = "Badge 1";
-			this.checkBox3.UseVisualStyleBackColor = true;
+			this.badge4.Location = new System.Drawing.Point(250, 204);
+			this.badge4.Name = "badge4";
+			this.badge4.Size = new System.Drawing.Size(125, 29);
+			this.badge4.TabIndex = 26;
+			this.badge4.Text = "Badge 4";
+			this.badge4.UseVisualStyleBackColor = true;
 			// 
-			// dateTimePicker4
+			// badge5_date
 			// 
-			this.dateTimePicker4.Location = new System.Drawing.Point(317, 231);
-			this.dateTimePicker4.Name = "dateTimePicker4";
-			this.dateTimePicker4.Size = new System.Drawing.Size(200, 20);
-			this.dateTimePicker4.TabIndex = 29;
+			this.badge5_date.Location = new System.Drawing.Point(317, 231);
+			this.badge5_date.Name = "badge5_date";
+			this.badge5_date.Size = new System.Drawing.Size(200, 20);
+			this.badge5_date.TabIndex = 29;
 			// 
-			// checkBox4
+			// badge5
 			// 
-			this.checkBox4.Location = new System.Drawing.Point(250, 230);
-			this.checkBox4.Name = "checkBox4";
-			this.checkBox4.Size = new System.Drawing.Size(125, 29);
-			this.checkBox4.TabIndex = 28;
-			this.checkBox4.Text = "Badge 1";
-			this.checkBox4.UseVisualStyleBackColor = true;
+			this.badge5.Location = new System.Drawing.Point(250, 230);
+			this.badge5.Name = "badge5";
+			this.badge5.Size = new System.Drawing.Size(125, 29);
+			this.badge5.TabIndex = 28;
+			this.badge5.Text = "Badge 5";
+			this.badge5.UseVisualStyleBackColor = true;
 			// 
-			// dateTimePicker5
+			// badge6_date
 			// 
-			this.dateTimePicker5.Location = new System.Drawing.Point(317, 257);
-			this.dateTimePicker5.Name = "dateTimePicker5";
-			this.dateTimePicker5.Size = new System.Drawing.Size(200, 20);
-			this.dateTimePicker5.TabIndex = 31;
+			this.badge6_date.Location = new System.Drawing.Point(317, 257);
+			this.badge6_date.Name = "badge6_date";
+			this.badge6_date.Size = new System.Drawing.Size(200, 20);
+			this.badge6_date.TabIndex = 31;
 			// 
-			// checkBox5
+			// badge6
 			// 
-			this.checkBox5.Location = new System.Drawing.Point(250, 256);
-			this.checkBox5.Name = "checkBox5";
-			this.checkBox5.Size = new System.Drawing.Size(125, 29);
-			this.checkBox5.TabIndex = 30;
-			this.checkBox5.Text = "Badge 1";
-			this.checkBox5.UseVisualStyleBackColor = true;
+			this.badge6.Location = new System.Drawing.Point(250, 256);
+			this.badge6.Name = "badge6";
+			this.badge6.Size = new System.Drawing.Size(125, 29);
+			this.badge6.TabIndex = 30;
+			this.badge6.Text = "Badge 6";
+			this.badge6.UseVisualStyleBackColor = true;
 			// 
-			// dateTimePicker6
+			// badge7_date
 			// 
-			this.dateTimePicker6.Location = new System.Drawing.Point(317, 283);
-			this.dateTimePicker6.Name = "dateTimePicker6";
-			this.dateTimePicker6.Size = new System.Drawing.Size(200, 20);
-			this.dateTimePicker6.TabIndex = 33;
+			this.badge7_date.Location = new System.Drawing.Point(317, 283);
+			this.badge7_date.Name = "badge7_date";
+			this.badge7_date.Size = new System.Drawing.Size(200, 20);
+			this.badge7_date.TabIndex = 33;
 			// 
-			// checkBox6
+			// badge7
 			// 
-			this.checkBox6.Location = new System.Drawing.Point(250, 282);
-			this.checkBox6.Name = "checkBox6";
-			this.checkBox6.Size = new System.Drawing.Size(125, 29);
-			this.checkBox6.TabIndex = 32;
-			this.checkBox6.Text = "Badge 1";
-			this.checkBox6.UseVisualStyleBackColor = true;
+			this.badge7.Location = new System.Drawing.Point(250, 282);
+			this.badge7.Name = "badge7";
+			this.badge7.Size = new System.Drawing.Size(125, 29);
+			this.badge7.TabIndex = 32;
+			this.badge7.Text = "Badge 7";
+			this.badge7.UseVisualStyleBackColor = true;
 			// 
-			// dateTimePicker7
+			// badge8_date
 			// 
-			this.dateTimePicker7.Location = new System.Drawing.Point(317, 309);
-			this.dateTimePicker7.Name = "dateTimePicker7";
-			this.dateTimePicker7.Size = new System.Drawing.Size(200, 20);
-			this.dateTimePicker7.TabIndex = 35;
+			this.badge8_date.Location = new System.Drawing.Point(317, 309);
+			this.badge8_date.Name = "badge8_date";
+			this.badge8_date.Size = new System.Drawing.Size(200, 20);
+			this.badge8_date.TabIndex = 35;
 			// 
-			// checkBox7
+			// badge8
 			// 
-			this.checkBox7.Location = new System.Drawing.Point(250, 308);
-			this.checkBox7.Name = "checkBox7";
-			this.checkBox7.Size = new System.Drawing.Size(125, 29);
-			this.checkBox7.TabIndex = 34;
-			this.checkBox7.Text = "Badge 1";
-			this.checkBox7.UseVisualStyleBackColor = true;
+			this.badge8.Location = new System.Drawing.Point(250, 308);
+			this.badge8.Name = "badge8";
+			this.badge8.Size = new System.Drawing.Size(125, 29);
+			this.badge8.TabIndex = 34;
+			this.badge8.Text = "Badge 8";
+			this.badge8.UseVisualStyleBackColor = true;
 			// 
 			// TrainerInfo
 			// 
 			this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
 			this.ClientSize = new System.Drawing.Size(529, 348);
-			this.Controls.Add(this.dateTimePicker7);
-			this.Controls.Add(this.checkBox7);
-			this.Controls.Add(this.dateTimePicker6);
-			this.Controls.Add(this.checkBox6);
-			this.Controls.Add(this.dateTimePicker5);
-			this.Controls.Add(this.checkBox5);
-			this.Controls.Add(this.dateTimePicker4);
-			this.Controls.Add(this.checkBox4);
-			this.Controls.Add(this.dateTimePicker3);
-			this.Controls.Add(this.checkBox3);
-			this.Controls.Add(this.dateTimePicker2);
-			this.Controls.Add(this.checkBox2);
-			this.Controls.Add(this.dateTimePicker1);
-			this.Controls.Add(this.checkBox1);
+			this.Controls.Add(this.badge8_date);
+			this.Controls.Add(this.badge8);
+			this.Controls.Add(this.badge7_date);
+			this.Controls.Add(this.badge7);
+			this.Controls.Add(this.badge6_date);
+			this.Controls.Add(this.badge6);
+			this.Controls.Add(this.badge5_date);
+			this.Controls.Add(this.badge5);
+			this.Controls.Add(this.badge4_date);
+			this.Controls.Add(this.badge4);
+			this.Controls.Add(this.badge3_date);
+			this.Controls.Add(this.badge3);
+			this.Controls.Add(this.badge2_date);
+			this.Controls.Add(this.badge2);
 			this.Controls.Add(this.badge1_date);
 			this.Controls.Add(this.badge1);
 			this.Controls.Add(this.Exit_but);
@@ -591,7 +591,7 @@ namespace BW_tool
 			this.Controls.Add(this.label7);
 			this.Controls.Add(this.label6);
 			this.Controls.Add(this.label5);
-			this.Controls.Add(this.label4);
+			this.Controls.Add(this.rival_label);
 			this.Controls.Add(this.label3);
 			this.Controls.Add(this.label2);
 			this.Controls.Add(this.label1);

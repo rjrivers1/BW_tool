@@ -143,6 +143,8 @@ namespace BW_tool
 		private System.Windows.Forms.Label label49;
 		private System.Windows.Forms.ComboBox visitor_country;
 		private System.Windows.Forms.TextBox visitor_name;
+		private System.Windows.Forms.PictureBox shop_pic;
+		private System.Windows.Forms.PictureBox visitor_pic;
 		
 		/// <summary>
 		/// Disposes resources used by the form.
@@ -184,6 +186,7 @@ namespace BW_tool
 			this.visitor = new System.Windows.Forms.NumericUpDown();
 			this.tabControl1 = new System.Windows.Forms.TabControl();
 			this.tabPage1 = new System.Windows.Forms.TabPage();
+			this.shop_pic = new System.Windows.Forms.PictureBox();
 			this.shop_debug = new System.Windows.Forms.TextBox();
 			this.shop_exp = new System.Windows.Forms.NumericUpDown();
 			this.label34 = new System.Windows.Forms.Label();
@@ -294,12 +297,14 @@ namespace BW_tool
 			this.helper_country = new System.Windows.Forms.ComboBox();
 			this.helper_name = new System.Windows.Forms.TextBox();
 			this.groupBox1 = new System.Windows.Forms.GroupBox();
+			this.visitor_pic = new System.Windows.Forms.PictureBox();
 			((System.ComponentModel.ISupportInitialize)(this.rank)).BeginInit();
 			((System.ComponentModel.ISupportInitialize)(this.npc)).BeginInit();
 			((System.ComponentModel.ISupportInitialize)(this.shop)).BeginInit();
 			((System.ComponentModel.ISupportInitialize)(this.visitor)).BeginInit();
 			this.tabControl1.SuspendLayout();
 			this.tabPage1.SuspendLayout();
+			((System.ComponentModel.ISupportInitialize)(this.shop_pic)).BeginInit();
 			((System.ComponentModel.ISupportInitialize)(this.shop_exp)).BeginInit();
 			((System.ComponentModel.ISupportInitialize)(this.shop_recruit)).BeginInit();
 			((System.ComponentModel.ISupportInitialize)(this.shop_sprite)).BeginInit();
@@ -310,6 +315,7 @@ namespace BW_tool
 			this.tabPage4.SuspendLayout();
 			((System.ComponentModel.ISupportInitialize)(this.helper_sprite)).BeginInit();
 			this.groupBox1.SuspendLayout();
+			((System.ComponentModel.ISupportInitialize)(this.visitor_pic)).BeginInit();
 			this.SuspendLayout();
 			// 
 			// Exit_but
@@ -486,6 +492,7 @@ namespace BW_tool
 			// 
 			// tabPage1
 			// 
+			this.tabPage1.Controls.Add(this.shop_pic);
 			this.tabPage1.Controls.Add(this.shop_debug);
 			this.tabPage1.Controls.Add(this.shop_exp);
 			this.tabPage1.Controls.Add(this.label34);
@@ -527,6 +534,14 @@ namespace BW_tool
 			this.tabPage1.TabIndex = 0;
 			this.tabPage1.Text = "Shop";
 			this.tabPage1.UseVisualStyleBackColor = true;
+			// 
+			// shop_pic
+			// 
+			this.shop_pic.Location = new System.Drawing.Point(346, 88);
+			this.shop_pic.Name = "shop_pic";
+			this.shop_pic.Size = new System.Drawing.Size(32, 32);
+			this.shop_pic.TabIndex = 115;
+			this.shop_pic.TabStop = false;
 			// 
 			// shop_debug
 			// 
@@ -731,6 +746,7 @@ namespace BW_tool
 			this.shop_sprite.Name = "shop_sprite";
 			this.shop_sprite.Size = new System.Drawing.Size(47, 20);
 			this.shop_sprite.TabIndex = 94;
+			this.shop_sprite.ValueChanged += new System.EventHandler(this.Shop_spriteValueChanged);
 			// 
 			// label23
 			// 
@@ -1075,6 +1091,7 @@ namespace BW_tool
 			// 
 			// tabPage2
 			// 
+			this.tabPage2.Controls.Add(this.visitor_pic);
 			this.tabPage2.Controls.Add(this.visitor_import);
 			this.tabPage2.Controls.Add(this.visitor_export);
 			this.tabPage2.Controls.Add(this.visitor_ishuman);
@@ -2748,6 +2765,14 @@ namespace BW_tool
 			this.groupBox1.TabStop = false;
 			this.groupBox1.Text = "Join Avenue";
 			// 
+			// visitor_pic
+			// 
+			this.visitor_pic.Location = new System.Drawing.Point(346, 88);
+			this.visitor_pic.Name = "visitor_pic";
+			this.visitor_pic.Size = new System.Drawing.Size(32, 32);
+			this.visitor_pic.TabIndex = 151;
+			this.visitor_pic.TabStop = false;
+			// 
 			// Join_avenue
 			// 
 			this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -2766,6 +2791,7 @@ namespace BW_tool
 			this.tabControl1.ResumeLayout(false);
 			this.tabPage1.ResumeLayout(false);
 			this.tabPage1.PerformLayout();
+			((System.ComponentModel.ISupportInitialize)(this.shop_pic)).EndInit();
 			((System.ComponentModel.ISupportInitialize)(this.shop_exp)).EndInit();
 			((System.ComponentModel.ISupportInitialize)(this.shop_recruit)).EndInit();
 			((System.ComponentModel.ISupportInitialize)(this.shop_sprite)).EndInit();
@@ -2780,6 +2806,7 @@ namespace BW_tool
 			((System.ComponentModel.ISupportInitialize)(this.helper_sprite)).EndInit();
 			this.groupBox1.ResumeLayout(false);
 			this.groupBox1.PerformLayout();
+			((System.ComponentModel.ISupportInitialize)(this.visitor_pic)).EndInit();
 			this.ResumeLayout(false);
 
 		}

@@ -13,6 +13,8 @@ using System.Linq;
 using System.Text;
 
 using System.Collections.Generic;
+using System.Reflection;
+using System.Resources;
 
 namespace BW_tool
 {
@@ -22,7 +24,13 @@ namespace BW_tool
 	public partial class Join_avenue : Form
 	{
 		AVENUE ja;
-		int avenue_block = 67;		
+		int avenue_block = 67;
+
+		ResourceManager resources = new ResourceManager("BW_tool.Join_avenue", Assembly.GetExecutingAssembly());
+		Bitmap sprites_data;
+		Rectangle cloneRect;
+		Bitmap cloneBitmap;
+		
 		public Join_avenue()
 		{
 			//
@@ -101,6 +109,7 @@ namespace BW_tool
 		}
 		void Saveexit_butClick(object sender, EventArgs e)
 		{
+			set_data();
 			MainForm.save.setBlock(ja.Data, avenue_block);
 			this.Close();
 		}
@@ -368,6 +377,9 @@ namespace BW_tool
 			}
 			shop_subregion.SelectedIndex = ja.shop[(int)shop.Value].subregion;
 			shop_sprite.Value = ja.shop[(int)shop.Value].sprite;
+			
+			load_shop_sprite();
+			
 			shop_date.Value = ja.shop[(int)shop.Value].met;
 			shop_recruit.Value = ja.shop[(int)shop.Value].recruitlvl;
 			
@@ -412,6 +424,51 @@ namespace BW_tool
 		void ShopValueChanged(object sender, EventArgs e)
 		{
 			load_shop();
+		}
+		void load_shop_sprite()
+		{
+			// Create a Bitmap object from a file.
+			sprites_data = (Bitmap)resources.GetObject("sprites");
+			if (((int)shop_sprite.Value) < 32 )
+			{
+				cloneRect = new Rectangle((int)((shop_sprite.Value)*32), 0, 32, 32 );
+			}
+			else if (((int)shop_sprite.Value) < 64 )
+			{
+				cloneRect = new Rectangle((int)((shop_sprite.Value-32)*32), 32, 32, 32 );
+			}
+			else if (((int)shop_sprite.Value) < 96)
+			{
+				cloneRect = new Rectangle((int)((shop_sprite.Value-64)*32), 64, 32, 32 );
+			}
+			else if (((int)shop_sprite.Value) < 128)
+			{
+				cloneRect = new Rectangle((int)((shop_sprite.Value-96)*32), 96, 32, 32 );
+			}
+			else if (((int)shop_sprite.Value) < 160)
+			{
+				cloneRect = new Rectangle((int)((shop_sprite.Value-128)*32), 128, 32, 32 );
+			}
+			else if (((int)shop_sprite.Value) < 192)
+			{
+				cloneRect = new Rectangle((int)((shop_sprite.Value-160)*32), 160, 32, 32 );
+			}
+			else if (((int)shop_sprite.Value) < 224)
+			{
+				cloneRect = new Rectangle((int)((shop_sprite.Value-192)*32), 192, 32, 32 );
+			}
+			else if (((int)shop_sprite.Value) < 256)
+			{
+				cloneRect = new Rectangle((int)((shop_sprite.Value-224)*32), 224, 32, 32 );
+			}
+			
+			
+			cloneBitmap = sprites_data.Clone(cloneRect, sprites_data.PixelFormat);
+			shop_pic.Image = cloneBitmap;
+		}
+		void Shop_spriteValueChanged(object sender, EventArgs e)
+		{
+			load_shop_sprite();
 		}
 		
 		//VISITOR
@@ -547,6 +604,8 @@ namespace BW_tool
 				}
 			}
 			visitor_sprite.Value = ja.visitor[(int)visitor.Value].sprite;
+			load_visitor_sprite();
+			
 			visitor_date.Value = ja.visitor[(int)visitor.Value].met;
 			visitor_recruit.Value = ja.visitor[(int)visitor.Value].recruitlvl;
 
@@ -597,6 +656,47 @@ namespace BW_tool
 		void Visitor_exportClick(object sender, EventArgs e)
 		{
 			FileIO.save_file(ja.visitor[(int)visitor.Value].Data, "Poke JoinAvenue Visitor|*.pjv|All Files (*.*)|*.*");
+		}
+		void load_visitor_sprite()
+		{
+			// Create a Bitmap object from a file.
+			sprites_data = (Bitmap)resources.GetObject("sprites");
+			if (((int)visitor_sprite.Value) < 32 )
+			{
+				cloneRect = new Rectangle((int)((visitor_sprite.Value)*32), 0, 32, 32 );
+			}
+			else if (((int)visitor_sprite.Value) < 64 )
+			{
+				cloneRect = new Rectangle((int)((visitor_sprite.Value-32)*32), 32, 32, 32 );
+			}
+			else if (((int)visitor_sprite.Value) < 96)
+			{
+				cloneRect = new Rectangle((int)((visitor_sprite.Value-64)*32), 64, 32, 32 );
+			}
+			else if (((int)visitor_sprite.Value) < 128)
+			{
+				cloneRect = new Rectangle((int)((visitor_sprite.Value-96)*32), 96, 32, 32 );
+			}
+			else if (((int)visitor_sprite.Value) < 160)
+			{
+				cloneRect = new Rectangle((int)((visitor_sprite.Value-128)*32), 128, 32, 32 );
+			}
+			else if (((int)visitor_sprite.Value) < 192)
+			{
+				cloneRect = new Rectangle((int)((visitor_sprite.Value-160)*32), 160, 32, 32 );
+			}
+			else if (((int)visitor_sprite.Value) < 224)
+			{
+				cloneRect = new Rectangle((int)((visitor_sprite.Value-192)*32), 192, 32, 32 );
+			}
+			else if (((int)visitor_sprite.Value) < 256)
+			{
+				cloneRect = new Rectangle((int)((visitor_sprite.Value-224)*32), 224, 32, 32 );
+			}
+			
+			
+			cloneBitmap = sprites_data.Clone(cloneRect, sprites_data.PixelFormat);
+			visitor_pic.Image = cloneBitmap;
 		}
 
 	public class AVENUE

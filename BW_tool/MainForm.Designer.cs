@@ -214,6 +214,7 @@ namespace BW_tool
 			// 
 			// MainForm
 			// 
+			this.AllowDrop = true;
 			this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
 			this.ClientSize = new System.Drawing.Size(503, 192);
@@ -233,6 +234,8 @@ namespace BW_tool
 			this.Controls.Add(this.loadsave_but);
 			this.Name = "MainForm";
 			this.Text = "Gen V save tool";
+			this.DragDrop += new System.Windows.Forms.DragEventHandler(this.MainScreenDragDrop);
+			this.DragEnter += new System.Windows.Forms.DragEventHandler(this.MainScreenDragEnter);
 			this.ResumeLayout(false);
 			this.PerformLayout();
 

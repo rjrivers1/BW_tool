@@ -39,12 +39,24 @@ namespace BW_tool
 			money.Maximum = 9999999;
 			bp.Maximum = 9999;
 			
+			if (MainForm.save.B2W2 == false) //BW1 battle points are in another block
+			{
+				battle_block = 58;
+				battle =  new BATTLE(MainForm.save.getBlock(battle_block), 1);
+				rival_name.Visible = false;
+				rival_label.Visible = false;
+			}
+			else //B2W2
+			{
+				battle =  new BATTLE(MainForm.save.getBlock(battle_block));
+				gary =  new RIVAL(MainForm.save.getBlock(rival_block));
+			}
+		
+			//Common data
 			ash =  new TRAINER(MainForm.save.getBlock(trainer_block));
-			gary =  new RIVAL(MainForm.save.getBlock(rival_block));
 			badge =  new BADGES(MainForm.save.getBlock(badges_block));
-			battle =  new BATTLE(MainForm.save.getBlock(battle_block));
 			card =  new CARDSIG(MainForm.save.getBlock(cardsig_block));
-			
+						
 			load_data();
 			
 			//
@@ -55,7 +67,10 @@ namespace BW_tool
 		void load_data()
 		{
 			name.Text = ash.name;
-			rival_name.Text = gary.name;
+			if (MainForm.save.B2W2 == true)
+			{
+				rival_name.Text = gary.name;
+			}
 			
 			tid.Value = ash.TID;
 			sid.Value = ash.SID;
@@ -102,14 +117,34 @@ namespace BW_tool
 			tnr_nature.SelectedIndex = card.nature;
 			
 			badge1.Checked = badge.badge1;
-			badge1_date.Value = card.badge1;
+			badge2.Checked = badge.badge2;
+			badge3.Checked = badge.badge3;
+			badge4.Checked = badge.badge4;
+			badge5.Checked = badge.badge5;
+			badge6.Checked = badge.badge6;
+			badge7.Checked = badge.badge7;
+			badge8.Checked = badge.badge8;
+			
+			badge1_date.Value = card.get_badge(0);
+			badge2_date.Value = card.get_badge(1);
+			badge3_date.Value = card.get_badge(2);
+			badge4_date.Value = card.get_badge(3);
+			badge5_date.Value = card.get_badge(4);
+			badge6_date.Value = card.get_badge(5);
+			badge7_date.Value = card.get_badge(6);
+			badge8_date.Value = card.get_badge(7);
+			
 			
 		}
 		
 		void set_data()
 		{
 			ash.name = name.Text;
-			gary.name = rival_name.Text;
+			
+			if (MainForm.save.B2W2 == true)
+			{
+				gary.name = rival_name.Text;
+			}
 			
 			ash.TID = (UInt16)tid.Value;
 			ash.SID = (UInt16)sid.Value;
@@ -133,7 +168,23 @@ namespace BW_tool
 			card.nature = (byte)tnr_nature.SelectedIndex;
 			
 			
+			badge.badge1 = badge1.Checked;
+			badge.badge2 = badge2.Checked;
+			badge.badge3 = badge3.Checked;
+			badge.badge4 = badge4.Checked;
+			badge.badge5 = badge5.Checked;
+			badge.badge6 = badge6.Checked;
+			badge.badge7 = badge7.Checked;
+			badge.badge8 = badge8.Checked;
 			
+			card.set_badge(badge1_date.Value, 0);
+			card.set_badge(badge2_date.Value, 1);
+			card.set_badge(badge3_date.Value, 2);
+			card.set_badge(badge4_date.Value, 3);
+			card.set_badge(badge5_date.Value, 4);
+			card.set_badge(badge6_date.Value, 5);
+			card.set_badge(badge7_date.Value, 6);
+			card.set_badge(badge8_date.Value, 7);
 		}
 		void Exit_butClick(object sender, EventArgs e)
 		{
@@ -142,7 +193,10 @@ namespace BW_tool
 		void Saveexit_butClick(object sender, EventArgs e)
 		{
 			MainForm.save.setBlock(ash.Data, trainer_block);
-			MainForm.save.setBlock(gary.Data, rival_block);
+			if (MainForm.save.B2W2 == true)
+			{
+				MainForm.save.setBlock(gary.Data, rival_block);
+			}
 			MainForm.save.setBlock(badge.Data, badges_block);
 			MainForm.save.setBlock(battle.Data, badges_block);
 			MainForm.save.setBlock(card.Data, badges_block);
@@ -381,15 +435,140 @@ namespace BW_tool
 	            		Data[0x4] =(byte)(Data[0x4]|~0x1);
 	            }
 	        }
+	        public bool badge2
+	        {
+	            get
+	            {
+	            	if ((Data[0x4] & 0x2) != 0)
+	            		return true;
+	            	else
+	            		return false;
+	            }
+	            set
+	            {
+	            	if (value == true)
+	            		Data[0x4] = (byte)(Data[0x4]|0x2);
+	            	else
+	            		Data[0x4] =(byte)(Data[0x4]|~0x2);
+	            }
+	        }
+	        public bool badge3
+	        {
+	            get
+	            {
+	            	if ((Data[0x4] & 0x4) != 0)
+	            		return true;
+	            	else
+	            		return false;
+	            }
+	            set
+	            {
+	            	if (value == true)
+	            		Data[0x4] = (byte)(Data[0x4]|0x4);
+	            	else
+	            		Data[0x4] =(byte)(Data[0x4]|~0x4);
+	            }
+	        }
+	        public bool badge4
+	        {
+	            get
+	            {
+	            	if ((Data[0x4] & 0x8) != 0)
+	            		return true;
+	            	else
+	            		return false;
+	            }
+	            set
+	            {
+	            	if (value == true)
+	            		Data[0x4] = (byte)(Data[0x4]|0x8);
+	            	else
+	            		Data[0x4] =(byte)(Data[0x4]|~0x8);
+	            }
+	        }
+	        public bool badge5
+	        {
+	            get
+	            {
+	            	if ((Data[0x4] & 0x10) != 0)
+	            		return true;
+	            	else
+	            		return false;
+	            }
+	            set
+	            {
+	            	if (value == true)
+	            		Data[0x4] = (byte)(Data[0x4]|0x10);
+	            	else
+	            		Data[0x4] =(byte)(Data[0x4]|~0x10);
+	            }
+	        }
+	        public bool badge6
+	        {
+	            get
+	            {
+	            	if ((Data[0x4] & 0x20) != 0)
+	            		return true;
+	            	else
+	            		return false;
+	            }
+	            set
+	            {
+	            	if (value == true)
+	            		Data[0x4] = (byte)(Data[0x4]|0x20);
+	            	else
+	            		Data[0x4] =(byte)(Data[0x4]|~0x20);
+	            }
+	        }
+	        public bool badge7
+	        {
+	            get
+	            {
+	            	if ((Data[0x4] & 0x40) != 0)
+	            		return true;
+	            	else
+	            		return false;
+	            }
+	            set
+	            {
+	            	if (value == true)
+	            		Data[0x4] = (byte)(Data[0x4]|0x40);
+	            	else
+	            		Data[0x4] =(byte)(Data[0x4]|~0x40);
+	            }
+	        }
+	        public bool badge8
+	        {
+	            get
+	            {
+	            	if ((Data[0x4] & 0x80) != 0)
+	            		return true;
+	            	else
+	            		return false;
+	            }
+	            set
+	            {
+	            	if (value == true)
+	            		Data[0x4] = (byte)(Data[0x4]|0x80);
+	            	else
+	            		Data[0x4] =(byte)(Data[0x4]|~0x80);
+	            }
+	        }
 		}
 		public class BATTLE
 	    {
-			internal int Size = MainForm.save.getBlockLength(57);//Block 57 BW2
+			internal int SizeBW2 = MainForm.save.getBlockLength(57);//Block 57 BW2
+			internal int SizeBW = MainForm.save.getBlockLength(58);//Block 58 BW
 	
 	        public byte[] Data;
 	        public BATTLE(byte[] data = null)
 	        {
-	            Data = data ?? new byte[Size];
+	            Data = data ?? new byte[SizeBW2];
+	                        
+	        }
+	        public BATTLE(byte[] data = null, int bw = 1)
+	        {
+	            Data = data ?? new byte[SizeBW];
 	                        
 	        }
 	        public byte[] getData(int Offset, int Length)
@@ -420,8 +599,7 @@ namespace BW_tool
 	        public byte[] Data;
 	        public CARDSIG(byte[] data = null)
 	        {
-	            Data = data ?? new byte[Size];
-	                        
+	            Data = data ?? new byte[Size];    
 	        }
 	        public byte[] getData(int Offset, int Length)
 	        {
@@ -443,29 +621,24 @@ namespace BW_tool
 	            	Data[0x600] = (byte) value;
 	            }
 	        }
-	          
-	        public DateTime badge1
+	        public DateTime get_badge(int index)
 	        {
-	            get
-	            {
-	            	if (Data[0x604] != 0 && Data[0x605] != 0 && Data[0x606] != 0)
-	            		return new DateTime(2000+Data[0x604], Data[0x605], Data[0x606]);
+	            	if (Data[0x604 + (4*index)] != 0 && Data[0x605 + (4*index)] != 0 && Data[0x606 + (4*index)] != 0)
+	            		return new DateTime(2000+Data[0x604 + (4*index)], Data[0x605 + (4*index)], Data[0x606 + (4*index)]);
 	            	else
 	            		return new DateTime(2000, 1, 1);
-	            }
-	            set
-	            {
-	            	if(value == new DateTime(2000, 1, 1))
-	            	{
-	            	   	
-	            	}
-	            	else
-	            	{
-		            	Data[0x604] = (byte) (value.Year-2000);
-		            	Data[0x605] = (byte) value.Month;
-		            	Data[0x606] = (byte) value.Day;
-	            	}
-	            }
+	        }
+	        public void set_badge(DateTime date, int index)
+	        {
+		    	Data[0x604 + (4*index)] = (byte) (date.Year-2000);
+		    	Data[0x605 + (4*index)] = (byte) date.Month;
+		    	Data[0x606 + (4*index)] = (byte) date.Day;
+	        }
+	        public void del_badge(int index)
+	        {
+	        	Data[0x604 + (4*index)] = 0;
+		        Data[0x605 + (4*index)] = 0;
+		    	Data[0x606 + (4*index)] = 0;
 	        }
 		}
 	}
