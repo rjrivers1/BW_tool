@@ -20,12 +20,14 @@ namespace BW_tool
 	public partial class MemoryLink : Form
 	{
 		MEMORIES ml;
+		Random rand;
 		public MemoryLink()
 		{
 			//
 			// The InitializeComponent() call is required for Windows Forms designer support.
 			//
 			InitializeComponent();
+			rand = new Random(Guid.NewGuid().GetHashCode());
 			
 			ml = new MEMORIES (MainForm.save.getData(MEMORIES.Offset, MEMORIES.Size));
 			
@@ -43,6 +45,14 @@ namespace BW_tool
 				ml.block2.name = "PPorg";
 				ml.block2.TID = 25560;
 				ml.block2.SID = 13453;
+				
+				UInt32 newseed = (UInt32)(rand.Next(0xFFFF+1)<<16);
+				ml.block1.crypt_seed = newseed;
+				ml.block1_mirror.crypt_seed = newseed;
+				
+				//Needed so export memory doesn't export my own data (default_memories)
+				load_data();
+				set_data();
 			}
 			
 			load_data();
@@ -202,6 +212,10 @@ namespace BW_tool
 			        
 			        ml.block2.set_hof(bw1.Skip(0x23B00).Take(0x168).ToArray());
 			        
+			        UInt32 newseed = (UInt32)(rand.Next(0xFFFF+1)<<16);
+					ml.block1.crypt_seed = newseed;
+					ml.block1_mirror.crypt_seed = newseed;
+			        
 					//Reload all data
 					load_data();
 					
@@ -254,28 +268,93 @@ namespace BW_tool
 	        
 	        public void set_blocks()
 	        {
-	        	
-	        	//Recalculate CRCs
-	        	ushort crc = SAV5.ccitt16(block1.Data.Skip(0xC).Take(0x368).ToArray());
-	        	block1.crc = crc;
-	        	ushort crc_mirror = SAV5.ccitt16(block1_mirror.Data.Skip(0xC).Take(0x368).ToArray());
-	        	block1_mirror.crc = crc_mirror;
-	        	ushort crc2 = SAV5.ccitt16(block2.Data.Skip(0xC).Take(0x214).ToArray());
-	        	block2.crc = crc2;
-	        	
-	        	
-	        	//Recrypt blocks
+	        //Block 1
+	        	//Recrypt 
 				byte[] encrypt1 = new byte[ML_BLOCK1.Size];
-	        	//byte[] encrypt2 = new byte[ML_BLOCK2.Size];
 	        	encrypt1 = SAV5.cryptoArray(block1.Data, 0xC, 0x364, 0x374-4);
-	        	//encrypt2 = SAV5.cryptoArray(block2.Data, ML_BLOCK1.Size), 0, 0x374-4, 0x374-4);
-	        	
+	        	//Recalculate CRC
+	        	ushort crc = SAV5.ccitt16(encrypt1.Skip(0xC).Take(0x368).ToArray());
+	        	BitConverter.GetBytes(crc).CopyTo(encrypt1, 0x8);
 	        	//Set new data
 	        	setData(encrypt1, 0);
-	        	setData(encrypt1, 0x400); //Block 1 mirror, we'll edit just the not mirrored one
-	        	//setData(encrypt2, 0x400);
+	        	
+			//Block 1 Mirror
+				//Just put block 1 for now as mirror
+				setData(encrypt1, 0x400);
+			/*
+	        	//Recrypt 
+				byte[] encrypt_mirror = new byte[ML_BLOCK1.Size];
+	        	encrypt_mirror = SAV5.cryptoArray(block1_mirror.Data, 0xC, 0x364, 0x374-4);
+	        	//Recalculate CRC
+	        	ushort crc_mirror = SAV5.ccitt16(encrypt_mirror.Skip(0xC).Take(0x368).ToArray());
+	        	BitConverter.GetBytes(crc_mirror).CopyTo(encrypt_mirror, 0x8);
+	        	//Set new data
+	        	setData(encrypt_mirror, 0x400);
+	        */
+	       
+			//Block 2
+	        	//Recalculate CRC
+	        	ushort crc2 = SAV5.ccitt16(block2.Data.Skip(0xC).Take(0x214).ToArray());
+	        	block2.crc = crc2;
+	        	//Set new data
 	        	setData(block2.Data, 0x800);
 	        }
+	        
+		        public ushort block1_crc
+		        {
+		        	get
+		        	{
+		        		return BitConverter.ToUInt16(Data, 0x8);
+		        	}
+		        	set
+		        	{
+		        		setData(BitConverter.GetBytes((UInt16)value), 0x8);
+		        	}
+		        }
+		        public UInt32 block1_crypt_seed
+		        {
+		        	get
+		        	{
+		        		return BitConverter.ToUInt32(Data, 0x370);
+		        	}
+		        	set
+		        	{
+		        		setData(BitConverter.GetBytes((UInt32)value), 0x370);
+		        	}
+		        }
+		        public ushort block1_mirror_crc
+		        {
+		        	get
+		        	{
+		        		return BitConverter.ToUInt16(Data, 0x400+0x8);
+		        	}
+		        	set
+		        	{
+		        		setData(BitConverter.GetBytes((UInt16)value), 0x400+0x8);
+		        	}
+		        }
+		        public UInt32 block1_mirror_crypt_seed
+		        {
+		        	get
+		        	{
+		        		return BitConverter.ToUInt32(Data, 0x400+0x370);
+		        	}
+		        	set
+		        	{
+		        		setData(BitConverter.GetBytes((UInt32)value), 0x400+0x370);
+		        	}
+		        }
+		        public ushort block2_crc
+		        {
+		        	get
+		        	{
+		        		return BitConverter.ToUInt16(Data, 0x800+0x8);
+		        	}
+		        	set
+		        	{
+		        		setData(BitConverter.GetBytes((UInt16)value), 0x800+0x8);
+		        	}
+		        }
 	        
 	        public class ML_BLOCK1
 	        {
@@ -320,7 +399,7 @@ namespace BW_tool
 	        }
 	        public class ML_BLOCK2
 	        {
-				public static int Size = 0x21F;
+				public static int Size = 0x2A0;
 		
 		        public byte[] Data;
 		        public ML_BLOCK2(byte[] data = null)

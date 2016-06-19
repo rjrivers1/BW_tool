@@ -15,6 +15,7 @@ using System.Linq;
 using System.Text;
 using System.Windows.Forms;
 using System.IO;
+using System.Reflection;
 
 namespace BW_tool
 {
@@ -23,6 +24,13 @@ namespace BW_tool
 	/// </summary>
 	public partial class MainForm : Form
 	{
+		public string version()
+		{
+			var version = Assembly.GetExecutingAssembly().GetName().Version;
+			DateTime buildDate = new DateTime(2000, 1, 1).AddDays(version.Build).AddSeconds(version.Revision*2);
+			return "BUILD "+buildDate.Year.ToString()+buildDate.Month.ToString()+buildDate.Day.ToString()+"_"+buildDate.Hour.ToString()+buildDate.Minute.ToString()+buildDate.Second.ToString();
+		}
+		
 		public MainForm()
 		{
 			//
@@ -180,7 +188,7 @@ namespace BW_tool
 		}
 		void AboutClick(object sender, EventArgs e)
 		{
-			MessageBox.Show("Pokémon Generation 5 save tool by suloku '16\n\nThanks to many people that I'm probably missing out now, but those who shall not be missed are BlackShark for many research and information and kaphotics for reference on pkhex source code and research at project pokemon forums.");
+			MessageBox.Show("Pokémon Generation 5 save tool by suloku '16\n\nThanks to many people that I'm probably missing out now, but those who shall not be missed are BlackShark for many research and information and kaphotics for reference on pkhex source code and research at project pokemon forums.\n\n"+version());
 		}
 		void Memory_butClick(object sender, EventArgs e)
 		{

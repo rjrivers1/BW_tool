@@ -41,6 +41,9 @@ namespace BW_tool
 		private System.Windows.Forms.CheckBox flag1;
 		private System.Windows.Forms.Label label4;
 		private System.Windows.Forms.Button import_bw1;
+		private System.Windows.Forms.Label label5;
+		private System.Windows.Forms.Label label6;
+		private System.Windows.Forms.Label label7;
 		
 		/// <summary>
 		/// Disposes resources used by the form.
@@ -90,6 +93,9 @@ namespace BW_tool
 			this.flag1 = new System.Windows.Forms.CheckBox();
 			this.label4 = new System.Windows.Forms.Label();
 			this.import_bw1 = new System.Windows.Forms.Button();
+			this.label5 = new System.Windows.Forms.Label();
+			this.label6 = new System.Windows.Forms.Label();
+			this.label7 = new System.Windows.Forms.Label();
 			this.groupBox1.SuspendLayout();
 			((System.ComponentModel.ISupportInitialize)(this.sid)).BeginInit();
 			((System.ComponentModel.ISupportInitialize)(this.tid)).BeginInit();
@@ -117,7 +123,7 @@ namespace BW_tool
 			// 
 			// b1_export
 			// 
-			this.b1_export.Location = new System.Drawing.Point(16, 19);
+			this.b1_export.Location = new System.Drawing.Point(6, 19);
 			this.b1_export.Name = "b1_export";
 			this.b1_export.Size = new System.Drawing.Size(119, 37);
 			this.b1_export.TabIndex = 22;
@@ -127,7 +133,7 @@ namespace BW_tool
 			// 
 			// b1m_export
 			// 
-			this.b1m_export.Location = new System.Drawing.Point(16, 62);
+			this.b1m_export.Location = new System.Drawing.Point(6, 62);
 			this.b1m_export.Name = "b1m_export";
 			this.b1m_export.Size = new System.Drawing.Size(119, 37);
 			this.b1m_export.TabIndex = 23;
@@ -137,7 +143,7 @@ namespace BW_tool
 			// 
 			// b2_export
 			// 
-			this.b2_export.Location = new System.Drawing.Point(16, 105);
+			this.b2_export.Location = new System.Drawing.Point(6, 105);
 			this.b2_export.Name = "b2_export";
 			this.b2_export.Size = new System.Drawing.Size(119, 37);
 			this.b2_export.TabIndex = 24;
@@ -147,7 +153,7 @@ namespace BW_tool
 			// 
 			// b2_import
 			// 
-			this.b2_import.Location = new System.Drawing.Point(141, 105);
+			this.b2_import.Location = new System.Drawing.Point(131, 105);
 			this.b2_import.Name = "b2_import";
 			this.b2_import.Size = new System.Drawing.Size(119, 37);
 			this.b2_import.TabIndex = 27;
@@ -157,7 +163,7 @@ namespace BW_tool
 			// 
 			// b1m_import
 			// 
-			this.b1m_import.Location = new System.Drawing.Point(141, 62);
+			this.b1m_import.Location = new System.Drawing.Point(131, 62);
 			this.b1m_import.Name = "b1m_import";
 			this.b1m_import.Size = new System.Drawing.Size(119, 37);
 			this.b1m_import.TabIndex = 26;
@@ -167,7 +173,7 @@ namespace BW_tool
 			// 
 			// b1_import
 			// 
-			this.b1_import.Location = new System.Drawing.Point(141, 19);
+			this.b1_import.Location = new System.Drawing.Point(131, 19);
 			this.b1_import.Name = "b1_import";
 			this.b1_import.Size = new System.Drawing.Size(119, 37);
 			this.b1_import.TabIndex = 25;
@@ -203,9 +209,9 @@ namespace BW_tool
 			this.groupBox1.Controls.Add(this.b2_export);
 			this.groupBox1.Controls.Add(this.b1m_export);
 			this.groupBox1.Controls.Add(this.b1_export);
-			this.groupBox1.Location = new System.Drawing.Point(359, 149);
+			this.groupBox1.Location = new System.Drawing.Point(391, 149);
 			this.groupBox1.Name = "groupBox1";
-			this.groupBox1.Size = new System.Drawing.Size(288, 156);
+			this.groupBox1.Size = new System.Drawing.Size(256, 156);
 			this.groupBox1.TabIndex = 30;
 			this.groupBox1.TabStop = false;
 			this.groupBox1.Text = "Research Purposes";
@@ -270,7 +276,7 @@ namespace BW_tool
 			// 
 			this.flag8.Location = new System.Drawing.Point(205, 247);
 			this.flag8.Name = "flag8";
-			this.flag8.Size = new System.Drawing.Size(125, 29);
+			this.flag8.Size = new System.Drawing.Size(164, 29);
 			this.flag8.TabIndex = 44;
 			this.flag8.Text = "flag 8";
 			this.flag8.UseVisualStyleBackColor = true;
@@ -342,9 +348,9 @@ namespace BW_tool
 			// 
 			this.label4.Location = new System.Drawing.Point(12, 151);
 			this.label4.Name = "label4";
-			this.label4.Size = new System.Drawing.Size(128, 19);
+			this.label4.Size = new System.Drawing.Size(306, 19);
 			this.label4.TabIndex = 45;
-			this.label4.Text = "Unlocked Memories:";
+			this.label4.Text = "Unlocked Memories: (still under research, better not to touch)";
 			this.label4.TextAlign = System.Drawing.ContentAlignment.BottomLeft;
 			// 
 			// import_bw1
@@ -357,11 +363,38 @@ namespace BW_tool
 			this.import_bw1.UseVisualStyleBackColor = true;
 			this.import_bw1.Click += new System.EventHandler(this.Import_bw1Click);
 			// 
+			// label5
+			// 
+			this.label5.Location = new System.Drawing.Point(398, 24);
+			this.label5.Name = "label5";
+			this.label5.Size = new System.Drawing.Size(147, 37);
+			this.label5.TabIndex = 47;
+			this.label5.Text = "Will import:";
+			// 
+			// label6
+			// 
+			this.label6.Location = new System.Drawing.Point(465, 18);
+			this.label6.Name = "label6";
+			this.label6.Size = new System.Drawing.Size(132, 23);
+			this.label6.TabIndex = 48;
+			this.label6.Text = "- Trainer name, TID, SID";
+			// 
+			// label7
+			// 
+			this.label7.Location = new System.Drawing.Point(465, 32);
+			this.label7.Name = "label7";
+			this.label7.Size = new System.Drawing.Size(132, 23);
+			this.label7.TabIndex = 49;
+			this.label7.Text = "- Hall of Fame";
+			// 
 			// MemoryLink
 			// 
 			this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
 			this.ClientSize = new System.Drawing.Size(659, 317);
+			this.Controls.Add(this.label7);
+			this.Controls.Add(this.label6);
+			this.Controls.Add(this.label5);
 			this.Controls.Add(this.import_bw1);
 			this.Controls.Add(this.label4);
 			this.Controls.Add(this.flag8);
