@@ -30,6 +30,12 @@ namespace BW_tool
     }
 	public class SAV5 : PKX5
     {
+		private int DEBUG_MSG = 0;
+		//
+		// 0: no checksum updated/not updated msg
+		// 1: only checksum updated msg
+		// 2: checksum updated and not updated msg
+		
     	private static int[] BlockTableBW2 =
 		{0x00000, 0x00400, 0x01400, 0x02400, 0x03400, 0x04400, 0x05400, //6
 		 0x06400, 0x07400, 0x08400, 0x09400, 0x0A400, 0x0B400, 0x0C400, //13
@@ -308,7 +314,7 @@ namespace BW_tool
         {
         	if (getBlockLength(index) != input.Length)
         	{
-        		MessageBox.Show("Block has invalid size!");
+        		MessageBox.Show("Block " + index.ToString() + " has invalid size!");
         		return;
         	}
         	        	
@@ -344,9 +350,9 @@ namespace BW_tool
 					ushort crctable = ccitt16(Data.Skip(blocks[blocksnum].Offset).Take(((blocksnum + 1) * 2)).ToArray());
 					Array.Copy(BitConverter.GetBytes(crctable), 0, Data, blocks[blocksnum].Checksum, 2);
 					Array.Copy(BitConverter.GetBytes(crctable), 0, Data, blocks[blocksnum].Checksum + backupoffset, 2);
-					MessageBox.Show("Block's checksum updated");
+					if (DEBUG_MSG  > 0) MessageBox.Show("Block " + index.ToString() + " checksum updated");
 				} else {
-					MessageBox.Show("Checksum doesn't need update");
+					if (DEBUG_MSG  > 2) MessageBox.Show("Checksum " + index.ToString() + " doesn't need update");
 				}
       			
 				input.CopyTo(Data, blocks[index].Offset);
@@ -355,7 +361,7 @@ namespace BW_tool
 			}
 			else
 			{
-				MessageBox.Show("Invalid index");
+				MessageBox.Show("Invalid index (" + index.ToString() + ")");
         		return;
 			}
         }

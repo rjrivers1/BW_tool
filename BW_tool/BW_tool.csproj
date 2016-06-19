@@ -62,6 +62,10 @@
     <Compile Include="Editors\KeySystem.Designer.cs">
       <DependentUpon>KeySystem.cs</DependentUpon>
     </Compile>
+    <Compile Include="Editors\MemoryLink.cs" />
+    <Compile Include="Editors\MemoryLink.Designer.cs">
+      <DependentUpon>MemoryLink.cs</DependentUpon>
+    </Compile>
     <Compile Include="Editors\Text.cs" />
     <Compile Include="Editors\Dumper.cs" />
     <Compile Include="Editors\Dumper.Designer.cs">
@@ -125,6 +129,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Editors\Medals.resx">
       <DependentUpon>Medals.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Editors\MemoryLink.resx">
+      <DependentUpon>MemoryLink.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Editors\TrainerInfo.resx">
       <DependentUpon>TrainerInfo.cs</DependentUpon>

@@ -192,14 +192,16 @@ namespace BW_tool
 		}
 		void Saveexit_butClick(object sender, EventArgs e)
 		{
+			set_data();
+			
 			MainForm.save.setBlock(ash.Data, trainer_block);
 			if (MainForm.save.B2W2 == true)
 			{
 				MainForm.save.setBlock(gary.Data, rival_block);
 			}
 			MainForm.save.setBlock(badge.Data, badges_block);
-			MainForm.save.setBlock(battle.Data, badges_block);
-			MainForm.save.setBlock(card.Data, badges_block);
+			MainForm.save.setBlock(battle.Data, battle_block);
+			MainForm.save.setBlock(card.Data, cardsig_block);
 			this.Close();
 		}
 		
@@ -258,7 +260,7 @@ namespace BW_tool
 	            }
 	            set
 	            {
-	            	setData(BitConverter.GetBytes(value), 0x14);
+	            	setData(BitConverter.GetBytes((UInt16)value), 0x14);
 	            }
 	        }
 	        public UInt16 SID
@@ -269,7 +271,7 @@ namespace BW_tool
 	            }
 	            set
 	            {
-	            	setData(BitConverter.GetBytes(value), 0x16);
+	            	setData(BitConverter.GetBytes((UInt16)value), 0x16);
 	            }
 	        }
 	        public UInt16 hours
@@ -430,9 +432,9 @@ namespace BW_tool
 	            set
 	            {
 	            	if (value == true)
-	            		Data[0x4] = (byte)(Data[0x4]|0x1);
+	            		Data[0x4] |= (byte)(0x1);
 	            	else
-	            		Data[0x4] =(byte)(Data[0x4]|~0x1);
+	            		Data[0x4] &= unchecked((byte)(~0x1));
 	            }
 	        }
 	        public bool badge2
@@ -447,9 +449,9 @@ namespace BW_tool
 	            set
 	            {
 	            	if (value == true)
-	            		Data[0x4] = (byte)(Data[0x4]|0x2);
+	            		Data[0x4] |= (byte)(0x2);
 	            	else
-	            		Data[0x4] =(byte)(Data[0x4]|~0x2);
+	            		Data[0x4] &= unchecked((byte)(~0x2));
 	            }
 	        }
 	        public bool badge3
@@ -464,9 +466,9 @@ namespace BW_tool
 	            set
 	            {
 	            	if (value == true)
-	            		Data[0x4] = (byte)(Data[0x4]|0x4);
+	            		Data[0x4] |= (byte)(0x4);
 	            	else
-	            		Data[0x4] =(byte)(Data[0x4]|~0x4);
+	            		Data[0x4] &= unchecked((byte)(~0x4));
 	            }
 	        }
 	        public bool badge4
@@ -481,9 +483,9 @@ namespace BW_tool
 	            set
 	            {
 	            	if (value == true)
-	            		Data[0x4] = (byte)(Data[0x4]|0x8);
+	            		Data[0x4] |= (byte)(0x8);
 	            	else
-	            		Data[0x4] =(byte)(Data[0x4]|~0x8);
+	            		Data[0x4] &= unchecked((byte)(~0x8));
 	            }
 	        }
 	        public bool badge5
@@ -498,9 +500,9 @@ namespace BW_tool
 	            set
 	            {
 	            	if (value == true)
-	            		Data[0x4] = (byte)(Data[0x4]|0x10);
+	            		Data[0x4] |= (byte)(0x10);
 	            	else
-	            		Data[0x4] =(byte)(Data[0x4]|~0x10);
+	            		Data[0x4] &= unchecked((byte)(~0x10));
 	            }
 	        }
 	        public bool badge6
@@ -515,9 +517,9 @@ namespace BW_tool
 	            set
 	            {
 	            	if (value == true)
-	            		Data[0x4] = (byte)(Data[0x4]|0x20);
+	            		Data[0x4] |= (byte)(0x20);
 	            	else
-	            		Data[0x4] =(byte)(Data[0x4]|~0x20);
+	            		Data[0x4] &= unchecked((byte)(~0x20));
 	            }
 	        }
 	        public bool badge7
@@ -532,9 +534,9 @@ namespace BW_tool
 	            set
 	            {
 	            	if (value == true)
-	            		Data[0x4] = (byte)(Data[0x4]|0x40);
+	            		Data[0x4] |= (byte)(0x40);
 	            	else
-	            		Data[0x4] =(byte)(Data[0x4]|~0x40);
+	            		Data[0x4] &= unchecked((byte)(~0x40));
 	            }
 	        }
 	        public bool badge8
@@ -549,9 +551,9 @@ namespace BW_tool
 	            set
 	            {
 	            	if (value == true)
-	            		Data[0x4] = (byte)(Data[0x4]|0x80);
+	            		Data[0x4] |= (byte)(0x80);
 	            	else
-	            		Data[0x4] =(byte)(Data[0x4]|~0x80);
+	            		Data[0x4] &= unchecked((byte)(~0x80));
 	            }
 	        }
 		}

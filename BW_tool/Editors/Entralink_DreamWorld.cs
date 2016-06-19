@@ -487,6 +487,7 @@ namespace BW_tool
 					}
 				}
 				
+				pgl_region_box.SelectedIndex = speciesbox.SelectedIndex;				
 			}
 			
 			if (exclusive == false)
@@ -495,7 +496,6 @@ namespace BW_tool
 				ok_but.Enabled = true;
 			}
 			
-			pgl_region_box.SelectedIndex = speciesbox.SelectedIndex;
 		}
 
 		

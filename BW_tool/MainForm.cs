@@ -81,6 +81,7 @@ namespace BW_tool
 					key_but.Enabled = true;
 					join_but.Enabled = true;
 					trainer_but.Enabled = true;
+					memory_but.Enabled = true;
 				}
 				else if (save.BW)
 				{
@@ -97,6 +98,7 @@ namespace BW_tool
 					key_but.Enabled = false;
 					join_but.Enabled = false;
 					trainer_but.Enabled = true;
+					memory_but.Enabled = false;
 				}
 				else versiontext.Text = "Invalid file";
 
@@ -115,6 +117,7 @@ namespace BW_tool
 				key_but.Enabled = false;
 				join_but.Enabled = false;
 				trainer_but.Enabled = false;
+				memory_but.Enabled = false;
 			}
 		}
 		void Save_butClick(object sender, EventArgs e)
@@ -178,6 +181,11 @@ namespace BW_tool
 		void AboutClick(object sender, EventArgs e)
 		{
 			MessageBox.Show("Pokémon Generation 5 save tool by suloku '16\n\nThanks to many people that I'm probably missing out now, but those who shall not be missed are BlackShark for many research and information and kaphotics for reference on pkhex source code and research at project pokemon forums.");
+		}
+		void Memory_butClick(object sender, EventArgs e)
+		{
+			Form memory = new MemoryLink();
+			memory.ShowDialog();
 		}
 	}
 }

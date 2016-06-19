@@ -29,6 +29,7 @@ namespace BW_tool
 		private System.Windows.Forms.Button join_but;
 		private System.Windows.Forms.Button trainer_but;
 		private System.Windows.Forms.Button about;
+		private System.Windows.Forms.Button memory_but;
 		
 		/// <summary>
 		/// Disposes resources used by the form.
@@ -66,6 +67,7 @@ namespace BW_tool
 			this.join_but = new System.Windows.Forms.Button();
 			this.trainer_but = new System.Windows.Forms.Button();
 			this.about = new System.Windows.Forms.Button();
+			this.memory_but = new System.Windows.Forms.Button();
 			this.SuspendLayout();
 			// 
 			// loadsave_but
@@ -224,12 +226,24 @@ namespace BW_tool
 			this.about.UseVisualStyleBackColor = true;
 			this.about.Click += new System.EventHandler(this.AboutClick);
 			// 
+			// memory_but
+			// 
+			this.memory_but.Enabled = false;
+			this.memory_but.Location = new System.Drawing.Point(158, 165);
+			this.memory_but.Name = "memory_but";
+			this.memory_but.Size = new System.Drawing.Size(140, 23);
+			this.memory_but.TabIndex = 15;
+			this.memory_but.Text = "Memory Link";
+			this.memory_but.UseVisualStyleBackColor = true;
+			this.memory_but.Click += new System.EventHandler(this.Memory_butClick);
+			// 
 			// MainForm
 			// 
 			this.AllowDrop = true;
 			this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
 			this.ClientSize = new System.Drawing.Size(503, 192);
+			this.Controls.Add(this.memory_but);
 			this.Controls.Add(this.about);
 			this.Controls.Add(this.trainer_but);
 			this.Controls.Add(this.join_but);
