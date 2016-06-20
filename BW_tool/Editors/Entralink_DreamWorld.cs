@@ -664,7 +664,7 @@ namespace BW_tool
 					//Male/female
 					if (gender == 2 || (world == 8) )
 				    {
-						if (world == 8 && speciesbox.SelectedIndex == 20) //Banette is the only female pokemon distributed via PGL
+						if (world == 8 && speciesbox.SelectedIndex == 22) //Banette is the only female pokemon distributed via PGL
 						{
 							gnd_female.Checked = true;
 							gnd_male.Enabled = false;

@@ -130,9 +130,9 @@ namespace BW_tool
 		}
 		void Save_butClick(object sender, EventArgs e)
 		{
-			if (save.Edited)
+			//if (save.Edited)
 				FileIO.save_data(save.Data);
-			else MessageBox.Show("Save has not been edited");
+			//else MessageBox.Show("Save has not been edited");
 		}
 		void Chk_butClick(object sender, EventArgs e)
 		{
