@@ -31,10 +31,13 @@ namespace BW_tool
 			
 			drkey =  new DRKEY(MainForm.save.getBlock(drkeyblock));
 			dra = new DRA(MainForm.save.dslinkA_get());
-			drb = new DRB(PKX5.cryptoXor32Array(MainForm.save.dslinkB_get(), 0, 0x5C, 0x5C)); //Get 3DS link data decrypted
+			drb = new DRB(PKX5.cryptoXor32Array(MainForm.save.dslinkB_get(), 0, 0x7C, 0x7C)); //Get 3DS link data decrypted
 			
 			if (dra.received == false)
+			{
 				MessageBox.Show("Warning! There's unreceived data in the savegame!");
+				dra.key = drb.EncKey^drkey.FLAGS;//This makes editing the data possible without messing up the current encryption
+			}
 
 			if (drb.illegal == true)
 			{
@@ -63,10 +66,10 @@ namespace BW_tool
 			set_data();
 			MainForm.save.setBlock(drkey.Data, 72);
 			MainForm.save.dslinkA_set(dra.Data);
-			MainForm.save.dslinkB_set(PKX5.cryptoXor32Array(drb.Data, 0, 0x5C, 0x5C));
+			MainForm.save.dslinkB_set(PKX5.cryptoXor32Array(drb.Data, 0, 0x7C, 0x7C));
 			this.Close();
 		}
-		void Clean_butClick(object sender, EventArgs e)
+		void Clean_butClick(object sender, EventArgs e) //Right now this button is disabled as we know how to edit all the data
 		{
 			drkey.reinit();
 			dra.reinit();
@@ -74,7 +77,7 @@ namespace BW_tool
 			
 			MainForm.save.setBlock(drkey.Data, 72);
 			MainForm.save.dslinkA_set(dra.Data);
-			MainForm.save.dslinkB_set(PKX5.cryptoXor32Array(drb.Data, 0, 0x5C, 0x5C));
+			MainForm.save.dslinkB_set(PKX5.cryptoXor32Array(drb.Data, 0, 0x7C, 0x7C));
 			this.Close();
 		}
 		
@@ -210,6 +213,20 @@ namespace BW_tool
 		
 		void set_data()
 		{
+			//Get the correct intial key before changing the flags
+			drb.EncKey = dra.key^drkey.FLAGS;
+			
+			//Set the flags
+			drkey.Tornadus = flag0.Checked;
+			drkey.Thundurus = flag1.Checked;
+			drkey.Landorus = flag2.Checked;
+			drkey.Dialga = flag3.Checked;
+			drkey.Palkia = flag4.Checked;
+			drkey.Giratina = flag5.Checked;
+			drkey.HoOh = flag6.Checked;
+			drkey.Lugia = flag7.Checked;
+			
+			drb.clean_data();//Set everything to 0 first
 			//Legendary slots
 			switch (legend1.SelectedIndex)
 			{
@@ -491,19 +508,20 @@ namespace BW_tool
 					dra.received = false; //If we have any data, mark as available to be received
 			}
 			
+			//This is what Dream Radar does, not doing this makes the data be recognized as corrupted.
+			dra.unknown1 = 0;
+			dra.key = 0;
 
 		}
 		void AllmodeCheckedChanged(object sender, EventArgs e)
 		{
-			if (drb.illegal == true)
+			if (allmode.Checked == true)
 			{
-				allmode.Checked = true;
 				set_all_list();
 				
 			}
 			else
 			{
-				legitmode.Checked = true;
 				set_legal_list();
 			}
 
@@ -511,19 +529,21 @@ namespace BW_tool
 		}
 		void LegitmodeCheckedChanged(object sender, EventArgs e)
 		{
-			if (drb.illegal == true)
+			if (allmode.Checked == true)
 			{
-				allmode.Checked = true;
 				set_all_list();
 				
 			}
 			else
 			{
-				legitmode.Checked = true;
 				set_legal_list();
 			}
 
 			load_data();
+		}
+		void Flag0CheckedChanged(object sender, EventArgs e)
+		{
+	
 		}
 	}
 	
@@ -566,7 +586,7 @@ namespace BW_tool
 		}
 	public class DRA
 	    {
-			internal int Size = 10;
+			internal int Size = 0x10;
 			private UInt32 ident = 0x43524746;
 	
 	        public byte[] Data;
@@ -606,15 +626,16 @@ namespace BW_tool
 		}
 	public class DRB
 	    {
-			public int Size = 0x60;
+			public int Size = 0x80;
 	
 	        public byte[] Data;
 	        public DRB(byte[] data = null)
 	        {
 	            Data = data ?? new byte[Size];
 	            
-	            //Read the legendary values         
 	            int i = 0;
+            
+	            //Read the legendary values      
 	            for (i=0; i<8;i++)
 	            {
 	            	legendaries[i] = BitConverter.ToUInt32(Data, 0x00 + i*4);
@@ -745,9 +766,37 @@ namespace BW_tool
 			
 			public void set_poke(int species, int gender, int index)
 			{
-				//TODO add genderless and single gender species filter
-				pokes[index] = (UInt32)(gender | (species << 16));
+				int finalgender = gender;
+				
+				//Set fixed gender species regardless of user choice
+				if (species == 0)
+				{
+					finalgender = 0;
+				}
+				else
+				{	
+					int i = 0;
+					for (i=0;i<male_only.Length;i++)
+					{
+						if (species == male_only[i])
+						    finalgender = 0;
+					}
+					for (i=0;i<female_only.Length;i++)
+					{
+						if (species == female_only[i])
+						    finalgender = 1;
+					}
+					for (i=0;i<genderless.Length;i++)
+					{
+						if (species == genderless[i])
+						    finalgender = 2;
+					}
+				}
+				
+				
+				pokes[index] = (UInt32)(finalgender | (species << 16));
 				BitConverter.GetBytes(pokes[index]).CopyTo(Data, 0x20 + index*4);
+
 			}
 			
 			public int get_item_id(int index)
@@ -773,13 +822,13 @@ namespace BW_tool
 				{
 					items[index] = (UInt32)((amount << 16) | id);
 				}
-				BitConverter.GetBytes(items[index]).CopyTo(Data, 0x20 + index*4);
+				BitConverter.GetBytes(items[index]).CopyTo(Data, 0x38 + index*4);
 			}
 			
 			public UInt32 EncKey
 	        {
-	            get { return BitConverter.ToUInt32(Data, 0x5C); }
-	            set { BitConverter.GetBytes((UInt32)value).CopyTo(Data, 0x5C); }
+	            get { return BitConverter.ToUInt32(Data, 0x7C); }
+	            set { BitConverter.GetBytes((UInt32)value).CopyTo(Data, 0x7C); }
 	        }
   
 	        public void reinit() //Call this to clean all data so legendaries can be received again. Must be used with the other classes reinit() for it to work
@@ -790,6 +839,20 @@ namespace BW_tool
 	            	Data[i] = 0;
 	            }
 	        }
+	        
+	        public void clean_data()
+	        {
+	        	int i = 0;
+	            for (i=0; i<Size-4;i++)
+	            {
+	            	Data[i] = 0;
+	            }
+	        }
+	        
+	        //Some arrays for gender filter
+			int[] male_only = new int[]{ 32, 33, 34, 106, 107, 128, 237, 313, 414, 475, 538, 539, 627, 628, 236, 381, 641, 642, 645 };
+			int[] female_only = new int[]{ 29 ,113, 115, 124, 241, 242, 314, 413, 416, 478, 548, 549, 629, 630, 30, 31, 238, 380, 440, 488 };
+			int[] genderless = new int[]{ 81, 82, 100, 101, 120, 121, 137, 233, 292, 337, 338, 343, 344, 374, 375, 376, 436, 437, 462, 474, 479, 489, 490, 599, 600, 601, 615, 622, 623, 132, 144, 145, 146, 150, 151, 201, 243, 244, 245, 249, 250, 251, 377, 378, 379, 382, 383, 384, 385, 386, 480, 481, 482, 483, 484, 486, 487, 491, 492, 493, 494, 638, 639, 640, 643, 644, 646, 647, 648, 649 };
 			
 		}
 }

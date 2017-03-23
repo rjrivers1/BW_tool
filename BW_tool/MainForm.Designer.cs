@@ -163,6 +163,7 @@ namespace BW_tool
 			this.trainer_records_but.TabIndex = 8;
 			this.trainer_records_but.Text = "Trainer Records";
 			this.trainer_records_but.UseVisualStyleBackColor = true;
+			this.trainer_records_but.Visible = false;
 			this.trainer_records_but.Click += new System.EventHandler(this.Trainer_records_butClick);
 			// 
 			// medal_but
@@ -250,6 +251,7 @@ namespace BW_tool
 			this.dlc_but.TabIndex = 16;
 			this.dlc_but.Text = "DLC";
 			this.dlc_but.UseVisualStyleBackColor = true;
+			this.dlc_but.Visible = false;
 			this.dlc_but.Click += new System.EventHandler(this.Dlc_butClick);
 			// 
 			// dr_but
@@ -259,7 +261,7 @@ namespace BW_tool
 			this.dr_but.Name = "dr_but";
 			this.dr_but.Size = new System.Drawing.Size(140, 23);
 			this.dr_but.TabIndex = 17;
-			this.dr_but.Text = "Dream Radar (3DS Link)";
+			this.dr_but.Text = "3DS Link (Dream Radar)";
 			this.dr_but.UseVisualStyleBackColor = true;
 			this.dr_but.Click += new System.EventHandler(this.Dr_butClick);
 			// 

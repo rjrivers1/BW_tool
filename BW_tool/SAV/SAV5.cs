@@ -619,7 +619,7 @@ namespace BW_tool
         public byte[] dslinkA_get()
         {
         	if (B2W2 == true){
-	        	return getData(0x7F000, 0x12);
+	        	return getData(0x7F000, 0x10);
         	}else{
         		;
         	} 
