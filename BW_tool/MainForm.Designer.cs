@@ -30,6 +30,7 @@ namespace BW_tool
 		private System.Windows.Forms.Button trainer_but;
 		private System.Windows.Forms.Button about;
 		private System.Windows.Forms.Button memory_but;
+		private System.Windows.Forms.Button dlc_but;
 		
 		/// <summary>
 		/// Disposes resources used by the form.
@@ -68,6 +69,7 @@ namespace BW_tool
 			this.trainer_but = new System.Windows.Forms.Button();
 			this.about = new System.Windows.Forms.Button();
 			this.memory_but = new System.Windows.Forms.Button();
+			this.dlc_but = new System.Windows.Forms.Button();
 			this.SuspendLayout();
 			// 
 			// loadsave_but
@@ -237,12 +239,24 @@ namespace BW_tool
 			this.memory_but.UseVisualStyleBackColor = true;
 			this.memory_but.Click += new System.EventHandler(this.Memory_butClick);
 			// 
+			// dlc_but
+			// 
+			this.dlc_but.Enabled = false;
+			this.dlc_but.Location = new System.Drawing.Point(158, 194);
+			this.dlc_but.Name = "dlc_but";
+			this.dlc_but.Size = new System.Drawing.Size(140, 23);
+			this.dlc_but.TabIndex = 16;
+			this.dlc_but.Text = "DLC";
+			this.dlc_but.UseVisualStyleBackColor = true;
+			this.dlc_but.Click += new System.EventHandler(this.Dlc_butClick);
+			// 
 			// MainForm
 			// 
 			this.AllowDrop = true;
 			this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-			this.ClientSize = new System.Drawing.Size(503, 192);
+			this.ClientSize = new System.Drawing.Size(503, 239);
+			this.Controls.Add(this.dlc_but);
 			this.Controls.Add(this.memory_but);
 			this.Controls.Add(this.about);
 			this.Controls.Add(this.trainer_but);

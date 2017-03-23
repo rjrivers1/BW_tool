@@ -90,6 +90,7 @@ namespace BW_tool
 					join_but.Enabled = true;
 					trainer_but.Enabled = true;
 					memory_but.Enabled = true;
+					dlc_but.Enabled = true;
 				}
 				else if (save.BW)
 				{
@@ -107,6 +108,7 @@ namespace BW_tool
 					join_but.Enabled = false;
 					trainer_but.Enabled = true;
 					memory_but.Enabled = false;
+					dlc_but.Enabled = true;
 				}
 				else versiontext.Text = "Invalid file";
 
@@ -126,6 +128,7 @@ namespace BW_tool
 				join_but.Enabled = false;
 				trainer_but.Enabled = false;
 				memory_but.Enabled = false;
+				dlc_but.Enabled = false;
 			}
 		}
 		void Save_butClick(object sender, EventArgs e)
@@ -194,6 +197,11 @@ namespace BW_tool
 		{
 			Form memory = new MemoryLink();
 			memory.ShowDialog();
+		}
+		void Dlc_butClick(object sender, EventArgs e)
+		{
+			Form dlc = new DLC();
+			dlc.ShowDialog();
 		}
 	}
 }

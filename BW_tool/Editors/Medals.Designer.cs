@@ -31,6 +31,10 @@ namespace BW_tool
 		private System.Windows.Forms.CheckBox obtained;
 		private System.Windows.Forms.Panel red_panel;
 		private System.Windows.Forms.Button delete_but;
+		private System.Windows.Forms.TextBox date_hex;
+		private System.Windows.Forms.TextBox flag_hex;
+		private System.Windows.Forms.Label label4;
+		private System.Windows.Forms.Label label5;
 		
 		/// <summary>
 		/// Disposes resources used by the form.
@@ -68,6 +72,10 @@ namespace BW_tool
 			this.obtained = new System.Windows.Forms.CheckBox();
 			this.red_panel = new System.Windows.Forms.Panel();
 			this.delete_but = new System.Windows.Forms.Button();
+			this.date_hex = new System.Windows.Forms.TextBox();
+			this.flag_hex = new System.Windows.Forms.TextBox();
+			this.label4 = new System.Windows.Forms.Label();
+			this.label5 = new System.Windows.Forms.Label();
 			((System.ComponentModel.ISupportInitialize)(this.day)).BeginInit();
 			((System.ComponentModel.ISupportInitialize)(this.month)).BeginInit();
 			((System.ComponentModel.ISupportInitialize)(this.year)).BeginInit();
@@ -429,7 +437,7 @@ namespace BW_tool
 			// 
 			// flag1box
 			// 
-			this.flag1box.Location = new System.Drawing.Point(70, 67);
+			this.flag1box.Location = new System.Drawing.Point(12, 67);
 			this.flag1box.Name = "flag1box";
 			this.flag1box.Size = new System.Drawing.Size(104, 24);
 			this.flag1box.TabIndex = 10;
@@ -439,7 +447,7 @@ namespace BW_tool
 			// 
 			// flag2box
 			// 
-			this.flag2box.Location = new System.Drawing.Point(140, 67);
+			this.flag2box.Location = new System.Drawing.Point(82, 67);
 			this.flag2box.Name = "flag2box";
 			this.flag2box.Size = new System.Drawing.Size(104, 24);
 			this.flag2box.TabIndex = 11;
@@ -449,7 +457,7 @@ namespace BW_tool
 			// 
 			// flag3box
 			// 
-			this.flag3box.Location = new System.Drawing.Point(70, 97);
+			this.flag3box.Location = new System.Drawing.Point(12, 97);
 			this.flag3box.Name = "flag3box";
 			this.flag3box.Size = new System.Drawing.Size(104, 24);
 			this.flag3box.TabIndex = 12;
@@ -459,7 +467,7 @@ namespace BW_tool
 			// 
 			// flag4box
 			// 
-			this.flag4box.Location = new System.Drawing.Point(140, 97);
+			this.flag4box.Location = new System.Drawing.Point(82, 97);
 			this.flag4box.Name = "flag4box";
 			this.flag4box.Size = new System.Drawing.Size(104, 24);
 			this.flag4box.TabIndex = 13;
@@ -503,11 +511,47 @@ namespace BW_tool
 			this.delete_but.UseVisualStyleBackColor = true;
 			this.delete_but.Click += new System.EventHandler(this.Delete_butClick);
 			// 
+			// date_hex
+			// 
+			this.date_hex.Location = new System.Drawing.Point(211, 73);
+			this.date_hex.Name = "date_hex";
+			this.date_hex.Size = new System.Drawing.Size(64, 20);
+			this.date_hex.TabIndex = 18;
+			// 
+			// flag_hex
+			// 
+			this.flag_hex.Location = new System.Drawing.Point(211, 99);
+			this.flag_hex.Name = "flag_hex";
+			this.flag_hex.Size = new System.Drawing.Size(64, 20);
+			this.flag_hex.TabIndex = 19;
+			// 
+			// label4
+			// 
+			this.label4.Location = new System.Drawing.Point(140, 71);
+			this.label4.Name = "label4";
+			this.label4.Size = new System.Drawing.Size(65, 23);
+			this.label4.TabIndex = 20;
+			this.label4.Text = "Date hex:";
+			this.label4.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+			// 
+			// label5
+			// 
+			this.label5.Location = new System.Drawing.Point(154, 97);
+			this.label5.Name = "label5";
+			this.label5.Size = new System.Drawing.Size(51, 23);
+			this.label5.TabIndex = 21;
+			this.label5.Text = "Flag hex:";
+			this.label5.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+			// 
 			// Medals
 			// 
 			this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-			this.ClientSize = new System.Drawing.Size(289, 258);
+			this.ClientSize = new System.Drawing.Size(284, 258);
+			this.Controls.Add(this.flag_hex);
+			this.Controls.Add(this.date_hex);
+			this.Controls.Add(this.label5);
+			this.Controls.Add(this.label4);
 			this.Controls.Add(this.delete_but);
 			this.Controls.Add(this.red_panel);
 			this.Controls.Add(this.obtained);
@@ -531,6 +575,7 @@ namespace BW_tool
 			((System.ComponentModel.ISupportInitialize)(this.month)).EndInit();
 			((System.ComponentModel.ISupportInitialize)(this.year)).EndInit();
 			this.ResumeLayout(false);
+			this.PerformLayout();
 
 		}
 	}

@@ -492,5 +492,128 @@ namespace BW_tool
         		
 			return;
         }
+        public void block_crc_recalc(int index)
+        {
+        	setBlock(getBlock(index), index);
+        }
+        
+        public byte[] pokedex_skin_get()
+        {
+        	if (B2W2 == true){
+	        	return getData(0x6D800, 0x6200);
+        	}else{
+        		;
+        	}
+        	return null;
+        }
+        public void pokedex_skin_set(byte[] skin)
+        {
+        	byte[] skin2 = new byte[0x6204];
+        	skin.CopyTo(skin2, 0);
+        	skin2[6200] = 0xFF;
+        	skin2[6201] = 0xFF;
+        	skin2[6202] = 0xFF;
+        	skin2[6203] = 0xFF;
+			if (B2W2 == true)
+			{
+				setData(skin2, 0x6D800);
+				//Set update counter if there's none already
+				if (BitConverter.ToUInt16(getData(0x6D800+0x6204,2), 0) == 0){
+					UInt16 counter = 0x0001;
+					setData(BitConverter.GetBytes(counter), 0x6D800+0x6204);
+				}
+				//Fix checksum
+				ushort crc = ccitt16(skin2);
+				setData(BitConverter.GetBytes(crc), 0x73A06);
+				
+				//Add extra mirror data
+				setData(BitConverter.GetBytes(crc), 0x73B00);//Mirror
+			}
+        	else
+        	{
+        		;
+        	}
+        }
+        public byte[] cgear_skin_get()
+        {
+        	if (B2W2 == true){
+	        	return getData(0x52800, 0x2600);
+        	}else{
+        		;
+        	}
+        	return null;
+        }
+        public void cgear_skin_set(byte[] cgear)
+        {
+			if (B2W2 == true)
+			{
+				setData(cgear, 0x52800);
+				//Set update counter if there's none already
+				if (BitConverter.ToUInt16(getData(0x52800+0x2600,2), 0) == 0){
+					UInt16 counter = 0x0001;
+					setData(BitConverter.GetBytes(counter), 0x52800+0x2600);
+				}
+				//Fix checksum
+				ushort crc = ccitt16(cgear);
+				setData(BitConverter.GetBytes(crc), 0x54E02);
+				
+				//Add extra mirror data
+				setData(BitConverter.GetBytes(crc), 0x54F00);//Mirror
+
+			}
+        	else
+        	{
+        		;
+        	}
+        }
+        public byte[] musical_get()
+        {
+        	byte[] pms = new byte[0x17D78];
+        	if (B2W2 == true){
+        		getData(0x55800, 0x17D14).CopyTo(pms, 0);
+        		getData(0x1f908, 0x64).CopyTo(pms, 0x17D14);
+        	}else{
+        		;
+        	}
+        	return pms;
+        }
+        public void musical_set(byte[] musical)
+        {
+			if (B2W2 == true)
+			{
+				setData(musical.Take(0x17D14).ToArray(), 0x6D800);
+				//Set musical data to block 42 and Fix checksum #42
+				setData(musical.Skip(0x17D14).Take(0x64).ToArray(), 0x1F908);
+				block_crc_recalc(42);
+			}
+        	else
+        	{
+        		;
+        	}
+        }
+        public byte[] pwt_get(int index)
+        {
+        	if (B2W2 == true){
+	        	return getData(0, 0x1314);
+        	}else{
+        		;
+        	} 
+        	return null;
+        }
+        public void pwt_set(int index, byte[] pwt)
+        {
+			if (B2W2 == true)
+			{
+				setData(pwt, 0x1314);
+				//Fix checksum
+				ushort crc = ccitt16(pwt);
+				setData(BitConverter.GetBytes(crc), 0x73A06);
+				setData(BitConverter.GetBytes(crc), 0x73B00);//Mirror
+			}
+        	else
+        	{
+        		;
+        	}
+        }
     }
 }

@@ -50,6 +50,10 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Editors\DLC.cs" />
+    <Compile Include="Editors\DLC.Designer.cs">
+      <DependentUpon>DLC.cs</DependentUpon>
+    </Compile>
     <Compile Include="Editors\Entralink_DreamWorld.cs" />
     <Compile Include="Editors\Entralink_DreamWorld.Designer.cs">
       <DependentUpon>Entralink_DreamWorld.cs</DependentUpon>
@@ -109,6 +113,9 @@
     <Folder Include="SAV" />
   </ItemGroup>
   <ItemGroup>
+    <EmbeddedResource Include="Editors\DLC.resx">
+      <DependentUpon>DLC.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Editors\Dumper.resx">
       <DependentUpon>Dumper.cs</DependentUpon>
     </EmbeddedResource>
