@@ -172,7 +172,7 @@ namespace BW_tool
 			"69 - Key-related data",
 			"70 - Unknown (70d)",
 			"71 - Unknown",
-			"72 - Unknown",
+			"72 - 3DS Link related data",
 			"73 - Checksum Block (73d)"});
 			this.selectedblock.Location = new System.Drawing.Point(12, 12);
 			this.selectedblock.MaxDropDownItems = 10;

@@ -73,6 +73,22 @@ namespace BW_tool
 			return buffer_dec;
 		}
 
+		internal static byte[] cryptoXor32Array(byte[] encarray, int start_offset, int length, int key_offset)
+		// --------------------------------------------------
+		{
+			byte[] buffer_dec = (byte[])encarray.Clone();
+			
+			UInt32 encKey = BitConverter.ToUInt32(encarray, key_offset);
+			
+			int i = 0;
+			for (i= 0; i< length; i+=4)
+			{
+				BitConverter.GetBytes(BitConverter.ToUInt32(encarray, start_offset + i) ^ encKey).CopyTo(buffer_dec, i);
+			}
+
+			return buffer_dec;
+		}
+		
         // SAV Manipulation
         /// <summary>Calculates the CRC16-CCITT checksum over an input byte array.</summary>
         /// <param name="chunk">Input byte array</param>

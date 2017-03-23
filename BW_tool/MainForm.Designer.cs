@@ -31,6 +31,7 @@ namespace BW_tool
 		private System.Windows.Forms.Button about;
 		private System.Windows.Forms.Button memory_but;
 		private System.Windows.Forms.Button dlc_but;
+		private System.Windows.Forms.Button dr_but;
 		
 		/// <summary>
 		/// Disposes resources used by the form.
@@ -70,6 +71,7 @@ namespace BW_tool
 			this.about = new System.Windows.Forms.Button();
 			this.memory_but = new System.Windows.Forms.Button();
 			this.dlc_but = new System.Windows.Forms.Button();
+			this.dr_but = new System.Windows.Forms.Button();
 			this.SuspendLayout();
 			// 
 			// loadsave_but
@@ -250,12 +252,24 @@ namespace BW_tool
 			this.dlc_but.UseVisualStyleBackColor = true;
 			this.dlc_but.Click += new System.EventHandler(this.Dlc_butClick);
 			// 
+			// dr_but
+			// 
+			this.dr_but.Enabled = false;
+			this.dr_but.Location = new System.Drawing.Point(12, 194);
+			this.dr_but.Name = "dr_but";
+			this.dr_but.Size = new System.Drawing.Size(140, 23);
+			this.dr_but.TabIndex = 17;
+			this.dr_but.Text = "Dream Radar (3DS Link)";
+			this.dr_but.UseVisualStyleBackColor = true;
+			this.dr_but.Click += new System.EventHandler(this.Dr_butClick);
+			// 
 			// MainForm
 			// 
 			this.AllowDrop = true;
 			this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
 			this.ClientSize = new System.Drawing.Size(503, 239);
+			this.Controls.Add(this.dr_but);
 			this.Controls.Add(this.dlc_but);
 			this.Controls.Add(this.memory_but);
 			this.Controls.Add(this.about);

@@ -615,5 +615,48 @@ namespace BW_tool
         		;
         	}
         }
+        
+        public byte[] dslinkA_get()
+        {
+        	if (B2W2 == true){
+	        	return getData(0x7F000, 0x12);
+        	}else{
+        		;
+        	} 
+        	return null;
+        }
+        public void dslinkA_set(byte[] dslinkA)
+        {
+			if (B2W2 == true)
+			{
+				setData(dslinkA, 0x7F000);
+				//Fix checksum
+				ushort crc = ccitt16(dslinkA);
+				setData(BitConverter.GetBytes(crc), 0x7F010);
+				//Just to be sure this is set 0xFFFF (seems basically unused though)
+				Data[0x7F012] = 0xFF;
+				Data[0x7F013] = 0xFF;
+			}
+        }
+        public byte[] dslinkB_get()
+        {
+        	if (B2W2 == true){
+	        	return getData(0x7F014, 0x80);
+        	}else{
+        		;
+        	} 
+        	return null;
+        	
+        }
+        public void dslinkB_set(byte[] dslinkB)
+        {
+			if (B2W2 == true)
+			{
+				setData(dslinkB, 0x7F014);
+				//Fix checksum
+				ushort crc = ccitt16(dslinkB);
+				setData(BitConverter.GetBytes(crc), 0x7F094);
+			}
+        }
     }
 }

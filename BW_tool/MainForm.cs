@@ -91,6 +91,7 @@ namespace BW_tool
 					trainer_but.Enabled = true;
 					memory_but.Enabled = true;
 					dlc_but.Enabled = true;
+					dr_but.Enabled = true;
 				}
 				else if (save.BW)
 				{
@@ -109,6 +110,7 @@ namespace BW_tool
 					trainer_but.Enabled = true;
 					memory_but.Enabled = false;
 					dlc_but.Enabled = true;
+					dr_but.Enabled = false;
 				}
 				else versiontext.Text = "Invalid file";
 
@@ -129,6 +131,7 @@ namespace BW_tool
 				trainer_but.Enabled = false;
 				memory_but.Enabled = false;
 				dlc_but.Enabled = false;
+				dr_but.Enabled = false;
 			}
 		}
 		void Save_butClick(object sender, EventArgs e)
@@ -202,6 +205,11 @@ namespace BW_tool
 		{
 			Form dlc = new DLC();
 			dlc.ShowDialog();
+		}
+		void Dr_butClick(object sender, EventArgs e)
+		{
+			Form dr = new DreamRadar();
+			dr.ShowDialog();
 		}
 	}
 }

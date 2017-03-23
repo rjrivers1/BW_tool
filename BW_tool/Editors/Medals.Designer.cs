@@ -62,8 +62,6 @@ namespace BW_tool
 			this.label1 = new System.Windows.Forms.Label();
 			this.label2 = new System.Windows.Forms.Label();
 			this.label3 = new System.Windows.Forms.Label();
-			this.exit_but = new System.Windows.Forms.Button();
-			this.saveexit_but = new System.Windows.Forms.Button();
 			this.flag1box = new System.Windows.Forms.CheckBox();
 			this.flag2box = new System.Windows.Forms.CheckBox();
 			this.flag3box = new System.Windows.Forms.CheckBox();
@@ -76,6 +74,8 @@ namespace BW_tool
 			this.flag_hex = new System.Windows.Forms.TextBox();
 			this.label4 = new System.Windows.Forms.Label();
 			this.label5 = new System.Windows.Forms.Label();
+			this.exit_but = new System.Windows.Forms.Button();
+			this.saveexit_but = new System.Windows.Forms.Button();
 			((System.ComponentModel.ISupportInitialize)(this.day)).BeginInit();
 			((System.ComponentModel.ISupportInitialize)(this.month)).BeginInit();
 			((System.ComponentModel.ISupportInitialize)(this.year)).BeginInit();
@@ -415,26 +415,6 @@ namespace BW_tool
 			this.label3.TabIndex = 7;
 			this.label3.Text = "Year";
 			// 
-			// exit_but
-			// 
-			this.exit_but.Location = new System.Drawing.Point(178, 184);
-			this.exit_but.Name = "exit_but";
-			this.exit_but.Size = new System.Drawing.Size(97, 27);
-			this.exit_but.TabIndex = 8;
-			this.exit_but.Text = "Exit";
-			this.exit_but.UseVisualStyleBackColor = true;
-			this.exit_but.Click += new System.EventHandler(this.Exit_butClick);
-			// 
-			// saveexit_but
-			// 
-			this.saveexit_but.Location = new System.Drawing.Point(178, 217);
-			this.saveexit_but.Name = "saveexit_but";
-			this.saveexit_but.Size = new System.Drawing.Size(99, 29);
-			this.saveexit_but.TabIndex = 9;
-			this.saveexit_but.Text = "Save and Exit";
-			this.saveexit_but.UseVisualStyleBackColor = true;
-			this.saveexit_but.Click += new System.EventHandler(this.Saveexit_butClick);
-			// 
 			// flag1box
 			// 
 			this.flag1box.Location = new System.Drawing.Point(12, 67);
@@ -542,6 +522,26 @@ namespace BW_tool
 			this.label5.TabIndex = 21;
 			this.label5.Text = "Flag hex:";
 			this.label5.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+			// 
+			// exit_but
+			// 
+			this.exit_but.Location = new System.Drawing.Point(178, 184);
+			this.exit_but.Name = "exit_but";
+			this.exit_but.Size = new System.Drawing.Size(97, 27);
+			this.exit_but.TabIndex = 8;
+			this.exit_but.Text = "Exit";
+			this.exit_but.UseVisualStyleBackColor = true;
+			this.exit_but.Click += new System.EventHandler(this.Exit_butClick);
+			// 
+			// saveexit_but
+			// 
+			this.saveexit_but.Location = new System.Drawing.Point(178, 217);
+			this.saveexit_but.Name = "saveexit_but";
+			this.saveexit_but.Size = new System.Drawing.Size(99, 29);
+			this.saveexit_but.TabIndex = 9;
+			this.saveexit_but.Text = "Save and Exit";
+			this.saveexit_but.UseVisualStyleBackColor = true;
+			this.saveexit_but.Click += new System.EventHandler(this.Saveexit_butClick);
 			// 
 			// Medals
 			// 

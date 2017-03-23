@@ -54,6 +54,10 @@
     <Compile Include="Editors\DLC.Designer.cs">
       <DependentUpon>DLC.cs</DependentUpon>
     </Compile>
+    <Compile Include="Editors\DreamRadar.cs" />
+    <Compile Include="Editors\DreamRadar.Designer.cs">
+      <DependentUpon>DreamRadar.cs</DependentUpon>
+    </Compile>
     <Compile Include="Editors\Entralink_DreamWorld.cs" />
     <Compile Include="Editors\Entralink_DreamWorld.Designer.cs">
       <DependentUpon>Entralink_DreamWorld.cs</DependentUpon>
@@ -115,6 +119,9 @@
   <ItemGroup>
     <EmbeddedResource Include="Editors\DLC.resx">
       <DependentUpon>DLC.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Editors\DreamRadar.resx">
+      <DependentUpon>DreamRadar.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Editors\Dumper.resx">
       <DependentUpon>Dumper.cs</DependentUpon>
