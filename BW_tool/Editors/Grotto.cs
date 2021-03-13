@@ -712,14 +712,22 @@ namespace BW_tool
 			Form form = new Form();
 			
 			PictureBox pictureBox = new PictureBox();
-			
-			pictureBox.Dock = DockStyle.Fill;
-			pictureBox.Image = Image.FromFile("./grotto_tables/b2_"+Grotto_route.SelectedIndex+".png");
-			pictureBox.SizeMode = PictureBoxSizeMode.StretchImage;
-			form.Controls.Add(pictureBox);
-			Size size = new Size(720,300);
-			form.Size = size;
-			form.Show();
+		    try
+		    {
+				pictureBox.Dock = DockStyle.Fill;
+				pictureBox.Image = Image.FromFile("./grotto_tables/b2_"+Grotto_route.SelectedIndex+".png");
+				pictureBox.SizeMode = PictureBoxSizeMode.StretchImage;
+				form.Controls.Add(pictureBox);
+				Size size = new Size(720,300);
+				form.Size = size;
+				form.Show();
+		    }
+		    catch(System.IO.FileNotFoundException)
+		    {
+		        MessageBox.Show("There was an error opening the table.\n" +
+		            "Please check you have included grotto_tables folder in the same path as BW_tool.exe.");
+		    }
+
 		}
 		void Grotto_helpClick(object sender, EventArgs e)
 		{

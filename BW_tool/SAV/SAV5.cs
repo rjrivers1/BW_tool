@@ -196,12 +196,13 @@ namespace BW_tool
 	           				blocks[i].crypto.length = 0xA90;
 	           				blocks[i].crypto.seed = 0xA90;
 	           				break;
+	           			*/
 	           			case 38: //Trainer card records
 	           				blocks[i].encrypted=true;
 	           				blocks[i].crypto.start = 0x04;
 	           				blocks[i].crypto.length = 0x1DC;
 	           				blocks[i].crypto.seed = 0x1DC;
-	           				break;*/
+	           				break;
 	           			case 61: //Entralink forest
 	           				blocks[i].encrypted=true;
 	           				blocks[i].crypto.start = 0x00;

@@ -96,6 +96,9 @@ namespace BW_tool
 			this.label5 = new System.Windows.Forms.Label();
 			this.label6 = new System.Windows.Forms.Label();
 			this.label7 = new System.Windows.Forms.Label();
+			this.label8 = new System.Windows.Forms.Label();
+			this.label9 = new System.Windows.Forms.Label();
+			this.starter = new System.Windows.Forms.ComboBox();
 			this.groupBox1.SuspendLayout();
 			((System.ComponentModel.ISupportInitialize)(this.sid)).BeginInit();
 			((System.ComponentModel.ISupportInitialize)(this.tid)).BeginInit();
@@ -228,10 +231,10 @@ namespace BW_tool
 			// 
 			this.sid.Location = new System.Drawing.Point(117, 126);
 			this.sid.Maximum = new decimal(new int[] {
-			65535,
-			0,
-			0,
-			0});
+									65535,
+									0,
+									0,
+									0});
 			this.sid.Name = "sid";
 			this.sid.Size = new System.Drawing.Size(120, 20);
 			this.sid.TabIndex = 35;
@@ -240,10 +243,10 @@ namespace BW_tool
 			// 
 			this.tid.Location = new System.Drawing.Point(117, 100);
 			this.tid.Maximum = new decimal(new int[] {
-			65535,
-			0,
-			0,
-			0});
+									65535,
+									0,
+									0,
+									0});
 			this.tid.Name = "tid";
 			this.tid.Size = new System.Drawing.Size(120, 20);
 			this.tid.TabIndex = 34;
@@ -373,7 +376,7 @@ namespace BW_tool
 			// 
 			// label6
 			// 
-			this.label6.Location = new System.Drawing.Point(465, 18);
+			this.label6.Location = new System.Drawing.Point(465, 10);
 			this.label6.Name = "label6";
 			this.label6.Size = new System.Drawing.Size(132, 23);
 			this.label6.TabIndex = 48;
@@ -381,17 +384,48 @@ namespace BW_tool
 			// 
 			// label7
 			// 
-			this.label7.Location = new System.Drawing.Point(465, 32);
+			this.label7.Location = new System.Drawing.Point(465, 24);
 			this.label7.Name = "label7";
 			this.label7.Size = new System.Drawing.Size(132, 23);
 			this.label7.TabIndex = 49;
 			this.label7.Text = "- Hall of Fame";
+			// 
+			// label8
+			// 
+			this.label8.Location = new System.Drawing.Point(465, 39);
+			this.label8.Name = "label8";
+			this.label8.Size = new System.Drawing.Size(132, 23);
+			this.label8.TabIndex = 50;
+			this.label8.Text = "- Starter Pokémon";
+			// 
+			// label9
+			// 
+			this.label9.Location = new System.Drawing.Point(242, 77);
+			this.label9.Name = "label9";
+			this.label9.Size = new System.Drawing.Size(51, 23);
+			this.label9.TabIndex = 51;
+			this.label9.Text = "Starter";
+			// 
+			// starter
+			// 
+			this.starter.FormattingEnabled = true;
+			this.starter.Items.AddRange(new object[] {
+									"Snivy",
+									"Tepig",
+									"Oshawott"});
+			this.starter.Location = new System.Drawing.Point(282, 74);
+			this.starter.Name = "starter";
+			this.starter.Size = new System.Drawing.Size(121, 21);
+			this.starter.TabIndex = 52;
 			// 
 			// MemoryLink
 			// 
 			this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
 			this.ClientSize = new System.Drawing.Size(659, 317);
+			this.Controls.Add(this.starter);
+			this.Controls.Add(this.label9);
+			this.Controls.Add(this.label8);
 			this.Controls.Add(this.label7);
 			this.Controls.Add(this.label6);
 			this.Controls.Add(this.label5);
@@ -423,7 +457,9 @@ namespace BW_tool
 			((System.ComponentModel.ISupportInitialize)(this.tid)).EndInit();
 			this.ResumeLayout(false);
 			this.PerformLayout();
-
 		}
+		private System.Windows.Forms.ComboBox starter;
+		private System.Windows.Forms.Label label9;
+		private System.Windows.Forms.Label label8;
 	}
 }

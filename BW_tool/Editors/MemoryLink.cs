@@ -68,6 +68,7 @@ namespace BW_tool
 			name.Text = ml.block2.name;
 			tid.Value = ml.block2.TID;
 			sid.Value = ml.block2.SID;
+			starter.SelectedIndex = ml.block2.STARTER;
 			
 			flag1.Checked = ml.block2.checkflag(0);
 			flag2.Checked = ml.block2.checkflag(1);
@@ -84,6 +85,7 @@ namespace BW_tool
 			ml.block2.name = name.Text;
 			ml.block2.TID = (UInt16)tid.Value;
 			ml.block2.SID = (UInt16)sid.Value;
+			ml.block2.STARTER = (byte)starter.SelectedIndex;
 			
 			ml.block2.setflag(0, flag1.Checked);
 			ml.block2.setflag(1, flag2.Checked);
@@ -209,6 +211,7 @@ namespace BW_tool
 			        ml.block2.name_fromarray(bw1.Skip(0x19404).Take(0xF).ToArray());
 			        ml.block2.TID = BitConverter.ToUInt16(bw1, 0x19414);
 			        ml.block2.SID = BitConverter.ToUInt16(bw1, 0x19416);
+			        ml.block2.STARTER = bw1save.Data[0x20160];
 			        
 			        ml.block2.set_hof(bw1.Skip(0x23B00).Take(0x168).ToArray());
 			        
@@ -219,7 +222,7 @@ namespace BW_tool
 					//Reload all data
 					load_data();
 					
-					MessageBox.Show("Imported: Trainer Name, TID, SID, Hall of Fame");
+					MessageBox.Show("Imported: Trainer Name, TID, SID, Starter, Hall of Fame");
 				}
 				else{
 					
@@ -487,6 +490,17 @@ namespace BW_tool
 		            	setData(BitConverter.GetBytes((UInt16)value), 0x46);
 		            	setData(BitConverter.GetBytes((UInt16)value), 0x76);
 		            }
+		        }
+		        public byte STARTER
+		        {
+		        	get
+		        	{
+		        		return Data[0x8E];
+		        	}
+		        	set
+		        	{
+		        		Data[0x8E]=(byte)value;
+		        	}
 		        }
 				
 		        public bool checkflag(int index)

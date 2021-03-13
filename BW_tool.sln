@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 11.00
 # Visual Studio 2010
-# SharpDevelop 5.1
+# SharpDevelop 4.4
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BW_tool", "BW_tool\BW_tool.csproj", "{41ABAC38-D34B-489D-A450-3E9FADD07419}"
 EndProject
 Global
