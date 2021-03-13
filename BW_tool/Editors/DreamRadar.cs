@@ -801,18 +801,21 @@ namespace BW_tool
 			
 			public int get_item_id(int index)
 			{
-				return (int)items[index] & 0x0000FFFF;
+				return (int)items[index] >> 16;
 			}
 			public int get_item_amount(int index)
 			{
-				return (int)items[index] >> 16;
+				//Even though item amount is stored as u16, only the least byte is used, so maximum is 255
+				if (((int)items[index] & 0x0000FFFF) <255){
+					return (int)items[index] & 0x0000FFFF;
+				}else return 255;
 			}
 			
 			public void set_item(int amount, int id, int index)
 			{
 				if (amount == 0 && id > 0) //Put 1 of an item if it's 0
 				{
-					items[index] = (UInt32)((1 << 16) | id);
+					items[index] = (UInt32)((id << 16) | 1);
 				}
 				else if (id == 0)
 				{
@@ -820,7 +823,7 @@ namespace BW_tool
 				}
 				else
 				{
-					items[index] = (UInt32)((amount << 16) | id);
+					items[index] = (UInt32)((id << 16) | amount);
 				}
 				BitConverter.GetBytes(items[index]).CopyTo(Data, 0x38 + index*4);
 			}

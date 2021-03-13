@@ -464,6 +464,7 @@ namespace BW_tool
 		                    .Replace("\u0027", "\u2019") // farfetch'd
 		                    .PadRight(value.Length + 1, (char)0xFFFF); // Null Terminator
 		                Encoding.Unicode.GetBytes(TempNick).CopyTo(Data, 0x48);
+		                Encoding.Unicode.GetBytes(TempNick).CopyTo(Data, 0x60);
 		                Encoding.Unicode.GetBytes(TempNick).CopyTo(Data, 0x78);
 		            }
 		        }
@@ -476,6 +477,7 @@ namespace BW_tool
 		            set
 		            {
 		            	setData(BitConverter.GetBytes((UInt16)value), 0x44);
+		            	setData(BitConverter.GetBytes((UInt16)value), 0x5C);
 		            	setData(BitConverter.GetBytes((UInt16)value), 0x74);
 		            }
 		        }
@@ -488,6 +490,7 @@ namespace BW_tool
 		            set
 		            {
 		            	setData(BitConverter.GetBytes((UInt16)value), 0x46);
+		            	setData(BitConverter.GetBytes((UInt16)value), 0x5E);
 		            	setData(BitConverter.GetBytes((UInt16)value), 0x76);
 		            }
 		        }
@@ -525,7 +528,8 @@ namespace BW_tool
 		        
 		        public void set_hof(byte[] input)
 		        {
-		        	setData(input.Skip(0x23B00).Take(0x168).ToArray(), 0xB8);
+		        	//setData(input.Skip(0x23B00).Take(0x168).ToArray(), 0xB8);
+		        	setData(input, 0xB8);
 		        }
 			}
 		}

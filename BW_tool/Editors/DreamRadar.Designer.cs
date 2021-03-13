@@ -269,15 +269,15 @@ namespace BW_tool
 			// 
 			this.legend8.FormattingEnabled = true;
 			this.legend8.Items.AddRange(new object[] {
-			"NONE",
-			"Tornadus",
-			"Thundurus",
-			"Landorus",
-			"Dialga",
-			"Palkia",
-			"Giratina",
-			"Ho-Oh",
-			"Lugia"});
+									"NONE",
+									"Tornadus",
+									"Thundurus",
+									"Landorus",
+									"Dialga",
+									"Palkia",
+									"Giratina",
+									"Ho-Oh",
+									"Lugia"});
 			this.legend8.Location = new System.Drawing.Point(55, 207);
 			this.legend8.Name = "legend8";
 			this.legend8.Size = new System.Drawing.Size(104, 21);
@@ -296,15 +296,15 @@ namespace BW_tool
 			// 
 			this.legend7.FormattingEnabled = true;
 			this.legend7.Items.AddRange(new object[] {
-			"NONE",
-			"Tornadus",
-			"Thundurus",
-			"Landorus",
-			"Dialga",
-			"Palkia",
-			"Giratina",
-			"Ho-Oh",
-			"Lugia"});
+									"NONE",
+									"Tornadus",
+									"Thundurus",
+									"Landorus",
+									"Dialga",
+									"Palkia",
+									"Giratina",
+									"Ho-Oh",
+									"Lugia"});
 			this.legend7.Location = new System.Drawing.Point(55, 180);
 			this.legend7.Name = "legend7";
 			this.legend7.Size = new System.Drawing.Size(104, 21);
@@ -323,15 +323,15 @@ namespace BW_tool
 			// 
 			this.legend6.FormattingEnabled = true;
 			this.legend6.Items.AddRange(new object[] {
-			"NONE",
-			"Tornadus",
-			"Thundurus",
-			"Landorus",
-			"Dialga",
-			"Palkia",
-			"Giratina",
-			"Ho-Oh",
-			"Lugia"});
+									"NONE",
+									"Tornadus",
+									"Thundurus",
+									"Landorus",
+									"Dialga",
+									"Palkia",
+									"Giratina",
+									"Ho-Oh",
+									"Lugia"});
 			this.legend6.Location = new System.Drawing.Point(55, 153);
 			this.legend6.Name = "legend6";
 			this.legend6.Size = new System.Drawing.Size(104, 21);
@@ -350,15 +350,15 @@ namespace BW_tool
 			// 
 			this.legend5.FormattingEnabled = true;
 			this.legend5.Items.AddRange(new object[] {
-			"NONE",
-			"Tornadus",
-			"Thundurus",
-			"Landorus",
-			"Dialga",
-			"Palkia",
-			"Giratina",
-			"Ho-Oh",
-			"Lugia"});
+									"NONE",
+									"Tornadus",
+									"Thundurus",
+									"Landorus",
+									"Dialga",
+									"Palkia",
+									"Giratina",
+									"Ho-Oh",
+									"Lugia"});
 			this.legend5.Location = new System.Drawing.Point(55, 126);
 			this.legend5.Name = "legend5";
 			this.legend5.Size = new System.Drawing.Size(104, 21);
@@ -377,15 +377,15 @@ namespace BW_tool
 			// 
 			this.legend4.FormattingEnabled = true;
 			this.legend4.Items.AddRange(new object[] {
-			"NONE",
-			"Tornadus",
-			"Thundurus",
-			"Landorus",
-			"Dialga",
-			"Palkia",
-			"Giratina",
-			"Ho-Oh",
-			"Lugia"});
+									"NONE",
+									"Tornadus",
+									"Thundurus",
+									"Landorus",
+									"Dialga",
+									"Palkia",
+									"Giratina",
+									"Ho-Oh",
+									"Lugia"});
 			this.legend4.Location = new System.Drawing.Point(55, 99);
 			this.legend4.Name = "legend4";
 			this.legend4.Size = new System.Drawing.Size(104, 21);
@@ -404,15 +404,15 @@ namespace BW_tool
 			// 
 			this.legend3.FormattingEnabled = true;
 			this.legend3.Items.AddRange(new object[] {
-			"NONE",
-			"Tornadus",
-			"Thundurus",
-			"Landorus",
-			"Dialga",
-			"Palkia",
-			"Giratina",
-			"Ho-Oh",
-			"Lugia"});
+									"NONE",
+									"Tornadus",
+									"Thundurus",
+									"Landorus",
+									"Dialga",
+									"Palkia",
+									"Giratina",
+									"Ho-Oh",
+									"Lugia"});
 			this.legend3.Location = new System.Drawing.Point(55, 72);
 			this.legend3.Name = "legend3";
 			this.legend3.Size = new System.Drawing.Size(104, 21);
@@ -431,15 +431,15 @@ namespace BW_tool
 			// 
 			this.legend2.FormattingEnabled = true;
 			this.legend2.Items.AddRange(new object[] {
-			"NONE",
-			"Tornadus",
-			"Thundurus",
-			"Landorus",
-			"Dialga",
-			"Palkia",
-			"Giratina",
-			"Ho-Oh",
-			"Lugia"});
+									"NONE",
+									"Tornadus",
+									"Thundurus",
+									"Landorus",
+									"Dialga",
+									"Palkia",
+									"Giratina",
+									"Ho-Oh",
+									"Lugia"});
 			this.legend2.Location = new System.Drawing.Point(55, 45);
 			this.legend2.Name = "legend2";
 			this.legend2.Size = new System.Drawing.Size(104, 21);
@@ -458,15 +458,15 @@ namespace BW_tool
 			// 
 			this.legend1.FormattingEnabled = true;
 			this.legend1.Items.AddRange(new object[] {
-			"NONE",
-			"Tornadus",
-			"Thundurus",
-			"Landorus",
-			"Dialga",
-			"Palkia",
-			"Giratina",
-			"Ho-Oh",
-			"Lugia"});
+									"NONE",
+									"Tornadus",
+									"Thundurus",
+									"Landorus",
+									"Dialga",
+									"Palkia",
+									"Giratina",
+									"Ho-Oh",
+									"Lugia"});
 			this.legend1.Location = new System.Drawing.Point(55, 18);
 			this.legend1.Name = "legend1";
 			this.legend1.Size = new System.Drawing.Size(104, 21);
@@ -534,9 +534,9 @@ namespace BW_tool
 			// 
 			this.pkmgnd6.FormattingEnabled = true;
 			this.pkmgnd6.Items.AddRange(new object[] {
-			"♂",
-			"♀",
-			"Genderless"});
+									"♂",
+									"♀",
+									"Genderless"});
 			this.pkmgnd6.Location = new System.Drawing.Point(191, 180);
 			this.pkmgnd6.Name = "pkmgnd6";
 			this.pkmgnd6.Size = new System.Drawing.Size(85, 21);
@@ -546,9 +546,9 @@ namespace BW_tool
 			// 
 			this.pkmgnd5.FormattingEnabled = true;
 			this.pkmgnd5.Items.AddRange(new object[] {
-			"♂",
-			"♀",
-			"Genderless"});
+									"♂",
+									"♀",
+									"Genderless"});
 			this.pkmgnd5.Location = new System.Drawing.Point(191, 153);
 			this.pkmgnd5.Name = "pkmgnd5";
 			this.pkmgnd5.Size = new System.Drawing.Size(85, 21);
@@ -558,9 +558,9 @@ namespace BW_tool
 			// 
 			this.pkmgnd4.FormattingEnabled = true;
 			this.pkmgnd4.Items.AddRange(new object[] {
-			"♂",
-			"♀",
-			"Genderless"});
+									"♂",
+									"♀",
+									"Genderless"});
 			this.pkmgnd4.Location = new System.Drawing.Point(191, 126);
 			this.pkmgnd4.Name = "pkmgnd4";
 			this.pkmgnd4.Size = new System.Drawing.Size(85, 21);
@@ -570,9 +570,9 @@ namespace BW_tool
 			// 
 			this.pkmgnd3.FormattingEnabled = true;
 			this.pkmgnd3.Items.AddRange(new object[] {
-			"♂",
-			"♀",
-			"Genderless"});
+									"♂",
+									"♀",
+									"Genderless"});
 			this.pkmgnd3.Location = new System.Drawing.Point(191, 99);
 			this.pkmgnd3.Name = "pkmgnd3";
 			this.pkmgnd3.Size = new System.Drawing.Size(85, 21);
@@ -582,9 +582,9 @@ namespace BW_tool
 			// 
 			this.pkmgnd2.FormattingEnabled = true;
 			this.pkmgnd2.Items.AddRange(new object[] {
-			"♂",
-			"♀",
-			"Genderless"});
+									"♂",
+									"♀",
+									"Genderless"});
 			this.pkmgnd2.Location = new System.Drawing.Point(191, 72);
 			this.pkmgnd2.Name = "pkmgnd2";
 			this.pkmgnd2.Size = new System.Drawing.Size(85, 21);
@@ -594,9 +594,9 @@ namespace BW_tool
 			// 
 			this.pkmgnd1.FormattingEnabled = true;
 			this.pkmgnd1.Items.AddRange(new object[] {
-			"♂",
-			"♀",
-			"Genderless"});
+									"♂",
+									"♀",
+									"Genderless"});
 			this.pkmgnd1.Location = new System.Drawing.Point(191, 45);
 			this.pkmgnd1.Name = "pkmgnd1";
 			this.pkmgnd1.Size = new System.Drawing.Size(85, 21);
@@ -615,15 +615,15 @@ namespace BW_tool
 			// 
 			this.pkm1.FormattingEnabled = true;
 			this.pkm1.Items.AddRange(new object[] {
-			"NONE",
-			"Tornadus",
-			"Thundurus",
-			"Landorus",
-			"Dialga",
-			"Palkia",
-			"Giratina",
-			"Ho-Oh",
-			"Lugia"});
+									"NONE",
+									"Tornadus",
+									"Thundurus",
+									"Landorus",
+									"Dialga",
+									"Palkia",
+									"Giratina",
+									"Ho-Oh",
+									"Lugia"});
 			this.pkm1.Location = new System.Drawing.Point(55, 45);
 			this.pkm1.Name = "pkm1";
 			this.pkm1.Size = new System.Drawing.Size(130, 21);
@@ -633,15 +633,15 @@ namespace BW_tool
 			// 
 			this.pkm6.FormattingEnabled = true;
 			this.pkm6.Items.AddRange(new object[] {
-			"NONE",
-			"Tornadus",
-			"Thundurus",
-			"Landorus",
-			"Dialga",
-			"Palkia",
-			"Giratina",
-			"Ho-Oh",
-			"Lugia"});
+									"NONE",
+									"Tornadus",
+									"Thundurus",
+									"Landorus",
+									"Dialga",
+									"Palkia",
+									"Giratina",
+									"Ho-Oh",
+									"Lugia"});
 			this.pkm6.Location = new System.Drawing.Point(55, 180);
 			this.pkm6.Name = "pkm6";
 			this.pkm6.Size = new System.Drawing.Size(130, 21);
@@ -669,15 +669,15 @@ namespace BW_tool
 			// 
 			this.pkm2.FormattingEnabled = true;
 			this.pkm2.Items.AddRange(new object[] {
-			"NONE",
-			"Tornadus",
-			"Thundurus",
-			"Landorus",
-			"Dialga",
-			"Palkia",
-			"Giratina",
-			"Ho-Oh",
-			"Lugia"});
+									"NONE",
+									"Tornadus",
+									"Thundurus",
+									"Landorus",
+									"Dialga",
+									"Palkia",
+									"Giratina",
+									"Ho-Oh",
+									"Lugia"});
 			this.pkm2.Location = new System.Drawing.Point(55, 72);
 			this.pkm2.Name = "pkm2";
 			this.pkm2.Size = new System.Drawing.Size(130, 21);
@@ -687,15 +687,15 @@ namespace BW_tool
 			// 
 			this.pkm5.FormattingEnabled = true;
 			this.pkm5.Items.AddRange(new object[] {
-			"NONE",
-			"Tornadus",
-			"Thundurus",
-			"Landorus",
-			"Dialga",
-			"Palkia",
-			"Giratina",
-			"Ho-Oh",
-			"Lugia"});
+									"NONE",
+									"Tornadus",
+									"Thundurus",
+									"Landorus",
+									"Dialga",
+									"Palkia",
+									"Giratina",
+									"Ho-Oh",
+									"Lugia"});
 			this.pkm5.Location = new System.Drawing.Point(55, 153);
 			this.pkm5.Name = "pkm5";
 			this.pkm5.Size = new System.Drawing.Size(130, 21);
@@ -723,15 +723,15 @@ namespace BW_tool
 			// 
 			this.pkm3.FormattingEnabled = true;
 			this.pkm3.Items.AddRange(new object[] {
-			"NONE",
-			"Tornadus",
-			"Thundurus",
-			"Landorus",
-			"Dialga",
-			"Palkia",
-			"Giratina",
-			"Ho-Oh",
-			"Lugia"});
+									"NONE",
+									"Tornadus",
+									"Thundurus",
+									"Landorus",
+									"Dialga",
+									"Palkia",
+									"Giratina",
+									"Ho-Oh",
+									"Lugia"});
 			this.pkm3.Location = new System.Drawing.Point(55, 99);
 			this.pkm3.Name = "pkm3";
 			this.pkm3.Size = new System.Drawing.Size(130, 21);
@@ -741,15 +741,15 @@ namespace BW_tool
 			// 
 			this.pkm4.FormattingEnabled = true;
 			this.pkm4.Items.AddRange(new object[] {
-			"NONE",
-			"Tornadus",
-			"Thundurus",
-			"Landorus",
-			"Dialga",
-			"Palkia",
-			"Giratina",
-			"Ho-Oh",
-			"Lugia"});
+									"NONE",
+									"Tornadus",
+									"Thundurus",
+									"Landorus",
+									"Dialga",
+									"Palkia",
+									"Giratina",
+									"Ho-Oh",
+									"Lugia"});
 			this.pkm4.Location = new System.Drawing.Point(55, 126);
 			this.pkm4.Name = "pkm4";
 			this.pkm4.Size = new System.Drawing.Size(130, 21);
@@ -799,16 +799,16 @@ namespace BW_tool
 			this.label26.Size = new System.Drawing.Size(253, 28);
 			this.label26.TabIndex = 46;
 			this.label26.Text = "Note: \"NONE\" will auto-set to 0 cuantity. Any item with 0 cuantity will be auto s" +
-	"et to 1 when saving.";
+			"et to 1 when saving.";
 			// 
 			// itemcnt6
 			// 
 			this.itemcnt6.Location = new System.Drawing.Point(223, 181);
 			this.itemcnt6.Maximum = new decimal(new int[] {
-			99,
-			0,
-			0,
-			0});
+									255,
+									0,
+									0,
+									0});
 			this.itemcnt6.Name = "itemcnt6";
 			this.itemcnt6.Size = new System.Drawing.Size(50, 20);
 			this.itemcnt6.TabIndex = 45;
@@ -817,10 +817,10 @@ namespace BW_tool
 			// 
 			this.itemcnt5.Location = new System.Drawing.Point(223, 154);
 			this.itemcnt5.Maximum = new decimal(new int[] {
-			99,
-			0,
-			0,
-			0});
+									255,
+									0,
+									0,
+									0});
 			this.itemcnt5.Name = "itemcnt5";
 			this.itemcnt5.Size = new System.Drawing.Size(50, 20);
 			this.itemcnt5.TabIndex = 44;
@@ -829,10 +829,10 @@ namespace BW_tool
 			// 
 			this.itemcnt4.Location = new System.Drawing.Point(223, 127);
 			this.itemcnt4.Maximum = new decimal(new int[] {
-			99,
-			0,
-			0,
-			0});
+									255,
+									0,
+									0,
+									0});
 			this.itemcnt4.Name = "itemcnt4";
 			this.itemcnt4.Size = new System.Drawing.Size(50, 20);
 			this.itemcnt4.TabIndex = 43;
@@ -841,10 +841,10 @@ namespace BW_tool
 			// 
 			this.itemcnt3.Location = new System.Drawing.Point(223, 100);
 			this.itemcnt3.Maximum = new decimal(new int[] {
-			99,
-			0,
-			0,
-			0});
+									255,
+									0,
+									0,
+									0});
 			this.itemcnt3.Name = "itemcnt3";
 			this.itemcnt3.Size = new System.Drawing.Size(50, 20);
 			this.itemcnt3.TabIndex = 42;
@@ -853,10 +853,10 @@ namespace BW_tool
 			// 
 			this.itemcnt2.Location = new System.Drawing.Point(223, 73);
 			this.itemcnt2.Maximum = new decimal(new int[] {
-			99,
-			0,
-			0,
-			0});
+									255,
+									0,
+									0,
+									0});
 			this.itemcnt2.Name = "itemcnt2";
 			this.itemcnt2.Size = new System.Drawing.Size(50, 20);
 			this.itemcnt2.TabIndex = 41;
@@ -865,10 +865,10 @@ namespace BW_tool
 			// 
 			this.itemcnt1.Location = new System.Drawing.Point(223, 46);
 			this.itemcnt1.Maximum = new decimal(new int[] {
-			99,
-			0,
-			0,
-			0});
+									255,
+									0,
+									0,
+									0});
 			this.itemcnt1.Name = "itemcnt1";
 			this.itemcnt1.Size = new System.Drawing.Size(50, 20);
 			this.itemcnt1.TabIndex = 40;
@@ -895,15 +895,15 @@ namespace BW_tool
 			// 
 			this.item6.FormattingEnabled = true;
 			this.item6.Items.AddRange(new object[] {
-			"NONE",
-			"Tornadus",
-			"Thundurus",
-			"Landorus",
-			"Dialga",
-			"Palkia",
-			"Giratina",
-			"Ho-Oh",
-			"Lugia"});
+									"NONE",
+									"Tornadus",
+									"Thundurus",
+									"Landorus",
+									"Dialga",
+									"Palkia",
+									"Giratina",
+									"Ho-Oh",
+									"Lugia"});
 			this.item6.Location = new System.Drawing.Point(55, 180);
 			this.item6.Name = "item6";
 			this.item6.Size = new System.Drawing.Size(162, 21);
@@ -913,15 +913,15 @@ namespace BW_tool
 			// 
 			this.item1.FormattingEnabled = true;
 			this.item1.Items.AddRange(new object[] {
-			"NONE",
-			"Tornadus",
-			"Thundurus",
-			"Landorus",
-			"Dialga",
-			"Palkia",
-			"Giratina",
-			"Ho-Oh",
-			"Lugia"});
+									"NONE",
+									"Tornadus",
+									"Thundurus",
+									"Landorus",
+									"Dialga",
+									"Palkia",
+									"Giratina",
+									"Ho-Oh",
+									"Lugia"});
 			this.item1.Location = new System.Drawing.Point(55, 45);
 			this.item1.Name = "item1";
 			this.item1.Size = new System.Drawing.Size(162, 21);
@@ -940,15 +940,15 @@ namespace BW_tool
 			// 
 			this.item2.FormattingEnabled = true;
 			this.item2.Items.AddRange(new object[] {
-			"NONE",
-			"Tornadus",
-			"Thundurus",
-			"Landorus",
-			"Dialga",
-			"Palkia",
-			"Giratina",
-			"Ho-Oh",
-			"Lugia"});
+									"NONE",
+									"Tornadus",
+									"Thundurus",
+									"Landorus",
+									"Dialga",
+									"Palkia",
+									"Giratina",
+									"Ho-Oh",
+									"Lugia"});
 			this.item2.Location = new System.Drawing.Point(55, 72);
 			this.item2.Name = "item2";
 			this.item2.Size = new System.Drawing.Size(162, 21);
@@ -958,15 +958,15 @@ namespace BW_tool
 			// 
 			this.item5.FormattingEnabled = true;
 			this.item5.Items.AddRange(new object[] {
-			"NONE",
-			"Tornadus",
-			"Thundurus",
-			"Landorus",
-			"Dialga",
-			"Palkia",
-			"Giratina",
-			"Ho-Oh",
-			"Lugia"});
+									"NONE",
+									"Tornadus",
+									"Thundurus",
+									"Landorus",
+									"Dialga",
+									"Palkia",
+									"Giratina",
+									"Ho-Oh",
+									"Lugia"});
 			this.item5.Location = new System.Drawing.Point(55, 153);
 			this.item5.Name = "item5";
 			this.item5.Size = new System.Drawing.Size(162, 21);
@@ -994,15 +994,15 @@ namespace BW_tool
 			// 
 			this.item3.FormattingEnabled = true;
 			this.item3.Items.AddRange(new object[] {
-			"NONE",
-			"Tornadus",
-			"Thundurus",
-			"Landorus",
-			"Dialga",
-			"Palkia",
-			"Giratina",
-			"Ho-Oh",
-			"Lugia"});
+									"NONE",
+									"Tornadus",
+									"Thundurus",
+									"Landorus",
+									"Dialga",
+									"Palkia",
+									"Giratina",
+									"Ho-Oh",
+									"Lugia"});
 			this.item3.Location = new System.Drawing.Point(55, 99);
 			this.item3.Name = "item3";
 			this.item3.Size = new System.Drawing.Size(162, 21);
@@ -1012,15 +1012,15 @@ namespace BW_tool
 			// 
 			this.item4.FormattingEnabled = true;
 			this.item4.Items.AddRange(new object[] {
-			"NONE",
-			"Tornadus",
-			"Thundurus",
-			"Landorus",
-			"Dialga",
-			"Palkia",
-			"Giratina",
-			"Ho-Oh",
-			"Lugia"});
+									"NONE",
+									"Tornadus",
+									"Thundurus",
+									"Landorus",
+									"Dialga",
+									"Palkia",
+									"Giratina",
+									"Ho-Oh",
+									"Lugia"});
 			this.item4.Location = new System.Drawing.Point(55, 126);
 			this.item4.Name = "item4";
 			this.item4.Size = new System.Drawing.Size(162, 21);
@@ -1084,7 +1084,7 @@ namespace BW_tool
 			this.label21.Size = new System.Drawing.Size(758, 23);
 			this.label21.TabIndex = 17;
 			this.label21.Text = "Note: Dream Radar only allows to transfer a total of 6 Pokémon (including normal " +
-	"+ legendaries) even though you can transfer 14 at once using this editor.";
+			"+ legendaries) even though you can transfer 14 at once using this editor.";
 			// 
 			// groupBox5
 			// 
@@ -1204,7 +1204,6 @@ namespace BW_tool
 			this.groupBox4.ResumeLayout(false);
 			this.groupBox5.ResumeLayout(false);
 			this.ResumeLayout(false);
-
 		}
 	}
 }
