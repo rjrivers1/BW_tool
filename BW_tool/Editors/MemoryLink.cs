@@ -78,6 +78,8 @@ namespace BW_tool
 			flag6.Checked = ml.block2.checkflag(5);
 			flag7.Checked = ml.block2.checkflag(6);
 			flag8.Checked = ml.block2.checkflag(7);
+			
+			PROP.Text = BitConverter.ToString(ml.block2.getData(0x94, 13)).Replace("-", string.Empty);
 		}
 		
 		void set_data()
@@ -214,6 +216,7 @@ namespace BW_tool
 			        ml.block2.STARTER = bw1save.Data[0x20160];
 			        
 			        ml.block2.set_hof(bw1.Skip(0x23B00).Take(0x168).ToArray());
+			        ml.block2.set_props(bw1.Skip(0x1F958).Take(0x13).ToArray());
 			        
 			        UInt32 newseed = (UInt32)(rand.Next(0xFFFF+1)<<16);
 					ml.block1.crypt_seed = newseed;
@@ -222,7 +225,7 @@ namespace BW_tool
 					//Reload all data
 					load_data();
 					
-					MessageBox.Show("Imported: Trainer Name, TID, SID, Starter, Hall of Fame");
+					MessageBox.Show("Imported: Trainer Name, TID, SID, Starter, Hall of Fame, Props");
 				}
 				else{
 					
@@ -528,8 +531,12 @@ namespace BW_tool
 		        
 		        public void set_hof(byte[] input)
 		        {
-		        	//setData(input.Skip(0x23B00).Take(0x168).ToArray(), 0xB8);
 		        	setData(input, 0xB8);
+		        }
+		        
+		        public void set_props(byte[] input)
+		        {
+		        	setData(input, 0x94);
 		        }
 			}
 		}
@@ -753,5 +760,17 @@ namespace BW_tool
 			0x00, 0x00, 0x93, 0x01, 0x39, 0x00, 0x13, 0x00, 0x88, 0x01, 0x00, 0x00
 		};
 
+		
+		void PropUnlockButClick(object sender, EventArgs e)
+		{
+			ml.block2.set_props(default_memories.Skip(0x894).Take(0x13).ToArray());
+			MessageBox.Show("All props have been unlocked for memory link.");
+			PROP.Text = BitConverter.ToString(ml.block2.getData(0x94, 13)).Replace("-", string.Empty);
+		}
+		
+		void MemoryLinkLoad(object sender, EventArgs e)
+		{
+			
+		}
 	}
 }

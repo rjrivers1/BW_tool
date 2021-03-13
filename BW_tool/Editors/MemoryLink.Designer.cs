@@ -77,6 +77,8 @@ namespace BW_tool
 			this.memory_export = new System.Windows.Forms.Button();
 			this.memory_import = new System.Windows.Forms.Button();
 			this.groupBox1 = new System.Windows.Forms.GroupBox();
+			this.PROP = new System.Windows.Forms.Label();
+			this.label11 = new System.Windows.Forms.Label();
 			this.name = new System.Windows.Forms.TextBox();
 			this.sid = new System.Windows.Forms.NumericUpDown();
 			this.tid = new System.Windows.Forms.NumericUpDown();
@@ -99,6 +101,8 @@ namespace BW_tool
 			this.label8 = new System.Windows.Forms.Label();
 			this.label9 = new System.Windows.Forms.Label();
 			this.starter = new System.Windows.Forms.ComboBox();
+			this.label10 = new System.Windows.Forms.Label();
+			this.PropUnlockBut = new System.Windows.Forms.Button();
 			this.groupBox1.SuspendLayout();
 			((System.ComponentModel.ISupportInitialize)(this.sid)).BeginInit();
 			((System.ComponentModel.ISupportInitialize)(this.tid)).BeginInit();
@@ -206,18 +210,36 @@ namespace BW_tool
 			// 
 			// groupBox1
 			// 
+			this.groupBox1.Controls.Add(this.PROP);
+			this.groupBox1.Controls.Add(this.label11);
 			this.groupBox1.Controls.Add(this.b2_import);
 			this.groupBox1.Controls.Add(this.b1m_import);
 			this.groupBox1.Controls.Add(this.b1_import);
 			this.groupBox1.Controls.Add(this.b2_export);
 			this.groupBox1.Controls.Add(this.b1m_export);
 			this.groupBox1.Controls.Add(this.b1_export);
-			this.groupBox1.Location = new System.Drawing.Point(391, 149);
+			this.groupBox1.Location = new System.Drawing.Point(398, 140);
 			this.groupBox1.Name = "groupBox1";
-			this.groupBox1.Size = new System.Drawing.Size(256, 156);
+			this.groupBox1.Size = new System.Drawing.Size(249, 165);
 			this.groupBox1.TabIndex = 30;
 			this.groupBox1.TabStop = false;
 			this.groupBox1.Text = "Research Purposes";
+			// 
+			// PROP
+			// 
+			this.PROP.Location = new System.Drawing.Point(55, 142);
+			this.PROP.Name = "PROP";
+			this.PROP.Size = new System.Drawing.Size(195, 20);
+			this.PROP.TabIndex = 55;
+			this.PROP.Text = "0";
+			// 
+			// label11
+			// 
+			this.label11.Location = new System.Drawing.Point(6, 142);
+			this.label11.Name = "label11";
+			this.label11.Size = new System.Drawing.Size(67, 20);
+			this.label11.TabIndex = 54;
+			this.label11.Text = "Props: 0x";
 			// 
 			// name
 			// 
@@ -368,7 +390,7 @@ namespace BW_tool
 			// 
 			// label5
 			// 
-			this.label5.Location = new System.Drawing.Point(398, 24);
+			this.label5.Location = new System.Drawing.Point(396, 28);
 			this.label5.Name = "label5";
 			this.label5.Size = new System.Drawing.Size(147, 37);
 			this.label5.TabIndex = 47;
@@ -376,7 +398,7 @@ namespace BW_tool
 			// 
 			// label6
 			// 
-			this.label6.Location = new System.Drawing.Point(465, 10);
+			this.label6.Location = new System.Drawing.Point(463, 5);
 			this.label6.Name = "label6";
 			this.label6.Size = new System.Drawing.Size(132, 23);
 			this.label6.TabIndex = 48;
@@ -384,7 +406,7 @@ namespace BW_tool
 			// 
 			// label7
 			// 
-			this.label7.Location = new System.Drawing.Point(465, 24);
+			this.label7.Location = new System.Drawing.Point(463, 19);
 			this.label7.Name = "label7";
 			this.label7.Size = new System.Drawing.Size(132, 23);
 			this.label7.TabIndex = 49;
@@ -392,7 +414,7 @@ namespace BW_tool
 			// 
 			// label8
 			// 
-			this.label8.Location = new System.Drawing.Point(465, 39);
+			this.label8.Location = new System.Drawing.Point(463, 34);
 			this.label8.Name = "label8";
 			this.label8.Size = new System.Drawing.Size(132, 23);
 			this.label8.TabIndex = 50;
@@ -418,11 +440,31 @@ namespace BW_tool
 			this.starter.Size = new System.Drawing.Size(121, 21);
 			this.starter.TabIndex = 52;
 			// 
+			// label10
+			// 
+			this.label10.Location = new System.Drawing.Point(463, 48);
+			this.label10.Name = "label10";
+			this.label10.Size = new System.Drawing.Size(132, 23);
+			this.label10.TabIndex = 53;
+			this.label10.Text = "- Props";
+			// 
+			// PropUnlockBut
+			// 
+			this.PropUnlockBut.Location = new System.Drawing.Point(282, 103);
+			this.PropUnlockBut.Name = "PropUnlockBut";
+			this.PropUnlockBut.Size = new System.Drawing.Size(121, 23);
+			this.PropUnlockBut.TabIndex = 54;
+			this.PropUnlockBut.Text = "Unlock All Props";
+			this.PropUnlockBut.UseVisualStyleBackColor = true;
+			this.PropUnlockBut.Click += new System.EventHandler(this.PropUnlockButClick);
+			// 
 			// MemoryLink
 			// 
 			this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
 			this.ClientSize = new System.Drawing.Size(659, 317);
+			this.Controls.Add(this.PropUnlockBut);
+			this.Controls.Add(this.label10);
 			this.Controls.Add(this.starter);
 			this.Controls.Add(this.label9);
 			this.Controls.Add(this.label8);
@@ -452,12 +494,17 @@ namespace BW_tool
 			this.Controls.Add(this.Saveexit_but);
 			this.Name = "MemoryLink";
 			this.Text = "Memory Link Editor";
+			this.Load += new System.EventHandler(this.MemoryLinkLoad);
 			this.groupBox1.ResumeLayout(false);
 			((System.ComponentModel.ISupportInitialize)(this.sid)).EndInit();
 			((System.ComponentModel.ISupportInitialize)(this.tid)).EndInit();
 			this.ResumeLayout(false);
 			this.PerformLayout();
 		}
+		private System.Windows.Forms.Button PropUnlockBut;
+		private System.Windows.Forms.Label label11;
+		private System.Windows.Forms.Label PROP;
+		private System.Windows.Forms.Label label10;
 		private System.Windows.Forms.ComboBox starter;
 		private System.Windows.Forms.Label label9;
 		private System.Windows.Forms.Label label8;
