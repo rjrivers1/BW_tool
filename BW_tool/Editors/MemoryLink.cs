@@ -526,7 +526,7 @@ namespace BW_tool
 		        	if (status == true)
 		        		Data[0x8D] |= (byte) (0x1<<index);
 		        	else
-		        		Data[0x8D] &= (byte) (~(0x1<<index));
+		        		Data[0x8D] &= unchecked((byte) (~(0x1<<index)));
 		        }
 		        
 		        public void set_hof(byte[] input)

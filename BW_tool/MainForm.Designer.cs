@@ -72,6 +72,7 @@ namespace BW_tool
 			this.memory_but = new System.Windows.Forms.Button();
 			this.dlc_but = new System.Windows.Forms.Button();
 			this.dr_but = new System.Windows.Forms.Button();
+			this.prop_but = new System.Windows.Forms.Button();
 			this.SuspendLayout();
 			// 
 			// loadsave_but
@@ -157,7 +158,7 @@ namespace BW_tool
 			// trainer_records_but
 			// 
 			this.trainer_records_but.Enabled = false;
-			this.trainer_records_but.Location = new System.Drawing.Point(12, 107);
+			this.trainer_records_but.Location = new System.Drawing.Point(304, 107);
 			this.trainer_records_but.Name = "trainer_records_but";
 			this.trainer_records_but.Size = new System.Drawing.Size(140, 23);
 			this.trainer_records_but.TabIndex = 8;
@@ -265,12 +266,24 @@ namespace BW_tool
 			this.dr_but.UseVisualStyleBackColor = true;
 			this.dr_but.Click += new System.EventHandler(this.Dr_butClick);
 			// 
+			// prop_but
+			// 
+			this.prop_but.Enabled = false;
+			this.prop_but.Location = new System.Drawing.Point(12, 107);
+			this.prop_but.Name = "prop_but";
+			this.prop_but.Size = new System.Drawing.Size(140, 23);
+			this.prop_but.TabIndex = 18;
+			this.prop_but.Text = "Prop Case";
+			this.prop_but.UseVisualStyleBackColor = true;
+			this.prop_but.Click += new System.EventHandler(this.Prop_butClick);
+			// 
 			// MainForm
 			// 
 			this.AllowDrop = true;
 			this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
 			this.ClientSize = new System.Drawing.Size(503, 239);
+			this.Controls.Add(this.prop_but);
 			this.Controls.Add(this.dr_but);
 			this.Controls.Add(this.dlc_but);
 			this.Controls.Add(this.memory_but);
@@ -295,7 +308,7 @@ namespace BW_tool
 			this.DragEnter += new System.Windows.Forms.DragEventHandler(this.MainScreenDragEnter);
 			this.ResumeLayout(false);
 			this.PerformLayout();
-
 		}
+		private System.Windows.Forms.Button prop_but;
 	}
 }

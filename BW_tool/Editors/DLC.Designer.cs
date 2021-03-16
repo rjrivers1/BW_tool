@@ -284,7 +284,6 @@ namespace BW_tool
 			this.groupBox5.ResumeLayout(false);
 			this.groupBox6.ResumeLayout(false);
 			this.ResumeLayout(false);
-
 		}
 	}
 }

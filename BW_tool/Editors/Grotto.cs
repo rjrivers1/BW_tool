@@ -16,7 +16,9 @@ using System.Text;
 using System.Windows.Forms;
 using System.IO;
 
-
+using System.Collections.Generic;
+using System.Reflection;
+using System.Resources;
 
 namespace BW_tool
 {
@@ -26,6 +28,8 @@ namespace BW_tool
 	/// </summary>
 	public partial class Grotto : Form
 	{
+		ResourceManager resources = new ResourceManager("BW_tool.Grotto", Assembly.GetExecutingAssembly());
+
 //Hidden Hollow BW2
 /* Structure:
 	The block at 0x23B00 contains rival data and hidden hollow information.
@@ -715,7 +719,8 @@ namespace BW_tool
 		    try
 		    {
 				pictureBox.Dock = DockStyle.Fill;
-				pictureBox.Image = Image.FromFile("./grotto_tables/b2_"+Grotto_route.SelectedIndex+".png");
+				//pictureBox.Image = Image.FromFile("./grotto_tables/b2_"+Grotto_route.SelectedIndex+".png");
+				pictureBox.Image = (Bitmap)resources.GetObject("b2_"+Grotto_route.SelectedIndex);
 				pictureBox.SizeMode = PictureBoxSizeMode.StretchImage;
 				form.Controls.Add(pictureBox);
 				Size size = new Size(720,300);

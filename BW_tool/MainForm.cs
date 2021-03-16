@@ -92,6 +92,7 @@ namespace BW_tool
 					memory_but.Enabled = true;
 					dlc_but.Enabled = true;
 					dr_but.Enabled = true;
+					prop_but.Enabled = true;
 				}
 				else if (save.BW)
 				{
@@ -111,6 +112,7 @@ namespace BW_tool
 					memory_but.Enabled = false;
 					dlc_but.Enabled = true;
 					dr_but.Enabled = false;
+					prop_but.Enabled = true;
 				}
 				else versiontext.Text = "Invalid file";
 
@@ -210,6 +212,12 @@ namespace BW_tool
 		{
 			Form dr = new DreamRadar();
 			dr.ShowDialog();
+		}
+		
+		void Prop_butClick(object sender, EventArgs e)
+		{
+			Form propcase = new PropCase();
+			propcase.ShowDialog();
 		}
 	}
 }

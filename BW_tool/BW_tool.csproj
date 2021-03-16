@@ -62,6 +62,10 @@
     <Compile Include="Editors\Entralink_DreamWorld.Designer.cs">
       <DependentUpon>Entralink_DreamWorld.cs</DependentUpon>
     </Compile>
+    <Compile Include="Editors\Propcase.cs" />
+    <Compile Include="Editors\Propcase.Designer.cs">
+      <DependentUpon>Propcase.cs</DependentUpon>
+    </Compile>
     <Compile Include="Editors\Join_avenue.cs" />
     <Compile Include="Editors\Join_avenue.Designer.cs">
       <DependentUpon>Join_avenue.cs</DependentUpon>
@@ -146,6 +150,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Editors\MemoryLink.resx">
       <DependentUpon>MemoryLink.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Editors\Propcase.resx">
+      <DependentUpon>Propcase.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Editors\TrainerInfo.resx">
       <DependentUpon>TrainerInfo.cs</DependentUpon>

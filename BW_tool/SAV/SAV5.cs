@@ -493,6 +493,7 @@ namespace BW_tool
         		
 			return;
         }
+        //Updates both MAIN and BACKUP crc (editor updates both MAIN and BACKUP when using setBlock)
         public void block_crc_recalc(int index)
         {
         	setBlock(getBlock(index), index);
